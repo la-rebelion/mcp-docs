@@ -1,0 +1,27 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Robot antenna -->
+  <circle cx="150" cy="40" r="12" fill="#1193b0"/>
+  <rect x="147" y="40" width="6" height="25" fill="#1193b0"/>
+  
+  <!-- Robot head/speech bubble body with tail pointing left -->
+  <path d="M70,90 Q70,65 95,65 H205 Q230,65 230,90 V160 Q230,185 205,185 H140 L110,220 L110,185 H95 Q70,185 70,160 V90" 
+        fill="none" 
+        stroke="#1193b0" 
+        stroke-width="12" 
+        stroke-linejoin="round"/>
+
+  <!-- Left ear -->
+  <rect x="55" y="110" width="20" height="40" rx="10" ry="10" fill="#1193b0"/>
+  
+  <!-- Right ear -->
+  <rect x="225" y="110" width="20" height="40" rx="10" ry="10" fill="#1193b0"/>
+  
+  <!-- Left eye -->
+  <circle cx="120" cy="115" r="18" fill="#da7756"/>
+  
+  <!-- Right eye -->
+  <circle cx="180" cy="115" r="18" fill="#da7756"/>
+  
+  <!-- Mouth -->
+  <rect x="125" y="150" width="50" height="15" rx="5" ry="5" fill="#da7756"/>
+</svg>
