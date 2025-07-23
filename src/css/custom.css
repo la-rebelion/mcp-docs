@@ -1,30 +1,205 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * MCP Documentation Site - Custom Styles
+ * Branding colors: Blue #1193b0, Orange #da7756
  */
 
-/* You can override the default Infima variables here. */
+/* Custom MCP Brand Colors */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* Primary brand color - MCP Blue */
+  --ifm-color-primary: #1193b0;
+  --ifm-color-primary-dark: #0f839c;
+  --ifm-color-primary-darker: #0e7c93;
+  --ifm-color-primary-darkest: #0c6679;
+  --ifm-color-primary-light: #13a3c4;
+  --ifm-color-primary-lighter: #14aacd;
+  --ifm-color-primary-lightest: #17bfe1;
+  
+  /* Secondary brand color - MCP Orange */
+  --ifm-color-secondary: #da7756;
+  --ifm-color-secondary-dark: #d5653e;
+  --ifm-color-secondary-darker: #d25e35;
+  --ifm-color-secondary-darkest: #b84a1e;
+  --ifm-color-secondary-light: #df896e;
+  --ifm-color-secondary-lighter: #e29076;
+  --ifm-color-secondary-lightest: #e8a896;
+  
+  /* Enhanced typography and spacing */
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --ifm-heading-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --ifm-font-weight-semibold: 600;
+  --ifm-font-weight-bold: 700;
+  
+  /* Custom spacing and borders */
+  --ifm-global-radius: 8px;
+  --ifm-button-border-radius: 6px;
+  --ifm-card-border-radius: 12px;
+  
+  /* Code highlighting */
+  --docusaurus-highlighted-code-line-bg: rgba(17, 147, 176, 0.1);
+  
+  /* Custom gradients */
+  --mcp-gradient-primary: linear-gradient(135deg, #1193b0 0%, #da7756 100%);
+  --mcp-gradient-hero: linear-gradient(135deg, #1193b0 0%, #13a3c4 50%, #da7756 100%);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode color adjustments */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #17bfe1;
+  --ifm-color-primary-dark: #05b8dc;
+  --ifm-color-primary-darker: #05aecf;
+  --ifm-color-primary-darkest: #0490aa;
+  --ifm-color-primary-light: #29c6e6;
+  --ifm-color-primary-lighter: #33c9e8;
+  --ifm-color-primary-lightest: #4dd1ec;
+  
+  --ifm-color-secondary: #e8a896;
+  --ifm-color-secondary-dark: #e39578;
+  --ifm-color-secondary-darker: #e08e6b;
+  --ifm-color-secondary-darkest: #d67442;
+  --ifm-color-secondary-light: #edbbb4;
+  --ifm-color-secondary-lighter: #efc2c1;
+  --ifm-color-secondary-lightest: #f4d6db;
+  
+  --docusaurus-highlighted-code-line-bg: rgba(23, 191, 225, 0.15);
+}
+
+/* Enhanced navbar styling */
+.navbar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.navbar__brand:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.navbar__logo {
+  height: 32px;
+  width: auto;
+}
+
+/* Hero section enhancements */
+.hero {
+  background: var(--mcp-gradient-hero);
+  color: white;
+  padding: 4rem 0;
+}
+
+.hero__title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero__subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+/* Button enhancements */
+.button {
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.button--primary {
+  background: var(--ifm-color-primary);
+  color: white;
+}
+
+.button--primary:hover {
+  background: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(17, 147, 176, 0.3);
+}
+
+.button--secondary {
+  background: var(--ifm-color-secondary);
+  color: white;
+}
+
+.button--secondary:hover {
+  background: var(--ifm-color-secondary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(218, 119, 86, 0.3);
+}
+
+/* Card enhancements */
+.card {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: var(--ifm-card-border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--ifm-color-primary-lighter);
+}
+
+/* Footer enhancements */
+.footer {
+  background: linear-gradient(135deg, #0c6679 0%, #b84a1e 100%);
+}
+
+.footer__title {
+  color: var(--ifm-color-secondary-lightest);
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-color-primary-lightest);
+}
+
+/* Code block enhancements */
+.prism-code {
+  border-radius: var(--ifm-global-radius);
+}
+
+/* Table of contents styling */
+.table-of-contents {
+  border-left: 2px solid var(--ifm-color-primary-lighter);
+}
+
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* Sidebar enhancements */
+.menu__link--active {
+  background: linear-gradient(90deg, rgba(17, 147, 176, 0.1) 0%, transparent 100%);
+  border-right: 2px solid var(--ifm-color-primary);
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: 2.5rem;
+  }
+  
+  .hero {
+    padding: 2rem 0;
+  }
 }

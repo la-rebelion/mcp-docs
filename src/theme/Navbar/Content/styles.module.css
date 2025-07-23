@@ -1,0 +1,67 @@
+/*
+MCP Navbar Enhancement Styles
+ */
+
+/* Enhanced color mode toggle with MCP branding */
+.colorModeToggle {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  padding: 0.25rem;
+}
+
+.colorModeToggle:hover {
+  background: rgba(17, 147, 176, 0.1);
+  transform: scale(1.05);
+}
+
+/* Hide color mode toggle in small viewports */
+@media (max-width: 996px) {
+  .colorModeToggle {
+    display: none;
+  }
+}
+
+/* Enhanced navbar items with better spacing */
+:global(.navbar__item) {
+  margin: 0 0.25rem;
+}
+
+:global(.navbar__link) {
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s ease;
+}
+
+:global(.navbar__link:hover) {
+  background: rgba(17, 147, 176, 0.1);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+:global(.navbar__link--active) {
+  background: rgba(17, 147, 176, 0.15);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* MCP GitHub link styling */
+:global(.navbar__item--right .navbar__link[href*="github"]) {
+  background: var(--ifm-color-secondary);
+  color: white;
+  font-weight: 600;
+}
+
+:global(.navbar__item--right .navbar__link[href*="github"]:hover) {
+  background: var(--ifm-color-secondary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(218, 119, 86, 0.3);
+}
+
+/*
+Restore some Infima style that broke with CSS Cascade Layers
+See https://github.com/facebook/docusaurus/pull/11142
+ */
+:global(.navbar__items--right) > :last-child {
+  padding-right: 0;
+}
