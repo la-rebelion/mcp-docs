@@ -11,8 +11,8 @@ export default function FooterLayout({
   logo,
   copyright,
 }: Props): ReactNode {
-  const mcpLogoWhite = useBaseUrl('/img/mcp-com-ai-white.png');
-  const mcpLogo = useBaseUrl('/img/logo.svg');
+  const mcpLogo = useBaseUrl('/img/android-chrome-192x192.png');
+  const mcpLogoTxt = useBaseUrl('/img/logo.svg');
   const mcpAnimatedLogo = useBaseUrl('/img/mcp-animated-logo.svg');
   
   // Use the Docusaurus color mode hook to properly detect theme changes
@@ -31,7 +31,7 @@ export default function FooterLayout({
   const patternColor = isDarkTheme ? 'ffffff' : '000000';
   const patternOpacity = isDarkTheme ? '0.05' : '0.02';
   
-  const logoToUse = isDarkTheme ? mcpLogoWhite : mcpLogo;
+  // const logoToUse = isDarkTheme ? mcpLogo : mcpLogoTxt;
   const logoShadowColor = isDarkTheme 
     ? 'rgba(135, 238, 255, 0.3)' 
     : 'rgba(17, 147, 176, 0.2)';
@@ -87,8 +87,24 @@ export default function FooterLayout({
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
             <img 
-              src={logoToUse} 
+              src={mcpLogo} 
               alt="MCP" 
+              style={{
+                height: '48px',
+                filter: `brightness(1.1) drop-shadow(0 2px 8px ${logoShadowColor})`,
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.filter = `brightness(1.2) drop-shadow(0 4px 16px ${logoShadowHoverColor})`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.filter = `brightness(1.1) drop-shadow(0 2px 8px ${logoShadowColor})`;
+              }}
+            /><img 
+              src={mcpLogoTxt} 
+              alt="MCP Text Logo" 
               style={{
                 height: '48px',
                 filter: `brightness(1.1) drop-shadow(0 2px 8px ${logoShadowColor})`,
@@ -111,15 +127,11 @@ export default function FooterLayout({
               fontSize: '1.5rem',
               fontWeight: 700,
               margin: '0 0 0.5rem 0',
-              background: isDarkTheme 
-                ? 'linear-gradient(45deg, hsl(210 40% 98%), hsl(187 85% 68%))'
-                : 'linear-gradient(45deg, hsl(222.2 84% 4.9%), hsl(187 85% 43%))',
               WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}
           >
-            Model Context Protocol
+            Model Context Protocol AI
           </h3>
           
           <p 

@@ -1,0 +1,293 @@
+<svg viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a7a94;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#da7756;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b85d42;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lightBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#1193b0;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <!-- Glow effects -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Animated pattern for background -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1193b0" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Arrow markers -->
+    <marker id="blueArrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3, 0 6" fill="#1193b0"/>
+    </marker>
+    <marker id="orangeArrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3, 0 6" fill="#da7756"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="800" fill="#0f0f0f"/>
+  <rect width="1400" height="800" fill="url(#grid)"/>
+  
+  <!-- Title -->
+  <text x="700" y="50" fill="#1193b0" font-family="Arial, sans-serif" font-size="30" font-weight="bold" text-anchor="middle">runMCP Flow</text>
+  <text x="700" y="75" fill="#da7756" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">Architecture Sequence</text>
+  
+  <!-- Sequence diagram - Vertical lines -->
+  <!-- User lane (MCP Server Provider) -->
+  <line x1="150" y1="120" x2="150" y2="740" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+  <rect x="100" y="100" width="100" height="40" rx="10" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="2"/>
+  <text x="150" y="125" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">Provider</text>
+  <!-- Adding role description -->
+  <text x="150" y="137" fill="#1193b0" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">MCP Server Provider</text>
+  
+  <!-- Add the chatMCP Consumer user on the right side -->
+  <line x1="1250" y1="120" x2="1250" y2="740" stroke="#da7756" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+  <rect x="1200" y="100" width="100" height="40" rx="10" fill="url(#darkGradient)" stroke="#da7756" stroke-width="2"/>
+  <text x="1250" y="125" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">Consumer</text>
+  <text x="1250" y="137" fill="#da7756" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">chatMCP User</text>
+  
+  <!-- runMCP Portal lane -->
+  <line x1="300" y1="120" x2="300" y2="740" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+  <rect x="225" y="100" width="150" height="40" rx="10" fill="url(#blueGradient)" stroke="#1193b0" stroke-width="2"/>
+  <text x="300" y="125" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">runMCP Portal</text>
+  
+  <!-- HAPI CP lane -->
+  <line x1="450" y1="120" x2="450" y2="740" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+  <rect x="400" y="100" width="100" height="40" rx="10" fill="url(#blueGradient)" stroke="#1193b0" stroke-width="2"/>
+  <text x="450" y="125" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">HAPI CP</text>
+  
+  <!-- DNS lane -->
+  <line x1="575" y1="120" x2="575" y2="740" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+  <rect x="525" y="100" width="100" height="40" rx="10" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="2"/>
+  <text x="575" y="125" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">DNS</text>
+  
+  <!-- MCP Server lane -->
+  <line x1="700" y1="120" x2="700" y2="740" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+  <rect x="650" y="100" width="100" height="40" rx="10" fill="url(#blueGradient)" stroke="#1193b0" stroke-width="2"/>
+  <text x="700" y="125" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">MCP Server</text>
+  
+  <!-- MCP Tools lane -->
+  <line x1="825" y1="120" x2="825" y2="740" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+  <rect x="775" y="100" width="100" height="40" rx="10" fill="url(#orangeGradient)" stroke="#da7756" stroke-width="2"/>
+  <text x="825" y="125" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">MCP Tools</text>
+  
+  <!-- Backend API lane -->
+  <line x1="975" y1="120" x2="975" y2="740" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+  <rect x="925" y="100" width="100" height="40" rx="10" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="2"/>
+  <text x="975" y="125" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">Backend API</text>
+  
+  <!-- chatMCP lane -->
+  <line x1="1100" y1="120" x2="1100" y2="740" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+  <rect x="1050" y="100" width="100" height="40" rx="10" fill="url(#orangeGradient)" stroke="#da7756" stroke-width="2"/>
+  <text x="1100" y="125" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">chatMCP</text>
+  
+  <!-- Sequence Steps -->
+  <!-- Step 1: User provides Swagger file -->
+  <rect x="125" y="160" width="50" height="60" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+  <g transform="translate(150, 180)">
+    <rect x="-20" y="-15" width="40" height="30" rx="5" fill="url(#orangeGradient)" filter="url(#glow)"/>
+    <text x="0" y="5" fill="white" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">OAS</text>
+  </g>
+  
+  <path d="M 170 190 L 300 190" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#blueArrowhead)">
+    <animate attributeName="stroke-dasharray" values="0,120;120,0" dur="1.5s" begin="0.5s" fill="freeze"/>
+  </path>
+  <text x="185" y="185" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">1. Provides Swagger</text>
+  <text x="185" y="202" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">(OAS v3) file</text>
+  
+  <!-- Step 2: runMCP Portal sends to HAPI CP -->
+  <rect x="275" y="210" width="50" height="60" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+  <text x="300" y="240" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">API</text>
+  
+  <path d="M 325 240 L 425 240" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#blueArrowhead)">
+    <animate attributeName="stroke-dasharray" values="0,150;150,0" dur="1.5s" begin="2s" fill="freeze"/>
+  </path>
+  <text x="350" y="218" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">2. Forward OAS</text>
+  <text x="350" y="232" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">to control plane</text>
+  
+  <!-- Step 3: HAPI CP deploys MCP Server -->
+  <rect x="425" y="240" width="50" height="120" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+  <text x="450" y="290" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🎛️</text>
+  
+  <path d="M 475 290 L 670 290" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#blueArrowhead)">
+    <animate attributeName="stroke-dasharray" values="0,250;250,0" dur="2s" begin="3.5s" fill="freeze"/>
+  </path>
+  <text x="478" y="275" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">3. Deploy MCP Server</text>
+  <text x="478" y="287" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">with OAS configuration</text>
+  
+  <!-- Step 4: HAPI CP configures DNS -->
+  <g transform="translate(0, 0)">
+    <path d="M 475 350 L 545 350" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#blueArrowhead)">
+      <animate attributeName="stroke-dasharray" values="0,150;150,0" dur="1.5s" begin="5.5s" fill="freeze"/>
+    </path>
+    <text x="475" y="330" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">4. Configure DNS</text>
+    <text x="475" y="342" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">for traffic routing</text>
+    
+    <rect x="550" y="330" width="50" height="40" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="575" y="355" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🌐</text>
+  </g>
+  
+  <!-- Step 5: MCP Server loads MCP Tools -->
+  <g transform="translate(0, 0)">
+    <rect x="675" y="285" width="50" height="120" rx="5" fill="url(#blueGradient)" stroke="#1193b0" stroke-width="1" filter="url(#glow)"/>
+    <text x="700" y="350" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">😁 HAPI</text>
+    <text x="700" y="365" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Server</text>
+    
+    <path d="M 725 380 L 795 380" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#orangeArrowhead)">
+      <animate attributeName="stroke-dasharray" values="0,125;125,0" dur="1.5s" begin="7s" fill="freeze"/>
+    </path>
+    <text x="730" y="360" fill="#da7756" font-family="Arial, sans-serif" font-size="10">5. Load MCP Tools</text>
+    <text x="730" y="372" fill="#da7756" font-family="Arial, sans-serif" font-size="10">based on OAS</text>
+  </g>
+  
+  <!-- Step 6: MCP Tools connect to Backend API -->
+  <g transform="translate(0, 0)">
+    <rect x="800" y="370" width="50" height="180" rx="5" fill="url(#orangeGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="825" y="430" fill="white" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🛠️</text>
+    
+    <path d="M 850 430 L 970 430" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#orangeArrowhead)">
+      <animate attributeName="stroke-dasharray" values="0,150;150,0" dur="1.5s" begin="8.5s" fill="freeze"/>
+    </path>
+    <text x="880" y="410" fill="#da7756" font-family="Arial, sans-serif" font-size="10">6. Connect to</text>
+    <text x="880" y="422" fill="#da7756" font-family="Arial, sans-serif" font-size="10">Backend APIs</text>
+  </g>
+  
+  <!-- Step 7: Consumer User can access via chatMCP -->
+  <g transform="translate(0, 0)">
+    <path d="M 1250 480 L 1125 480" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#orangeArrowhead)" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" values="0;-20;0" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <text x="1125" y="470" fill="#da7756" font-family="Arial, sans-serif" font-size="10">7. Consumer accesses</text>
+    
+    <!-- Consumer user representation -->
+    <rect x="1225" y="450" width="50" height="60" rx="5" fill="url(#lightBlueGradient)" stroke="#da7756" stroke-width="1"/>
+    <g transform="translate(1250, 480)">
+      <circle r="19" fill="#da7756" filter="url(#glow)"/>
+      <image href="/img/la-rebelion-user.png" x="-15" y="-15" width="30" height="30"/>
+    </g>
+  </g>
+  
+  <!-- chatMCP representation -->
+  <rect x="1075" y="470" width="50" height="110" rx="5" fill="url(#orangeGradient)" stroke="#da7756" stroke-width="1" filter="url(#glow)"/>
+  <text x="1100" y="520" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">chat</text>
+  <text x="1100" y="535" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">MCP</text>
+  
+  <!-- Step 8: chatMCP connects to MCP Tools -->
+  <path d="M 1075 520 L 852 520" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#orangeArrowhead)">
+    <animate attributeName="stroke-dasharray" values="0,200;200,0" dur="2s" begin="10s" fill="freeze"/>
+  </path>
+  <text x="960" y="510" fill="#da7756" font-family="Arial, sans-serif" font-size="10">8. Connect to MCP Tools</text>
+  
+  <!-- Step 9: Multi-agent collaboration -->
+  <path d="M 1075 570 C 1000 590 900 580 855 590" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#orangeArrowhead)">
+    <animate attributeName="stroke-dasharray" values="0,300;300,0" dur="2s" begin="12s" fill="freeze"/>
+  </path>
+  <text x="950" y="560" fill="#da7756" font-family="Arial, sans-serif" font-size="10">9. Multi-agent collaboration</text>
+  
+  <!-- MCP Tools with agents -->
+  <rect x="800" y="580" width="50" height="70" rx="5" fill="url(#orangeGradient)" stroke="#da7756" stroke-width="1"/>
+  
+  <!-- Chat bubbles animation -->
+  <g transform="translate(825, 610)">
+    <!-- Agent 1 -->
+    <circle r="10" fill="#1193b0" opacity="0.8">
+      <animate attributeName="cx" values="-15;-15" dur="1s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="0;5;0;-5;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <text x="-15" y="0" fill="white" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">A1</text>
+    
+    <!-- Agent 2 -->
+    <circle r="10" fill="#da7756" opacity="0.8">
+      <animate attributeName="cx" values="15;15" dur="1s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="0;-5;0;5;0" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <text x="15" y="0" fill="white" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">A2</text>
+    
+    <!-- Agent 3 -->
+    <circle r="10" fill="#ffeb3b" opacity="0.8">
+      <animate attributeName="cx" values="0;0" dur="1s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="15;20;15;10;15" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <text x="0" y="15" fill="#1a1a1a" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">A3</text>
+  </g>
+  
+  <!-- Step 10: Human in the middle (modified to come from consumer) -->
+  <path d="M 1250 650 C 1150 650 1050 650 850 630" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#orangeArrowhead)">
+    <animate attributeName="stroke-dasharray" values="0,400;400,0" dur="2s" begin="14s" fill="freeze"/>
+  </path>
+  <text x="1050" y="640" fill="#da7756" font-family="Arial, sans-serif" font-size="10">10. Consumer interaction with agents</text>
+  
+  <!-- Add bidirectional interaction arrow between agents and user -->
+  <path d="M 850 610 C 950 600 1150 600 1250 610" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#orangeArrowhead)" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+  </path>
+  
+  <!-- Final state: Continuous management -->
+  <path d="M 300 700 L 450 700" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#blueArrowhead)" stroke-dasharray="5,5">
+    <animate attributeName="stroke-dashoffset" values="0;-20;0" dur="3s" repeatCount="indefinite"/>
+  </path>
+  <text x="320" y="690" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">Continuous management</text>
+  
+  <path d="M 450 720 L 700 720" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#blueArrowhead)" stroke-dasharray="5,5">
+    <animate attributeName="stroke-dashoffset" values="0;-20;0" dur="2.5s" repeatCount="indefinite"/>
+  </path>
+  <text x="535" y="710" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">Lifecycle management</text>
+  
+  <!-- User characters -->
+  <g transform="translate(30, 150)">
+    <!-- Admin user animation: gentle up/down floating -->
+    <image href="/img/la-rebelion-admin.png" x="0" y="0" width="100" height="100">
+      <animate attributeName="y" values="0;10;0" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.8;1" dur="3s" repeatCount="indefinite"/>
+    </image>
+    <!-- Consumer user animation: gentle left/right floating -->
+    <image href="/img/la-rebelion-user.png" x="1240" y="0" width="100" height="100">
+      <animate attributeName="x" values="1240;1250;1240" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.8;1" dur="3s" repeatCount="indefinite"/>
+    </image>
+  </g>
+  <!-- Floating particles animation -->
+  <g id="particles">
+    <circle r="2" fill="#1193b0" opacity="0.6">
+      <animate attributeName="cx" values="200;1000;200" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="500;200;500" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.6;0" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.5" fill="#da7756" opacity="0.4">
+      <animate attributeName="cx" values="300;900;300" dur="18s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="200;600;200" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.4;0" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2.5" fill="#1193b0" opacity="0.3">
+      <animate attributeName="cx" values="400;800;400" dur="20s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="300;400;300" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.3;0" dur="7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- runMCP logo at the bottom -->
+  <g transform="translate(700, 780)">
+    <text x="0" y="0" fill="#1193b0" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">run</text>
+    <text x="35" y="0" fill="#da7756" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">MCP</text>
+  </g>
+</svg>

@@ -1,0 +1,222 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Gradients (same as original) -->
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a7a94;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#da7756;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b85d42;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lightBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#1193b0;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <!-- Glow effects -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1193b0" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+
+    <!-- Arrowhead markers -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3, 0 6" fill="#1193b0"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#0f0f0f"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" fill="#1193b0" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle">HAPI Ecosystem Overview</text>
+  <text x="600" y="60" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">The Happiness Stack</text>
+  
+  <!-- Left Section - Design (smaller, top left) -->
+  <g id="design-section">
+    <rect x="40" y="100" width="220" height="170" rx="15" fill="url(#orangeGradient)" opacity="0.8"/>
+    <text x="150" y="125" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle">Design</text>
+    <!-- Local component (as database cylinder) -->
+    <g>
+      <ellipse cx="90" cy="170" rx="40" ry="12" fill="url(#blueGradient)" filter="url(#glow)"/>
+      <rect x="50" y="170" width="80" height="25" fill="url(#blueGradient)" filter="url(#glow)"/>
+      <ellipse cx="90" cy="195" rx="40" ry="12" fill="url(#blueGradient)" filter="url(#glow)"/>
+      <ellipse cx="90" cy="170" rx="40" ry="12" fill="none" stroke="#1193b0" stroke-width="1.5"/>
+      <ellipse cx="90" cy="195" rx="40" ry="12" fill="none" stroke="#1193b0" stroke-width="1.5"/>
+      <text x="90" y="185" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Local</text>
+      <text x="90" y="198" fill="#1193b0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">Database</text>
+    </g>
+    <!-- URL component (as cloud) -->
+    <g>
+      <ellipse cx="200" cy="170" rx="28" ry="18" fill="url(#blueGradient)" filter="url(#glow)" opacity="0.9"/>
+      <ellipse cx="220" cy="165" rx="18" ry="14" fill="url(#blueGradient)" filter="url(#glow)" opacity="0.8"/>
+      <ellipse cx="180" cy="165" rx="16" ry="12" fill="url(#blueGradient)" filter="url(#glow)" opacity="0.7"/>
+      <ellipse cx="210" cy="180" rx="14" ry="10" fill="url(#blueGradient)" filter="url(#glow)" opacity="0.7"/>
+      <ellipse cx="190" cy="180" rx="10" ry="7" fill="url(#blueGradient)" filter="url(#glow)" opacity="0.7"/>
+      <path d="M170 170 Q175 155 190 160 Q195 145 210 160 Q225 145 230 165 Q245 170 230 180 Q225 195 210 185 Q195 195 190 180 Q175 190 170 170Z"
+        fill="none" stroke="#1193b0" stroke-width="1.5"/>
+      <text x="200" y="175" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">URL</text>
+      <text x="200" y="188" fill="#1193b0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">Cloud</text>
+    </g>
+    <!-- Swagger/OAS component -->
+    <rect x="80" y="210" width="120" height="40" rx="12" fill="url(#blueGradient)" filter="url(#glow)"/>
+    <text x="140" y="235" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Swagger</text>
+    <text x="140" y="250" fill="white" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">(OAS v3)</text>
+    <!-- Connection lines with animations -->
+    <path d="M 130 170 Q 140 185 140 210" stroke="#1193b0" stroke-width="2" fill="none" opacity="0.7" marker-end="url(#arrowhead)">
+      <animate attributeName="stroke-dasharray" values="0,5;10,0;0,5" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 175 175 Q 165 200 140 210" stroke="#1193b0" stroke-width="2" fill="none" opacity="0.7" marker-end="url(#arrowhead)">
+      <animate attributeName="stroke-dasharray" values="0,5;10,0;0,5" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Right Section - LLMs (smaller, top right) -->
+  <g id="llms-section">
+    <rect x="500" y="100" width="320" height="170" rx="15" fill="url(#blueGradient)" opacity="0.8"/>
+    <text x="660" y="125" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle">LLMs</text>
+    <rect x="520" y="150" width="280" height="60" rx="10" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <!-- OpenAI -->
+    <image href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/512px-ChatGPT_logo.svg.png" x="540" y="160" width="30" height="30"/>
+    <text x="555" y="200" fill="white" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">GPT</text>
+    <!-- Anthropic Claude -->
+    <rect x="585" y="160" width="30" height="30" rx="15" fill="white"/>
+    <image href="https://images.seeklogo.com/logo-png/55/1/claude-logo-png_seeklogo-554534.png" x="585" y="160" width="30" height="30"/>
+    <text x="600" y="200" fill="white" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">Claude</text>
+    <!-- Google Gemini -->
+    <circle cx="645" cy="175" r="15" fill="white"/>
+    <image href="https://img.icons8.com/?size=512&amp;id=mrNoLXFmvXDX&amp;format=png" x="630" y="160" width="30" height="30"/>
+    <text x="645" y="200" fill="white" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">Gemini</text>
+    <!-- Local AI -->
+    <rect x="685" y="160" width="30" height="30" rx="5" fill="white"/>
+    <image href="https://ollama.com/public/ollama.png" x="685" y="160" width="30" height="30"/>
+    <text x="700" y="200" fill="white" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">Local</text>
+    <!-- Hugging face emoji -->
+    <text x="745" y="190" fill="#ffeb3b" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">🤗</text>
+  </g>
+  
+  <!-- Center Section - Business Logic (second row, expanded, two columns) -->
+  <g id="business-logic">
+    <rect x="40" y="300" width="780" height="240" rx="18" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="2"/>
+    <text x="180" y="330" fill="#da7756" font-family="Arial, sans-serif" font-size="25" font-weight="bold" text-anchor="middle">Runtime</text>
+    <text x="180" y="520" fill="#1193b0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">Business Logic</text>
+    <!-- Orange outline group for Local, Cloud APIs, HAPI Server -->
+    <g filter="url(#glow)">
+      <rect x="60" y="350" width="470" height="150" rx="18" fill="none" stroke="url(#orangeGradient)" stroke-width="2"/>
+    </g>
+    <!-- Left column: Local, Cloud APIs, HAPI Server -->
+    <rect x="70" y="360" width="250" height="60" rx="12" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="195" y="390" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Local</text>
+    <rect x="70" y="430" width="250" height="60" rx="12" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="195" y="460" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Cloud APIs</text>
+    <!-- Animated user connection arrow -->
+    <g id="user-connection">
+      <!-- Base arrow path -->
+      <path d="M 950 450 Q 900 400 800 450" stroke="#1193b0" stroke-width="3" fill="none" marker-end="url(#arrowhead)" opacity="0" id="connection-path">
+        <!-- Animation for the arrow to appear with drawing effect -->
+        <animate attributeName="opacity" values="0;0.8" dur="0.5s" begin="0s" fill="freeze"/>
+        <animate attributeName="stroke-dasharray" values="0,500;500,0" dur="1.5s" begin="0.5s" fill="freeze"/>
+      </path>
+      
+      <!-- Animated orange dot with bubble chat -->
+      <g>
+        <circle r="3" fill="#da7756" opacity="0.8"/>
+        <!-- Chat bubble following the dot -->
+        <path d="M -5,-10 Q -12,-15 -10,-22 Q -8,-25 -5,-23 L 5,-23 Q 8,-25 10,-22 Q 12,-15 5,-10 z" fill="white" opacity="0.9" stroke="#1193b0" stroke-width="1"/>
+        <text x="0" y="-13" font-family="Arial, sans-serif" font-size="10" fill="#1193b0" text-anchor="middle">Hi!</text>
+        <!-- Combined animation for both elements -->
+        <animateMotion dur="3s" repeatCount="indefinite" path="M 950 450 Q 900 400 800 450">
+          <mpath xlink:href="#connection-path"/>
+        </animateMotion>
+        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
+      </g>
+      
+      <circle r="2" fill="#1193b0" opacity="0.6">
+        <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.5s" path="M 950 450 Q 900 400 800 450"/>
+        <animate attributeName="opacity" values="0;0.8;0" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      
+      <!-- Pulsing glow effect along path -->
+      <path d="M 950 450 Q 900 400 800 450" stroke="#1193b0" stroke-width="6" fill="none" filter="url(#glow)" opacity="0">
+        <animate attributeName="opacity" values="0;0.3;0" dur="2s" repeatCount="indefinite"/>
+      </path>
+    </g>
+    
+    <rect x="340" y="360" width="180" height="130" rx="15" fill="url(#blueGradient)" filter="url(#glow)"/>
+    <text x="430" y="400" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">😁 HAPI</text>
+    <text x="430" y="430" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">Server</text>
+    <text x="350" y="420" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">REST</text>
+    <text x="350" y="440" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">MCP</text>
+    <!-- Right column: chatMCP box -->
+    <rect x="540" y="360" width="260" height="130" rx="15" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1" filter="url(#glow)"/>
+    <image href="/img/chatmcp/chatmcp.svg" x="555" y="375" width="80" height="80"/>
+    <text x="670" y="410" fill="#1193b0" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">chat</text>
+    <text x="720" y="410" fill="#da7756" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">MCP</text>
+    <text x="670" y="430" fill="#1193b0" font-family="Arial, sans-serif" font-size="9" text-anchor="right">https://chat.mcp.com.ai</text>
+    <text x="670" y="455" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Multi-Agent Chat Interface</text>
+    <!-- User connection arrow -->
+    <path d="M 950 450 Q 900 400 800 450" stroke="#1193b0" stroke-width="3" fill="none" marker-end="url(#arrowhead)" opacity="0" id="connection-path">
+      <!-- Animation for the arrow to appear with drawing effect -->
+      <animate attributeName="opacity" values="0;0.8" dur="0.5s" begin="0s" fill="freeze"/>
+      <animate attributeName="stroke-dasharray" values="0,500;500,0" dur="1.5s" begin="0.5s" fill="freeze"/>
+    </path>
+    
+    <!-- Animated particles along path -->
+    <circle r="3" fill="#da7756" opacity="0.8">
+      <animateMotion dur="3s" repeatCount="indefinite" path="M 950 450 Q 900 400 800 450"/>
+      <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    
+    <circle r="2" fill="#1193b0" opacity="0.6">
+      <animateMotion dur="2.5s" repeatCount="indefinite" begin="0.5s" path="M 950 450 Q 900 400 800 450"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Pulsing glow effect along path -->
+    <path d="M 950 450 Q 900 400 800 450" stroke="#1193b0" stroke-width="6" fill="none" filter="url(#glow)" opacity="0">
+      <animate attributeName="opacity" values="0;0.3;0" dur="2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Bottom section - runMCP branding and user -->
+  <g id="bottom-branding">
+    <text x="600" y="680" fill="#1193b0" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">run</text>
+    <text x="650" y="680" fill="#da7756" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">MCP</text>
+    <text x="600" y="700" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Powering the HAPI Ecosystem</text>
+    <!-- User character -->
+    <g transform="translate(900, 350)">
+      <image href="/img/la-rebelion-user.png" x="0" y="0" width="180" height="180"/>
+    </g>
+  </g>
+  
+  <!-- Floating particles animation -->
+  <g id="particles">
+    <circle r="2" fill="#1193b0" opacity="0.6">
+      <animate attributeName="cx" values="50;1150;50" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="400;200;400" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.6;0" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.5" fill="#da7756" opacity="0.4">
+      <animate attributeName="cx" values="100;1100;100" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="300;500;300" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.4;0" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

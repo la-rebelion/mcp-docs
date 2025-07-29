@@ -1,0 +1,64 @@
+---
+sidebar_position: 5
+sidebar_label: FAQ
+sidebar_class_name: orange
+---
+
+# Frequently Asked Questions: MCP, OpenAPI, API-first
+
+
+Find answers to common questions about MCP, OpenAPI, and API-first development.
+
+---
+
+### ❓What is an MCP server?
+
+An **MCP server** is not a traditional server implementation. In the context of the Model Context Protocol (MCP), a server is simply a reference to a set of **tools** that can be invoked by an AI agent. You don't need to build a backend — just expose the contract that describes what tools are available.
+
+---
+
+### ❓Do I need to implement my own MCP server?
+
+**No.** You can generate the MCP contract dynamically from your existing API using tools like the **HAPI Server**. This eliminates the need to manually implement logic or wrap your backend in new infrastructure.
+
+---
+
+### ❓How is MCP different from OpenAPI or Swagger?
+
+**OpenAPI (Swagger)** defines how machines talk to machines using HTTP protocols. **MCP**, on the other hand, defines how **AI agents talk to applications** using structured contracts over JSON-RPC. You can actually generate MCP contracts from OpenAPI specs — the two are complementary.
+
+---
+
+### ❓Can I convert my OpenAPI spec into an MCP contract?
+
+Yes. You can convert OpenAPI to MCP using automated tools like **HAPI Server**, which transforms your existing Swagger files into tool definitions readable by LLMs.
+
+---
+
+### ❓What are MCP tools?
+
+**MCP tools** are individual functions or operations that an AI agent can invoke. Each tool has a name, description, and JSON input schema — similar to an OpenAPI operation. For example, an endpoint like `GET /users` becomes a tool like `getUsers`.
+
+---
+
+### ❓What is the HAPI Server?
+
+**HAPI Server** stands for Headless API. It reads OpenAPI specs and dynamically serves an MCP contract, making your backend instantly usable by AI agents without rewriting code.
+
+---
+
+### ❓What is runMCP?
+
+**runMCP** is a lightweight gateway that manages multiple MCP servers (like HAPI instances). It acts as a routing layer between AI agents and your tools, similar to an API gateway but focused on MCP contracts.
+
+---
+
+### ❓How does chatMCP work?
+
+**chatMCP** is the client interface that lets users (or LLMs) invoke MCP tools interactively — like having an AI assistant that knows how to call your backend via the MCP contract.
+
+---
+
+### ❓What's the benefit of contract-first MCP development?
+
+This approach allows **faster integration**, **no backend duplication**, and **agent-readiness out of the box**. Instead of reinventing your stack for AI agents, you let them plug into what already exists — securely and scalably.

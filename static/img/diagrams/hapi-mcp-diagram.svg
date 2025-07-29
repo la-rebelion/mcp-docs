@@ -1,0 +1,356 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a7a94;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#da7756;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b85d42;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lightBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#1193b0;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <!-- Glow effects -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Animated pattern for background -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1193b0" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#0f0f0f"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <!-- runMCP Title -->
+  <image href="/img/runmcp/runMCP-logo.png" x="500" y="20" width="60" height="60"/>
+  <text x="580" y="60" fill="#1193b0" font-family="Arial, sans-serif" font-size="30" font-weight="bold" text-anchor="middle">run</text>
+  <text x="635" y="60" fill="#da7756" font-family="Arial, sans-serif" font-size="30" font-weight="bold" text-anchor="middle">MCP</text>
+  <text x="735" y="45" fill="white" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">HAPI Ecosystem</text>
+  <text x="735" y="60" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">The Happiness Stack</text>
+  
+  <!-- Left side - Internet sources -->
+  <g id="internet-sources">
+    <text x="50" y="110" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" font-weight="bold">From the Internet</text>
+    <text x="110" y="130" fill="#1193b0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">(Or on-premise)</text>
+    <a href="https://run.mcp.com.ai" target="_blank">
+      <rect x="20" y="140" width="180" height="120" rx="25" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+      <!-- API domain -->
+      <rect x="30" y="160" width="160" height="40" rx="20" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+      <text x="110" y="183" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">api.run.mcp.com.ai</text>
+      
+      <!-- Main domain -->
+      <image href="/img/runmcp/runMCP-logo.png" x="50" y="210" width="40" height="40"/>    
+      <text x="105" y="235" fill="#1193b0" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">run</text>
+      <text x="140" y="235" fill="#da7756" font-family="Arial, sans-serif" font-size="20"  text-anchor="middle">MCP</text>
+      <text x="90" y="247" fill="#1193b0" font-family="Arial, sans-serif" font-size="9" text-anchor="right">https://run.mcp.com.ai</text>
+    </a>
+    
+    <a href="https://chat.mcp.com.ai" target="_blank">
+      <rect id="chatmcp" x="20" y="290" width="180" height="420" rx="25" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+      <!-- MCP Servers domain -->
+      <rect x="30" y="320" width="160" height="40" rx="20" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+      <text x="110" y="343" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">linkedin.run.mcp.com.ai</text>
+      <rect x="30" y="370" width="160" height="40" rx="20" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+      <text x="110" y="393" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">strava.run.mcp.com.ai</text>
+      <rect x="30" y="420" width="160" height="40" rx="20" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+      <text x="110" y="443" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">instagram.run.mcp.com.ai</text>
+      <rect x="30" y="470" width="160" height="40" rx="20" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+      <text x="110" y="493" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">valorant.run.mcp.com.ai</text>
+      <rect x="30" y="520" width="160" height="40" rx="20" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+      <text x="110" y="543" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">kubernetes.run.mcp.com.ai</text>
+      
+      <!-- Import external SVG using <image> -->
+      <image href="/img/chatmcp/chatmcp.svg" x="10" y="610" width="120" height="80"/>    
+      <text x="120" y="650" fill="#1193b0" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">chat</text>
+      <text x="163" y="650" fill="#da7756" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">MCP</text>
+      <text x="100" y="660" fill="#1193b0" font-family="Arial, sans-serif" font-size="9" text-anchor="right">https://chat.mcp.com.ai</text>
+    </a>
+  </g>
+
+  <!-- Animated snake-shaped arrow from chatMCP to LLMs -->
+  <g>
+    <defs>
+      <!-- Create a path for the snake-like arrow -->
+      <path id="snakePath" d="M 110 650 C 150 650, 180 680, 200 650 C 220 620, 250 620, 290 650" fill="none" />
+    </defs>
+    
+    <!-- Snake path visualization with animation -->
+    <path d="M 200 650 C 220 650, 230 680, 240 650 C 250 620, 270 620, 290 650" 
+          stroke="#da7756" stroke-width="3" fill="none" 
+          opacity="0.7" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" values="0;-100" dur="2s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Moving dot along the path in ping-pong motion -->
+    <circle r="2" fill="#da7756" opacity="0.9">
+      <!-- Replace the animateMotion with a proper ping-pong implementation -->
+      <animateMotion path="M 200 650 C 220 650, 230 680, 240 650 C 250 620, 270 620, 290 650" 
+                    dur="3s" 
+                    repeatCount="indefinite"
+                    calcMode="paced"
+                    keyPoints="0;1;0"
+                    keyTimes="0;0.5;1"
+                    begin="0s" 
+                    fill="freeze" />
+      <animate attributeName="r" values="3;5;3" dur="1s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Text above the arrow -->
+    <text x="228" y="620" fill="#da7756" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">
+      AI Inference
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
+    </text>
+  </g>
+  
+  <rect x="290" y="650" width="140" height="35" rx="17" fill="url(#orangeGradient)" stroke="#da7756" stroke-width="1"/>
+  <rect x="310" y="652" width="30" height="30" rx="5" fill="white"/>
+  <image id="llms" href="https://ollama.com/public/ollama.png" x="310" y="650" width="30" height="30"/>
+  <text x="370" y="662" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">LLMs</text>
+  <text x="370" y="675" fill="white" font-family="Arial, sans-serif" font-size="8" text-anchor="middle">Local or Cloud</text>
+
+  <!-- Protocol labels -->
+  <!-- <text x="230" y="185" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">HTTPS</text> -->
+  <text x="230" y="215" fill="#21a3b0" font-family="Arial, sans-serif" font-size="10">Deploy</text>
+  <text x="230" y="403" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">HTTPS</text>
+  <text x="400" y="403" fill="#1193b0" font-family="Arial, sans-serif" font-size="10">Manage</text>
+  <text x="540" y="185" fill="#21a3b0" font-family="Arial, sans-serif" font-size="10">Start 🟢</text>
+  <text x="540" y="215" fill="#21a3b0" font-family="Arial, sans-serif" font-size="10">Stop 🛑</text>
+  <text x="540" y="235" fill="#21a3b0" font-family="Arial, sans-serif" font-size="10">Health check 🩺</text>
+  <text x="385" y="280" fill="#21a3b0" font-family="Arial, sans-serif" font-size="10">Config</text>
+  
+  <text x="640" y="140" fill="#da7756" font-family="Arial, sans-serif" font-size="9">
+    Process
+    <animate attributeName="opacity" values="1;0.2;1" dur="5s" repeatCount="indefinite"/>
+  </text>
+  <text x="640" y="150" fill="#da7756" font-family="Arial, sans-serif" font-size="9">
+    Container
+    <animate attributeName="opacity" values="1;0.2;1" dur="4.5s" repeatCount="indefinite"/>
+  </text>
+  <text x="640" y="160" fill="#da7756" font-family="Arial, sans-serif" font-size="9">
+    or Pod
+    <animate attributeName="opacity" values="1;0.2;1" dur="4.8s" repeatCount="indefinite"/>
+  </text>
+  
+  <!-- Animated connection lines -->
+  <g id="connection-lines">
+    <!-- HTTPS -->
+    <line x1="205" y1="200" x2="290" y2="200" stroke="#1193b0" stroke-width="2" opacity="0.7">
+      <animate attributeName="stroke-dasharray" values="0,10;10,0;0,10" dur="4s" repeatCount="indefinite"/>
+    </line>
+    <!-- Start/Stop -->
+    <line x1="400" y1="200" x2="480" y2="200" stroke="#1193b0" stroke-width="2" opacity="0.7">
+      <animate attributeName="opacity" values="1;0.8;0.3;0.6;1" dur="2.5s" repeatCount="indefinite"/>
+    </line>
+    <!-- Deploy -->
+    <line x1="205" y1="420" x2="370" y2="420" stroke="#1193b0" stroke-width="2" opacity="0.7">
+      <animate attributeName="stroke-dasharray" values="0,10;10,0;0,10" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <!-- Config -->
+    <line x1="350" y1="240" x2="450" y2="360" stroke="#1193b0" stroke-width="2" opacity="0.7">
+      <animate attributeName="stroke-dasharray" values="0,3;4,6;7,10;11,15" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <!-- Connections -->
+    <!-- CP to HAPIlet -->
+    <line x1="410" y1="200" x2="395" y2="200" stroke="#1193b0" stroke-width="2" opacity="0.7">
+      <animate attributeName="opacity" values="1;0.8;0.3;0.6;1" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <!-- HAPIlet to Server -->
+    <line x1="590" y1="200" x2="520" y2="200" stroke="#1193b0" stroke-width="2" opacity="0.7">
+      <animate attributeName="opacity" values="1;0.8;0.3;0.6;1" dur="2s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  <!-- Central runMCP section -->
+  <g id="runMCP-core">
+    <!-- Background glow -->
+    <rect x="250" y="100" width="650" height="600" fill="url(#lightBlueGradient)" opacity="0.3" stroke="#1193b0" stroke-width="0.5" stroke-dasharray="0,3;10,5">
+      <animate attributeName="stroke-dasharray" values="10,5;5,10;10,5" dur="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.5;0.3" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <!-- <ellipse cx="450" cy="420" rx="200" ry="150" fill="url(#lightBlueGradient)" opacity="0.3">
+      <animate attributeName="opacity" values="0.3;0.5;0.3" dur="4s" repeatCount="indefinite"/>
+    </ellipse> -->
+    
+    <!-- hapi MCP -->
+    <ellipse cx="350" cy="200" rx="60" ry="40" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="2" filter="url(#glow)"/>
+    <text x="350" y="205" fill="#1193b0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">🎛️ HAPI CP</text>
+    <text x="350" y="220" fill="#1193b0" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">Control Plane</text>
+    
+    <!-- HAPIlet -->
+    <ellipse cx="480" cy="200" rx="45" ry="30" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="2" filter="url(#glow)"/>
+    <text x="480" y="205" fill="#1193b0" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">🧩 HAPIlet</text>
+    <text x="480" y="220" fill="#1193b0" font-family="Arial, sans-serif" font-size="9" text-anchor="middle">Process Manager</text>
+
+    <!-- HAPI Server (moved right, smaller font, two rows) -->
+    <rect x="590" y="170" width="90" height="50" rx="15" fill="url(#blueGradient)" filter="url(#glow)"/>
+    <text x="635" y="195" fill="white" font-family="Arial, sans-serif" font-size="13" text-anchor="middle">😁 HAPI</text>
+    <text x="635" y="210" fill="white" font-family="Arial, sans-serif" font-size="13" text-anchor="middle">Server</text>
+    
+    <!-- Feature boxes -->
+    <rect x="300" y="600" width="120" height="35" rx="17" fill="url(#blueGradient)"/>
+    <text x="360" y="622" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">🔒 Security</text>    
+    
+    <!-- Routing Engine -->
+    <ellipse cx="450" cy="420" rx="120" ry="60" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="2" filter="url(#glow)"/>
+    <text x="450" y="415" fill="#1193b0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle">⚡ Routing Engine</text>
+    <rect x="370" y="430" width="160" height="35" rx="17" fill="url(#blueGradient)"/>
+    <text x="450" y="452" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">🚦 Traffic Management</text>    
+    
+    <rect x="600" y="600" width="180" height="35" rx="17" fill="url(#blueGradient)"/>
+    <text x="690" y="622" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">🔗 Integration &amp; Extensibility</text>
+
+    <rect x="440" y="600" width="140" height="35" rx="17" fill="url(#blueGradient)"/>
+    <text x="505" y="622" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">📊 Observability</text>
+  </g>
+  
+  <!-- Right side - MCP Servers -->
+  <g id="mcpServers">
+    <text x="740" y="160" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Your MCP Servers</text>
+    <text x="745" y="175" fill="#1193b0" font-family="Arial, sans-serif" font-size="9" font-weight="bold">Powered by HAPI Server</text>
+    <text x="863" y="155" fill="#da7756" font-family="Arial, sans-serif" font-size="8">
+      zero-code
+      <animate attributeName="opacity" values="1;0.2;1" dur="1.5s" repeatCount="indefinite"/>
+    </text>
+    
+    <!-- Kubernetes section -->
+    <rect x="720" y="550" width="140" height="30" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="795" y="570" fill="#1193b0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">🚢 kubernetes</text>
+    
+    <!-- Services -->
+    <text x="945" y="150" fill="#da7756" font-family="Arial, sans-serif" font-size="14">To the Internet</text>
+    <text x="905" y="170" fill="#da7756" font-family="Arial, sans-serif" font-size="14" font-weight="bold">API Services (providers)</text>
+    <rect x="920" y="200" width="120" height="35" rx="17" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="980" y="222" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">LinkedIn</text>
+    <rect x="720" y="200" width="140" height="30" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="790" y="220" fill="#1193b0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">🧑🏽‍💼 LinkedIn</text>
+    
+    <rect x="920" y="250" width="120" height="35" rx="17" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="980" y="272" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Strava</text>
+    
+    <rect x="720" y="250" width="140" height="30" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="790" y="270" fill="#1193b0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">🏃🏽‍♂️ Strava</text>
+    
+    <rect x="720" y="310" width="140" height="30" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="790" y="330" fill="#1193b0" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">...</text>
+    <rect x="920" y="310" width="120" height="35" rx="17" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="980" y="332" fill="white" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">...</text>
+
+    <rect x="720" y="370" width="140" height="30" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="790" y="390" fill="#1193b0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">📷 Instagram</text>
+    <rect x="920" y="370" width="120" height="35" rx="17" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="990" y="392" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Instagram</text>
+    
+    <rect x="920" y="420" width="120" height="35" rx="17" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="990" y="442" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Valorant</text>
+    
+    <!-- Files section -->
+    <rect x="720" y="420" width="140" height="30" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="790" y="440" fill="#1193b0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">🥷🏽 Valorant</text>
+    
+    <!-- Bare Metal -->
+    <rect x="920" y="500" width="140" height="30" rx="5" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="990" y="520" fill="#1193b0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">🖥️ Bare Metal / VM</text>
+    
+    <!-- Server -->
+    <rect x="920" y="550" width="140" height="35" rx="17" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="990" y="572" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Your K8s Cluster</text>
+    
+    <rect x="920" y="630" width="140" height="35" rx="17" fill="url(#orangeGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="990" y="652" fill="white" font-family="Arial, sans-serif" font-size="11" text-anchor="middle">Swagger/OAS</text>
+    <!-- Arrow injecting Swagger/OAS into runMCP core -->
+    <g>
+      <path d="M 920 645 C 900 690, 860 720, 850 600 C 830 590, 810 610, 780 620" stroke="#da7756" stroke-width="3" fill="none" marker-end="url(#arrowhead)" opacity="0.8"/>
+      <!-- Arrowhead definition -->
+      <defs>
+      <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="strokeWidth">
+        <polygon points="0 0, 8 4, 0 8" fill="#da7756"/>
+      </marker>
+      </defs>
+    </g>
+    <text x="905" y="690" fill="#da7756" font-family="Arial, sans-serif" font-size="10" opacity="0.8">Inject Swagger Spec with zero-code</text>
+  </g>
+  
+  <!-- Animated output connections -->
+  <g id="output-connections">
+    <!-- Dotted lines with animations -->
+    <!-- LinkedIn -->
+    <path d="M 570 420 Q 610 220 720 215" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.6">
+      <animate attributeName="stroke-dashoffset" values="0;-20;0" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <line x1="860" y1="217" x2="920" y2="217" stroke="#da7756" stroke-width="2" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <!-- Strava -->
+    <path d="M 570 420 Q 610 270 720 265" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.6">
+      <animate attributeName="stroke-dashoffset" values="0;-20;0" dur="3.5s" repeatCount="indefinite"/>
+    </path>
+    <line x1="860" y1="267" x2="920" y2="267" stroke="#da7756" stroke-width="2" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2.5s" repeatCount="indefinite"/>
+    </line>
+    <!-- Instagram -->
+    <path d="M 570 420 Q 610 390 720 385" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.6">
+      <animate attributeName="stroke-dashoffset" values="0;-20;0" dur="4s" repeatCount="indefinite"/>
+    </path>
+    <line x1="860" y1="387" x2="920" y2="387" stroke="#da7756" stroke-width="2" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
+    </line>
+    <!-- Valorant -->
+    <path d="M 570 420 Q 610 440 720 435" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.6">
+      <animate attributeName="stroke-dashoffset" values="0;-20;0" dur="4.5s" repeatCount="indefinite"/>
+    </path>
+    <line x1="860" y1="437" x2="920" y2="437" stroke="#da7756" stroke-width="2" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="3.5s" repeatCount="indefinite"/>
+    </line>
+    <!-- nth element -->
+    <path d="M 570 420 Q 610 330 720 325" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.6">
+      <animate attributeName="stroke-dashoffset" values="0;-20;0" dur="5s" repeatCount="indefinite"/>
+    </path>
+    <!-- Kubernetes -->
+    <path d="M 570 420 Q 610 570 720 565" stroke="#1193b0" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.6">
+      <animate attributeName="stroke-dashoffset" values="0;-20;0" dur="5.5s" repeatCount="indefinite"/>
+    </path>
+    <line x1="860" y1="567" x2="920" y2="567" stroke="#da7756" stroke-width="2" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="4.5s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  
+  <!-- Animated particles -->
+  <g id="particles">
+    <circle r="2" fill="#1193b0" opacity="0.6">
+      <animate attributeName="cx" values="250;900;250" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="450;200;450" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.5;0.8;0" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.5" fill="#da7756" opacity="0.4">
+      <animate attributeName="cx" values="250;900;250" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="300;600;300" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.4;0.8;0" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <!-- Pulsing core effect -->
+  <circle cx="450" cy="420" r="120" fill="none" stroke="#1193b0" stroke-width="1" opacity="0.3">
+    <animate attributeName="r" values="120;140;120" dur="6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  
+  <image href="/img/logo.svg" x="950" y="700" width="200" height="100"/>
+</svg>

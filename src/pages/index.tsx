@@ -8,6 +8,8 @@ import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
+const SvgLogo: React.ComponentType<React.ComponentProps<'svg'>> = require('@site/static/img/diagrams/mcp-hapi-server-face.svg').default;
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -21,8 +23,9 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            Deploy Your First MCP Server - 5min
           </Link>
+          <SvgLogo className={styles.heroLogo} role="img" height={180} width={180} />
         </div>
       </div>
     </header>
