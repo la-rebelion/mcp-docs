@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React from 'react';
 import { useBlogPost } from '@docusaurus/plugin-content-blog/client';
 
 export interface JSONLDProps {
@@ -30,7 +30,9 @@ const mapFrontMatterToJSONLD = (frontMatter: Record<string, any>): Record<string
     '@type': 'TechArticle',
     'headline': frontMatter.title || 'HAPI MCP: The API-first, OpenAPI-Driven Model Context Protocol',
     'description': frontMatter.description || 'Documentation for the Model Context Protocol (MCP) - API-first, OpenAPI-driven development.',
-    'keywords': frontMatter.keywords || 'MCP, Model Context Protocol, OpenAPI, API-first, documentation',
+    'keywords': Array.isArray(frontMatter.keywords)
+      ? frontMatter.keywords.join(', ')
+      : (frontMatter.keywords ?? 'MCP, Model Context Protocol, OpenAPI, API-first, documentation'),
     'about': 'Headless API, Model Context Protocol (MCP), OpenAPI, API-first',
     'audience': {
       '@type': 'Audience',

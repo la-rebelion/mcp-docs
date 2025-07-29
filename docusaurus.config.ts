@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'MCP Documentation',
+  title: 'HAPI MCP Documentation',
   tagline: 'The Happiness Stack for MCP',
   favicon: 'img/favicon.ico',
 
@@ -60,7 +60,7 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/dont-build-mcp-server.png',
     navbar: {
-      title: 'MCP',
+      title: 'HAPI MCP',
       logo: {
         alt: 'MCP Logo',
         src: 'img/logo.svg',
