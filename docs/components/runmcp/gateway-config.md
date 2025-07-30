@@ -2,29 +2,23 @@
 sidebar_position: 2
 sidebar_label: Gateway Config
 sidebar_class_name: orange
+title: 'Gateway Configuration in RunMCP: API-first, OpenAPI, and MCP'
+description: 'Learn how to configure the RunMCP gateway for API-first, OpenAPI-driven deployments, including dynamic routing, service registration, and best practices.'
+keywords:
+  - RunMCP
+  - gateway config
+  - OpenAPI
+  - API-first
+  - Model Context Protocol
+  - MCP
+  - dynamic routing
+  - service registration
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Gateway Configuration: RunMCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Gateway Configuration: RunMCP, OpenAPI, API-first",
-  "description": "Learn how to configure the RunMCP gateway for API-first, OpenAPI-driven deployments, including dynamic routing, service registration, and best practices.",
-  "keywords": "RunMCP, gateway config, OpenAPI, API-first, Model Context Protocol, MCP, dynamic routing, service registration",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 Configuring the RunMCP gateway is all about mapping OpenAPI-powered services to routes, subdomains, and plugins. The gateway reads your configuration and dynamically provisions endpoints and routing logic.
 

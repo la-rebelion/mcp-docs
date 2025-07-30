@@ -2,29 +2,21 @@
 sidebar_position: 4
 sidebar_label: Validation Layers
 sidebar_class_name: blue
+title: 'Validation Layers in HAPI Server: MCP, OpenAPI, API-first'
+description: 'Explore the layered validation strategies in HAPI server, including OpenAPI schema validation and Model Context Protocol (MCP) context enforcement.'
+keywords:
+  - validation
+  - OpenAPI
+  - HAPI server
+  - API-first
+  - Model Context Protocol
+  - MCP
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Validation Layers: MCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Validation Layers in HAPI Server: MCP, OpenAPI, API-first",
-  "description": "Explore the layered validation strategies in HAPI server, including OpenAPI schema validation and Model Context Protocol (MCP) context enforcement.",
-  "keywords": "validation, OpenAPI, HAPI server, API-first, Model Context Protocol, MCP, schema, contract, security",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 HAPI server applies multiple layers of validation to every API request and response, ensuring your system is robust, secure, and always in sync with your OpenAPI contract.
 

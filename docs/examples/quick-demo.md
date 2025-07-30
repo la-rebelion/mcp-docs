@@ -2,29 +2,22 @@
 sidebar_position: 1
 sidebar_label: Quick Demo
 sidebar_class_name: blue
+title: 'Quick Demo: MCP, OpenAPI, API-first'
+description: 'A quick demonstration of MCP, OpenAPI, and API-first integration with code and deployment steps.'
+keywords:
+  - MCP
+  - quick demo
+  - OpenAPI
+  - API-first
+  - example
+  - onboarding
+  - developer experience
+author: 'La Rebelion'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Quick Demo: MCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Quick Demo: MCP, OpenAPI, API-first",
-  "description": "A quick demonstration of MCP, OpenAPI, and API-first integration with code and deployment steps.",
-  "keywords": "MCP, quick demo, OpenAPI, API-first, example, onboarding, developer experience",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 This example shows how to:
 - Define a simple OpenAPI schema

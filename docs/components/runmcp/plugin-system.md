@@ -2,29 +2,24 @@
 sidebar_position: 5
 sidebar_label: Plugin System
 sidebar_class_name: orange
+title: 'Plugin System: RunMCP, OpenAPI, API-first'
+description: 'Extend RunMCP with plugins for authentication, logging, monitoring, and custom logic in API-first, OpenAPI-driven workflows.'
+keywords:
+  - RunMCP
+  - plugin system
+  - OpenAPI
+  - API-first
+  - Model Context Protocol
+  - MCP
+  - extensibility
+  - middleware
+  - hooks
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Plugin System: RunMCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Plugin System: RunMCP, OpenAPI, API-first",
-  "description": "Extend RunMCP with plugins for authentication, logging, monitoring, and custom logic in API-first, OpenAPI-driven workflows.",
-  "keywords": "RunMCP, plugin system, OpenAPI, API-first, Model Context Protocol, MCP, extensibility, middleware, hooks",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 The RunMCP plugin system lets you add new features, integrations, and custom logic to your gateway without modifying core code.
 

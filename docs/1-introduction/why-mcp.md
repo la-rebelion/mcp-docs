@@ -3,28 +3,11 @@ sidebar_position: 2
 sidebar_label: Why MCP?
 sidebar_class_name: orange
 ---
-import JSONLD from '@theme/JSONLD';
+<!-- import JSONLD from '@theme/JSONLD'; -->
 
 # Why MCP? Why API-first and OpenAPI Matter
 
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Why MCP? Why API-first and OpenAPI Matter",
-  "description": "Discover the rationale behind MCP: how API-first and OpenAPI approaches reduce integration pain and future-proof your stack.",
-  "keywords": "why MCP, OpenAPI, API-first, rationale, interoperability, developer experience, future-proofing",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
+<!-- <JSONLD/> -->
 
 :::caution
 API-first design with OpenAPI and MCP reduces integration pain and future-proofs your stack.

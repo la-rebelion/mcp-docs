@@ -2,29 +2,22 @@
 sidebar_position: 2
 sidebar_label: OpenAPI Integration
 sidebar_class_name: orange
+title: 'OpenAPI Integration in HAPI Server: API-first with MCP'
+description: 'Explore how HAPI server uses OpenAPI specifications to power API-first development, dynamic endpoint generation, and seamless Model Context Protocol (MCP) integration.'
+keywords:
+  - OpenAPI
+  - Swagger
+  - HAPI server
+  - API-first
+  - Model Context Protocol
+  - MCP
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
 import JSONLD from '@theme/JSONLD';
 
 # OpenAPI Integration in HAPI Server: API-first with MCP
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "OpenAPI Integration in HAPI Server: API-first with MCP",
-  "description": "Explore how HAPI server uses OpenAPI specifications to power API-first development, dynamic endpoint generation, and seamless Model Context Protocol (MCP) integration.",
-  "keywords": "OpenAPI, Swagger, HAPI server, API-first, Model Context Protocol, MCP, schema, validation, dynamic API",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 HAPI server is built around OpenAPI (Swagger) specifications. This enables you to define your API contract once and let HAPI generate, validate, and document all endpoints automatically.
 

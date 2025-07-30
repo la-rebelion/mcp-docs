@@ -2,6 +2,21 @@
 sidebar_position: 4
 sidebar_label: Session vs Context
 sidebar_class_name: blue
+title: 'Session vs Context in MCP: API-first, OpenAPI'
+description: 'Understand the difference between session and context in Model Context Protocol (MCP) systems, and how OpenAPI enables context-driven, API-first workflows.'
+keywords:
+  - MCP
+  - session
+  - context
+  - OpenAPI
+  - API-first
+  - state
+  - stateless
+  - conversational AI
+  - memory
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
 import JSONLD from '@theme/JSONLD';
 

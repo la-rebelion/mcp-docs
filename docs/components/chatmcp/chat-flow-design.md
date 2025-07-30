@@ -2,29 +2,22 @@
 sidebar_position: 2
 sidebar_label: Chat Flow Design
 sidebar_class_name: orange
+title: 'Chat Flow Design: ChatMCP, OpenAPI, API-first'
+description: 'Learn how to design robust conversational flows using ChatMCP, leveraging OpenAPI schemas and the Model Context Protocol (MCP) for context-driven, API-first AI chat experiences.'
+keywords:
+  - ChatMCP
+  - chat flow
+  - conversational AI
+  - OpenAPI
+  - API-first
+  - Model Context Protocol
+  - MCP
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Chat Flow Design: ChatMCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Chat Flow Design in ChatMCP: API-first, OpenAPI, and Model Context Protocol",
-  "description": "Learn how to design robust conversational flows using ChatMCP, leveraging OpenAPI schemas and the Model Context Protocol (MCP) for context-driven, API-first AI chat experiences.",
-  "keywords": "ChatMCP, chat flow, conversational AI, OpenAPI, API-first, Model Context Protocol, MCP, context, memory",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 Designing conversational flows in ChatMCP means orchestrating how users, agents, and context interact through structured APIs. By leveraging OpenAPI and the Model Context Protocol (MCP), you can create scalable, maintainable, and context-aware chat systems.
 

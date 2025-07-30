@@ -55,9 +55,17 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+  plugins: [
+    // Custom plugin for JSON-LD structured data
+    [
+      './src/plugins/docusaurus-plugin-jsonld',
+      {
+        // Plugin options if needed
+      },
+    ],
+  ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: 'img/dont-build-mcp-server.png',
     navbar: {
       title: 'HAPI MCP',
@@ -73,8 +81,13 @@ const config: Config = {
           label: 'Docs',
         },
         {
-          href: '/examples/quick-demo',
+          href: '/examples/',
           label: 'Demos',
+          position: 'left',
+        },
+        {
+          href: '/glossary',
+          label: 'Glossary',
           position: 'left',
         },
         {

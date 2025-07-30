@@ -5,48 +5,57 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  Svg?: React.ComponentType<React.ComponentProps<'svg'>>;
+  imgPath?: string;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'API-First Integration',
     Svg: require('@site/static/img/diagrams/hapi-overview.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        HAPI MCP enables seamless AI integration by dynamically converting OpenAPI
+        specifications into MCP tools, eliminating the need for custom server
+        implementations.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/diagrams/hapi-mcp-diagram.svg').default,
+    title: 'Centralized Management',
+    // Svg: require('@site/static/img/diagrams/hapi-mcp-diagram.svg').default,
+    imgPath: '/img/diagrams/hapi-mcp-diagram.svg',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Manage multiple HAPI MCP servers effortlessly with runMCP, the control
+        plane dashboard that orchestrates tools and routes AI agent requests
+        efficiently.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Interactive AI Interface',
     Svg: require('@site/static/img/diagrams/runMCP-flow.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        chatMCP provides an intuitive interface for AI agents to discover and
+        invoke MCP tools, enabling dynamic workflows and seamless backend
+        interactions.
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, Svg, imgPath, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        {Svg ? (
+          <Svg className={styles.featureSvg} role="img" />
+        ) : (
+          <img src={imgPath} alt={title} className={styles.featureSvg} />
+        )}
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>

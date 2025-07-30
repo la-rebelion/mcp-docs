@@ -2,29 +2,21 @@
 sidebar_position: 5
 sidebar_label: Advanced Usage
 sidebar_class_name: orange
+title: 'Advanced Usage: HAPI Server, OpenAPI, MCP'
+description: 'Explore advanced usage patterns and extensibility in HAPI server for API-first, OpenAPI-driven, and Model Context Protocol (MCP) deployments.'
+keywords:
+  - advanced
+  - HAPI server
+  - OpenAPI
+  - API-first
+  - Model Context Protocol
+  - MCP
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Advanced Usage: HAPI Server, OpenAPI, MCP
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Advanced Usage: HAPI Server, OpenAPI, MCP",
-  "description": "Explore advanced usage patterns and extensibility in HAPI server for API-first, OpenAPI-driven, and Model Context Protocol (MCP) deployments.",
-  "keywords": "advanced, HAPI server, OpenAPI, API-first, Model Context Protocol, MCP, hooks, middleware, multi-tenancy, dynamic routing",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 HAPI server offers advanced features for teams who need more than just basic API scaffolding. From custom hooks to dynamic routing and multi-tenancy, HAPI is built for extensibility.
 

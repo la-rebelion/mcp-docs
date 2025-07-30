@@ -2,29 +2,23 @@
 sidebar_position: 4
 sidebar_label: Serverless Deploy
 sidebar_class_name: blue
+title: 'Serverless Deploy: MCP, OpenAPI, API-first'
+description: 'How to deploy MCP and OpenAPI-powered services serverlessly using AWS Lambda and API Gateway. Includes YAML, code, and best practices.'
+keywords:
+  - MCP
+  - serverless
+  - OpenAPI
+  - API-first
+  - example
+  - AWS Lambda
+  - API Gateway
+  - deployment
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Serverless Deploy: MCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Serverless Deploy: MCP, OpenAPI, API-first",
-  "description": "How to deploy MCP and OpenAPI-powered services serverlessly using AWS Lambda and API Gateway. Includes YAML, code, and best practices.",
-  "keywords": "MCP, serverless, OpenAPI, API-first, example, AWS Lambda, API Gateway, deployment, developer experience",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 This example shows how to deploy an MCP+OpenAPI service as a serverless function.
 

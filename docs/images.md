@@ -1,0 +1,23 @@
+---
+sidebar_position: 1000
+sidebar_label: "Images"
+hide_title: true
+---
+
+# Images
+
+![MCP AI Logo](pathname:///img/logo.svg)
+
+## Diagrams
+
+![HAPI MCP Architecture Diagram](pathname:///img/diagrams/hapi-mcp-diagram.svg)
+![runMCP Flow Diagram](pathname:///img/diagrams/runMCP-flow.svg)
+
+## chatMCP
+
+![chatMCP Logo](pathname:///img/chatmcp/chatmcp.svg)
+
+## runMCP
+
+![runMCP Logo](pathname:///img/runmcp/runMCP-logo.png)
+

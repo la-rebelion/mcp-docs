@@ -2,29 +2,18 @@
 sidebar_position: 1
 sidebar_label: What is MCP?
 sidebar_class_name: blue
+title: 'What is MCP? API-first, OpenAPI, Model Context Protocol'
+description: 'Learn what the Model Context Protocol (MCP) is, how it enables API-first development, and how it leverages OpenAPI for context-driven, scalable systems.'
+keywords:
+  - MCP
+  - Model Context Protocol
+  - OpenAPI
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # What is MCP? API-first, OpenAPI, Model Context Protocol
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "What is MCP? API-first, OpenAPI, Model Context Protocol",
-  "description": "Learn what the Model Context Protocol (MCP) is, how it enables API-first development, and how it leverages OpenAPI for context-driven, scalable systems.",
-  "keywords": "MCP, Model Context Protocol, OpenAPI, API-first, context, interoperability, developer experience",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 The **Model Context Protocol (MCP)** is a modern standard for building API-first, context-driven systems. MCP combines the power of OpenAPI with structured, portable context to enable scalable, interoperable, and developer-friendly applications.
 

@@ -2,29 +2,24 @@
 sidebar_position: 2
 sidebar_label: Fullstack Example
 sidebar_class_name: orange
+title: 'Fullstack Example: MCP, OpenAPI, API-first'
+description: 'A fullstack example using MCP, OpenAPI, and API-first design. Shows both backend (Node.js/Express) and frontend (React) integration.'
+keywords:
+  - MCP
+  - fullstack
+  - OpenAPI
+  - API-first
+  - example
+  - frontend
+  - backend
+  - React
+  - Express
+author: 'La Rebelion'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Fullstack Example: MCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Fullstack Example: MCP, OpenAPI, API-first",
-  "description": "A fullstack example using MCP, OpenAPI, and API-first design. Shows both backend (Node.js/Express) and frontend (React) integration.",
-  "keywords": "MCP, fullstack, OpenAPI, API-first, example, frontend, backend, React, Express, developer experience",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 This example demonstrates a simple fullstack MCP app:
 - **Backend:** Node.js/Express with OpenAPI contract

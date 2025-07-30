@@ -5,7 +5,7 @@ module.exports = {
   plugins: [
     // Register the JSON-LD plugin
     [
-      require.resolve("./plugins/docusaurus-plugin-jsonld"),
+      require.resolve("./src/plugins/docusaurus-plugin-jsonld"),
       {
         // Plugin options (if needed)
       },

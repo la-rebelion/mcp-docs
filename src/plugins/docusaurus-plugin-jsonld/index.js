@@ -48,6 +48,8 @@ function mapFrontMatterToJSONLD(frontMatter) {
   };
 }
 
+// const { context } = require('@docusaurus/theme-common');
+
 module.exports = function pluginJsonLD(context, options) {
   return {
     name: "docusaurus-plugin-jsonld",
@@ -55,8 +57,9 @@ module.exports = function pluginJsonLD(context, options) {
     /**
      * Inject JSON-LD metadata into the <head> of the page.
      */
-    injectHtmlTags({ content }) {
-      const frontMatter = content.frontMatter || {};
+    injectHtmlTags() {
+      // @note: useBlogPost hook to get blog post data
+      const frontMatter = context.blogPost?.frontMatter || {};
       const jsonLdData = mapFrontMatterToJSONLD(frontMatter);
 
       return {

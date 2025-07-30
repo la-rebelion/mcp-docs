@@ -115,6 +115,15 @@
   
   /* runMCP-style dark gradients */
   --mcp-gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
+  
+  /* Apply the orange color for bold text */
+  b, strong {
+    color: #da7756; /* Apply the orange color for bold text */
+  }
+  em, i, code {
+    color: #f4d6db;
+  }
+
 }
 
 /* runMCP-Inspired Navbar */
@@ -453,3 +462,4 @@
 * {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
+

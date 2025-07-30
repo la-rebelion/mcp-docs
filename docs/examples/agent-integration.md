@@ -2,29 +2,23 @@
 sidebar_position: 3
 sidebar_label: Agent Integration
 sidebar_class_name: green
+title: 'Agent Integration: MCP, OpenAPI, API-first'
+description: 'How to integrate agents with MCP using OpenAPI and API-first principles. Includes code, hooks, and best practices.'
+keywords:
+  - MCP
+  - agent integration
+  - OpenAPI
+  - API-first
+  - example
+  - agent
+  - orchestration
+  - developer experience
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Agent Integration: MCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Agent Integration: MCP, OpenAPI, API-first",
-  "description": "How to integrate agents with MCP using OpenAPI and API-first principles. Includes code, hooks, and best practices.",
-  "keywords": "MCP, agent integration, OpenAPI, API-first, example, agent, orchestration, developer experience",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 This example shows how to connect an agent (e.g., chatbot, automation) to an MCP API using OpenAPI.
 

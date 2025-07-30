@@ -2,29 +2,22 @@
 sidebar_position: 3
 sidebar_label: Schema Design
 sidebar_class_name: green
+title: 'Schema Design in HAPI Server: API-first, OpenAPI, and MCP'
+description: 'Learn best practices for designing robust, maintainable schemas in HAPI server using OpenAPI and Model Context Protocol (MCP) principles.'
+keywords:
+  - schema design
+  - OpenAPI
+  - MCP
+  - HAPI server
+  - API-first
+  - validation
+  - contract
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Schema Design: API-first, OpenAPI, and MCP
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Schema Design in HAPI Server: API-first, OpenAPI, and MCP",
-  "description": "Learn best practices for designing robust, maintainable schemas in HAPI server using OpenAPI and Model Context Protocol (MCP) principles.",
-  "keywords": "schema design, OpenAPI, Swagger, HAPI server, API-first, Model Context Protocol, MCP, validation, contract",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 Schema design is the foundation of any API-first system. In HAPI, your OpenAPI schema defines not just endpoints, but also the structure, validation, and semantics of every request and response.
 

@@ -2,29 +2,24 @@
 sidebar_position: 3
 sidebar_label: Deployment Models
 sidebar_class_name: green
+title: 'Deployment Models: RunMCP, OpenAPI, API-first'
+description: 'Explore different deployment models for RunMCP in the MCP stack, including single-node, multi-node, and cloud-native strategies.'
+keywords:
+  - RunMCP
+  - deployment models
+  - OpenAPI
+  - API-first
+  - Model Context Protocol
+  - MCP
+  - scaling
+  - multi-tenancy
+  - cloud-native
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Deployment Models: RunMCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Deployment Models: RunMCP, OpenAPI, API-first",
-  "description": "Explore different deployment models for RunMCP in the MCP stack, including single-node, multi-node, and cloud-native strategies.",
-  "keywords": "RunMCP, deployment models, OpenAPI, API-first, Model Context Protocol, MCP, scaling, multi-tenancy, cloud-native",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 RunMCP supports a range of deployment models, from simple single-node gateways to highly available, multi-node, cloud-native clusters.
 

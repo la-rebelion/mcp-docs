@@ -2,29 +2,24 @@
 sidebar_position: 1
 sidebar_label: RunMCP
 sidebar_class_name: blue
+title: 'RunMCP: Gateway, API-first, OpenAPI, and Model Context Protocol'
+description: 'Learn how RunMCP acts as a flexible, API-first gateway for MCP deployments, leveraging OpenAPI for dynamic routing, scaling, and plugin extensibility.'
+keywords:
+  - RunMCP
+  - gateway
+  - OpenAPI
+  - API-first
+  - Model Context Protocol
+  - MCP
+  - deployment
+  - scaling
+  - plugins
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # RunMCP: Gateway, API-first, OpenAPI, and MCP
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "RunMCP: Gateway, API-first, OpenAPI, and Model Context Protocol",
-  "description": "Learn how RunMCP acts as a flexible, API-first gateway for MCP deployments, leveraging OpenAPI for dynamic routing, scaling, and plugin extensibility.",
-  "keywords": "RunMCP, gateway, OpenAPI, API-first, Model Context Protocol, MCP, deployment, scaling, plugins",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 RunMCP is the gateway and orchestrator for the Model Context Protocol (MCP) stack. It enables API-first deployments, dynamic routing, and seamless integration of OpenAPI-powered services, making it easy to scale, secure, and extend your MCP-based architecture.
 

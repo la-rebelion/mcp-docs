@@ -3,28 +3,11 @@ sidebar_position: 3
 sidebar_label: Use Cases
 sidebar_class_name: green
 ---
-import JSONLD from '@theme/JSONLD';
+<!-- import JSONLD from '@theme/JSONLD'; -->
 
 # MCP Use Cases: API-first and OpenAPI Applications
 
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "MCP Use Cases: API-first and OpenAPI Applications",
-  "description": "Explore real-world use cases for Model Context Protocol (MCP) and OpenAPI: from conversational AI to enterprise integration.",
-  "keywords": "MCP, use cases, OpenAPI, API-first, conversational AI, enterprise integration, workflow, orchestration",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
+<!-- <JSONLD/> -->
 
 MCP and OpenAPI unlock powerful workflows for a wide range of applications.
 
