@@ -28,5 +28,5 @@ MCP is ideal for any system that needs context, memory, and interoperability acr
 :::
 
 ## Further Reading
-- [Conversational AI with MCP](https://github.com/la-rebelion/chat-mcp)
+- [Conversational AI with MCP](https://chat.mcp.com.ai)
 - [OpenAPI Specification](https://swagger.io/specification/)

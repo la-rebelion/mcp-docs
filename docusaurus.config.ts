@@ -2,8 +2,11 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+// Hubspot account id
+const hubspot = {
+  accountId: '21339207',
+};
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
   title: 'HAPI MCP Documentation',
   tagline: 'The Happiness Stack for MCP',
@@ -52,6 +55,24 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        gtag: {
+          trackingID: 'G-R63DV8HNZS',
+        },
+        googleTagManager: {
+          containerId: 'GTM-W2QSRMJN',
+        },
+        sitemap: {
+          lastmod: 'date',
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+          createSitemapItems: async (params) => {
+            const { defaultCreateSitemapItems, ...rest } = params;
+            const items = await defaultCreateSitemapItems(rest);
+            return items.filter((item) => !item.url.includes('/page/'));
+          },
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -91,6 +112,12 @@ const config: Config = {
           position: 'left',
         },
         {
+          href: 'https://go.rebelion.la/demo-request',
+          label: 'Request a Demo',
+          position: 'right',
+          className: 'button--primary',
+        },
+        {
           href: 'https://github.com/la-rebelion/mcp-docs',
           label: 'GitHub',
           position: 'right',
@@ -101,11 +128,19 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Solutions',
           items: [
             {
-              label: 'Tutorial',
-              to: '/intro',
+              label: 'runMCP',
+              to: 'https://run.mcp.com.ai',
+            },
+            {
+              label: 'chatMCP',
+              to: 'https://chat.mcp.com.ai',
+            },
+            {
+              label: 'HAPI MCP',
+              to: 'https://hapi.mcp.com.ai',
             },
           ],
         },
@@ -113,16 +148,16 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'YouTube',
+              href: 'https://www.youtube.com/@LaRebelion',
             },
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discord.gg/EpHzbPee',
             },
             {
               label: 'X',
-              href: 'https://x.com/docusaurus',
+              href: 'https://x.com/LaRebelionLabs',
             },
           ],
         },
@@ -133,16 +168,42 @@ const config: Config = {
               label: 'GitHub',
               href: 'https://github.com/la-rebelion/mcp-docs',
             },
+            // {
+            //   href: 'https://go.rebelion.la/sponsors',
+            //   label: 'Sponsor',
+            // },
+            // {
+            //   href: 'https://www.buymeacoffee.com/larebelion',
+            //   label: 'Add Caffeine ☕',
+            // },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} by <a href="https://rebelion.la">La Rebelion, Inc.</a>. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} by <a href="https://rebelion.la">La Rebelion Labs</a>.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+  scripts: [
+    {
+      src: 'https://js.hsforms.net/forms/embed/v2.js',
+      async: true,
+    },
+  ],
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        async: "true",
+        defer: "true",
+        type: 'text/javascript',
+        id: 'hs-script-loader',
+        src: `//js.hs-scripts.com/${hubspot.accountId}.js`,
+      },
+    },
+  ],
 };
 
 export default config;

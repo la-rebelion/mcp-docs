@@ -37,7 +37,7 @@
   </defs>
   
   <!-- Background -->
-  <rect width="400" height="400" fill="#0f0f0f"/>
+  <!-- <rect width="400" height="400" fill="#0f0f0f"/> -->
   <rect width="400" height="400" fill="url(#grid)"/>
   
   <!-- Server rack main body -->

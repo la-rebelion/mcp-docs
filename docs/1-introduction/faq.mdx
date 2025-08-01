@@ -3,6 +3,17 @@ sidebar_position: 5
 sidebar_label: FAQ
 sidebar_class_name: orange
 hide_title: true
+title: Frequently Asked Questions
+description: 'Answers to common questions about the Model Context Protocol (MCP), OpenAPI, and API-first development. Learn about MCP servers, tools, and how to integrate with existing APIs.'
+keywords: 
+  - MCP
+  - Model Context Protocol
+  - OpenAPI
+  - API-first
+  - FAQ
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
 
 <!-- import { FAQHead, FAQPage } from '@site/src/components/FAQPage';
@@ -10,21 +21,21 @@ hide_title: true
 <FAQHead />
 <FAQPage /> -->
 
-# Frequently Asked Questions: MCP, OpenAPI, API-first
+# **Frequently Asked Questions:** MCP, OpenAPI, API-first
 
-Find answers to common questions about MCP, OpenAPI, and API-first development. All this in the context of the HAPI Stack for Model Context Protocol (MCP).
+Find answers to common questions about MCP, OpenAPI, and API-first development. All this in the context of the [HAPI Stack](/glossary#h) for Model Context Protocol (MCP).
 
 ---
 
 ### ❓What is an MCP server?
 
-An **MCP server** is not a traditional server implementation. In the context of the Model Context Protocol (MCP), a server is simply a reference to a set of **tools** that can be invoked by an AI agent. You don't need to build a backend — just expose the contract that describes what tools are available.
+An **MCP server** is not a traditional server implementation. In the context of the HAPI Stack, an MCP server is simply *a reference to a set of **tools*** that can be invoked by an AI agent or MCP Client, i.e.: [chatMCP](https://chat.mcp.com.ai). You don't need to build a backend — just expose the contract that describes what tools are available.
 
 ---
 
 ### ❓Do I need to implement my own MCP server?
 
-**No.** You can generate the MCP contract dynamically from your existing API using tools like the **HAPI Server**. This eliminates the need to manually implement logic or wrap your backend in new infrastructure.
+**No.** You can generate the MCP contract dynamically from your existing API using tools like the [HAPI Server](/components/hapi-server/). This means you don't need to manually implement logic or rewrite your backend — you simply run HAPI Server (or deploy via [runMCP](/components/runmcp)) to expose your API as [MCP tools](https://modelcontextprotocol.io/docs/learn/server-concepts#overview).
 
 ---
 
@@ -36,25 +47,13 @@ An **MCP server** is not a traditional server implementation. In the context of 
 
 ### ❓Can I convert my OpenAPI spec into an MCP contract?
 
-Yes. You can convert OpenAPI to MCP using automated tools like **HAPI Server**, which transforms your existing Swagger files into tool definitions readable by LLMs.
+Yes. You can convert OpenAPI to MCP using automated tools like [HAPI Server](/components/hapi-server/), which transforms your existing Swagger files into tool definitions readable by LLMs.
 
 ---
 
 ### ❓What are MCP tools?
 
-**MCP tools** are individual functions or operations that an AI agent can invoke. Each tool has a name, description, and JSON input schema — similar to an OpenAPI operation. For example, an endpoint like `GET /users` becomes a tool like `getUsers`.
-
----
-
-### ❓What is the HAPI Server?
-
-**HAPI Server** stands for Headless API. It reads OpenAPI specs and dynamically serves an MCP contract, making your backend instantly usable by AI agents without rewriting code.
-
----
-
-### ❓What is runMCP?
-
-**runMCP** is a lightweight gateway that manages multiple MCP servers (like HAPI instances). It acts as a routing layer between AI agents and your tools, similar to an API gateway but focused on MCP contracts.
+**MCP tools** are individual functions or operations that an AI agent can invoke. Each tool has a name, description, and JSON input schema — similar to an OpenAPI operation. For example, an endpoint like `GET /users` becomes a tool like `getUsers`. An MCP Client (like [chatMCP](/components/chatmcp)) can then call this tool to retrieve user data.
 
 ---
 

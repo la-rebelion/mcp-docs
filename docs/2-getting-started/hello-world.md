@@ -1,34 +1,37 @@
 ---
 sidebar_position: 4
-sidebar_label: Hello World
+sidebar_label: Hello World (on-premise)
 sidebar_class_name: blue
+title: 'Hello World: MCP, OpenAPI, API-first'
+description: 'A simple Hello World example using Model Context Protocol (MCP), OpenAPI, and API-first principles.'
+keywords:
+  - hello world
+  - MCP
+  - OpenAPI
+  - API-first
+  - example
+  - quickstart
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Hello World: MCP, OpenAPI, API-first
 
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Hello World: MCP, OpenAPI, API-first",
-  "description": "A simple Hello World example using Model Context Protocol (MCP), OpenAPI, and API-first principles.",
-  "keywords": "hello world, MCP, OpenAPI, API-first, example, quickstart, onboarding",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
+Let's build a "Hello World" API using MCP and OpenAPI.
 
-Let's build a "Hello World" API using MCP and OpenAPI:
+## Choose Your Deployment
+
+- **Cloud:**  
+  - Use the webapp dashboard to create and test endpoints.
+  - No code required—just configure and deploy via UI.
+
+- **On-Premise:**  
+  - Define your OpenAPI schema and implement endpoints manually.
+  - Start HAPI Servers and configure DNS as needed.
 
 ## 1. Define the OpenAPI Schema
+
 ```yaml
 openapi: 3.1.0
 info:
@@ -52,6 +55,7 @@ paths:
 ```
 
 ## 2. Implement the Endpoint
+
 ```js
 // Example using HAPI or Express
 app.get('/hello', (req, res) => {
@@ -60,13 +64,15 @@ app.get('/hello', (req, res) => {
 ```
 
 ## 3. Test the API
+
 ```sh
 curl http://localhost:3000/hello
 # { "message": "Hello, World!" }
 ```
 
 :::tip
-You can extend this example to include context, memory, or authentication using MCP features.
+Cloud users: Use the built-in API explorer.  
+On-premise users: Use Swagger UI or Postman.
 :::
 
 ## Further Reading

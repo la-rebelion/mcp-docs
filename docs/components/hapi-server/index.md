@@ -2,7 +2,7 @@
 sidebar_position: 1
 sidebar_label: HAPI Server
 sidebar_class_name: blue
-title: 'HAPI Server: API-first, OpenAPI, and Model Context Protocol'
+title: 'HAPI Server: API-first approach for Model Context Protocol'
 description: 'Discover the architecture and API-first design of the HAPI server, its seamless OpenAPI integration, and how it powers the Model Context Protocol (MCP) stack.'
 keywords:
   - HAPI server
@@ -15,7 +15,7 @@ publisher: 'MCP Project'
 dateModified: '2025-07-27'
 ---
 
-# HAPI Server: API-first, OpenAPI, and MCP
+# HAPI Server: API-first approach for Model Context Protocol
 
 The HAPI server is a modern, API-first platform for building and exposing headless APIs. It is designed to work seamlessly with OpenAPI specifications and the Model Context Protocol (MCP), enabling robust schema validation, dynamic routing, and secure integration for any context-driven application.
 

@@ -16,7 +16,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/diagrams/hapi-overview.svg').default,
     description: (
       <>
-        HAPI MCP enables seamless AI integration by dynamically converting OpenAPI
+        HAPI MCP enables seamless AI integration by dynamically converting API
         specifications into MCP tools, eliminating the need for custom server
         implementations.
       </>

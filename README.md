@@ -11,3 +11,9 @@ MCP AI ecosystem documentation.
 ## Useful Links
 
 * [FAQ schema](https://developers.google.com/search/docs/appearance/structured-data/faqpage) for Google rich results.
+
+## Customization
+
+```bash
+bun run swizzle @docusaurus/theme-classic Footer --eject --typescript
+```

@@ -2,6 +2,7 @@
 sidebar_position: 2
 sidebar_label: mcpctl
 sidebar_class_name: orange
+draft: true
 ---
 
 # mcpctl: MCP, OpenAPI, API-first

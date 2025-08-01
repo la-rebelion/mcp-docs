@@ -326,6 +326,20 @@
   font-weight: 600;
 }
 
+/* Image Utilities */
+.center-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+}
+
+.center-image img,
+.center-image svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Custom animations */
 @keyframes fadeInUp {
   from {
@@ -371,7 +385,7 @@
 .alert {
   border: 1px solid hsl(var(--border));
   border-radius: var(--radius);
-  background: hsl(var(--card));
+  /* background: hsl(var(--card)); */
   color: hsl(var(--card-foreground));
 }
 

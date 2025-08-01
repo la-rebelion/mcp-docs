@@ -32,7 +32,10 @@ description: 'A comprehensive glossary of terms related to the HAPI MCP, OpenAPI
 [Go to top](#glossary-of-terms)
 
 ## **H**
-### **Headless API Stack**: A software architecture that separates the backend services from the frontend presentation layer, allowing for greater flexibility and scalability.
+### **HAPI - Headless API Stack**: A software architecture that separates the business logic in backend services from the client layer, enabling greater flexibility and scalability.
+### **HAPI Control Plane (HAPI CP)**: Provides a centralized management interface for MCP servers, enabling the dynamic management of tools and routing rules.
+### **HAPI MCP**: The Headless API Stack for the Model Context Protocol (MCP), which simplifies AI integration by leveraging API specifications to generate MCP tools dynamically.
+### **HAPI Server**: stands for _Headless API_, is a server that reads the API specs and dynamically serves an MCP contract, making your backend instantly usable by AI agents without rewriting code. Watch the [demos and examples](/examples/) to see it in action.
 
 [Go to top](#glossary-of-terms)
 

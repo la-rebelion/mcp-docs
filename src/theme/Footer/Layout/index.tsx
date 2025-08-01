@@ -4,6 +4,7 @@ import {useThemeConfig, useColorMode} from '@docusaurus/theme-common';
 import {ThemeClassNames} from '@docusaurus/theme-common';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import type {Props} from '@theme/Footer/Layout';
+import HubSpotForm from '@site/src/components/HubSpotForm';
 
 export default function FooterLayout({
   style,
@@ -147,9 +148,12 @@ export default function FooterLayout({
           >
             Connecting AI models with the world through standardized protocols
           </p>
+          {/* @note - removed! Is getting error: ResizeObserver loop completed with undelivered notifications */}
+          {/* <HubSpotForm divider={false} /> */}
           
           {/* Professional Stats or Features */}
-          <div 
+          {/* @todo - stats for later here */}
+          {/* <div 
             style={{
               display: 'flex',
               justifyContent: 'center',
@@ -191,7 +195,7 @@ export default function FooterLayout({
                 fontSize: '0.85rem' 
               }}>Easy Integration</div>
             </div>
-          </div>
+          </div> */}
         </div>
         
         {links}
@@ -253,7 +257,7 @@ export default function FooterLayout({
               >
                 Docusaurus
               </a>
-              <span>and enhanced with runMCP-inspired design</span>
+              <span>and enhanced with AI peer programming</span>
             </div>
           </div>
         )}

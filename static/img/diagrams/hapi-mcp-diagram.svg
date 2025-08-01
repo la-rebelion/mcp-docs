@@ -352,5 +352,5 @@
     <animate attributeName="opacity" values="0.3;0.1;0.3" dur="6s" repeatCount="indefinite"/>
   </circle>
   
-  <image href="/logo.svg" x="950" y="700" width="200" height="100"/>
+  <image href="/img/logo.svg" x="950" y="700" width="200" height="100"/>
 </svg>

@@ -21,3 +21,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.heroIllustrationCol {
+  /* No default styles needed, just for targeting */
+}
+
+@media (max-width: 700px) {
+  .heroIllustrationCol {
+    display: none !important;
+  }
+}
