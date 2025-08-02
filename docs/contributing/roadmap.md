@@ -6,6 +6,6 @@ sidebar_class_name: orange
 
 # Roadmap: MCP, OpenAPI, API-first
 
-<JSONLD />
+The MCP project is evolving rapidly, with a focus on enhancing API-first design, OpenAPI integration, and Model Context Protocol (MCP) capabilities. Here's a high-level roadmap of upcoming features and improvements:
 
 The roadmap for MCP, OpenAPI, and API-first development.

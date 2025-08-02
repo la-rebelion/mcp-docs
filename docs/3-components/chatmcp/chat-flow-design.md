@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 sidebar_label: Chat Flow Design
 sidebar_class_name: orange
 title: 'Chat Flow Design: ChatMCP, OpenAPI, API-first'
@@ -17,20 +17,16 @@ publisher: 'MCP Project'
 dateModified: '2025-07-27'
 ---
 
-# Chat Flow Design: ChatMCP, OpenAPI, API-first
-
-Designing conversational flows in ChatMCP means orchestrating how users, agents, and context interact through structured APIs. By leveraging OpenAPI and the Model Context Protocol (MCP), you can create scalable, maintainable, and context-aware chat systems.
-
 ## What is a Chat Flow?
 A chat flow defines the sequence and logic of interactions between a user and one or more agents. In ChatMCP, this is modeled as a series of messages, context updates, and tool invocations—each step informed by the current context and API contract.
 
-:::tip
-**API-first chat flows** ensure your conversation logic is always in sync with your backend, thanks to OpenAPI schemas and MCP's context model.
+:::tip[**API-first chat flows**]
+*API-first chat flows* ensure your conversation logic is always in sync with your backend, thanks to API contracts and the Model Context Protocol (MCP). This allows for dynamic, context-aware interactions that can adapt to user needs and system capabilities.
 :::
 
 ## Core Principles
 - **Context-Driven:** Every message is processed with full awareness of the current session and context, as defined by MCP.
-- **OpenAPI Integration:** All agent actions and tool calls are described and validated using OpenAPI specs.
+- **API Integration:** All agent actions and tool calls are described and validated using API specs (the contract).
 - **Composable:** Flows can include direct chats, group chats, and agent-mediated conversations.
 - **Memory and State:** ChatMCP manages persistent and ephemeral memory for each conversation, enabling continuity and personalization.
 
@@ -66,15 +62,25 @@ sendAgentMessage(chat.id, 'What\'s the weather?');
 Always validate tool inputs/outputs against your OpenAPI schema to prevent runtime errors.
 :::
 
+## Example Context Flow (pseudocode)
+```ts
+// User sends input
+addMessage(chat.id, { content: 'Hello!', senderId: 'user' });
+// Prompt is constructed from chat history
+const prompt = buildPrompt(chat.history);
+// Agent processes prompt, may invoke RAG or tools
+const answer = agent.processPrompt(prompt);
+// Agent may call tools via OpenAPI
+const toolResult = agent.invokeTool('getWeather', { location: 'Berlin' });
+// Answer is returned and stored in memory
+addMessage(chat.id, { content: answer, senderId: 'agent' });
+```
+
 ## Best Practices
 - **Design your flows with OpenAPI first:** Define all possible agent actions and tool invocations in your OpenAPI spec.
 - **Use MCP context for personalization:** Persist relevant context (e.g., user preferences) to enable smarter flows.
 - **Handle authentication gracefully:** Use ChatMCP's built-in auth retry mechanism for secure tool calls.
 - **Test with real agents and users:** Simulate realistic flows to catch edge cases early.
-
-## You Don’t Need to Implement MCP Servers Yourself
-> "You don’t need to implement your own MCP servers to benefit from the protocol. ChatMCP and HAPI provide reference implementations, so you can focus on designing your flows and context models, not infrastructure."  
-— _Adapted from project drafts_
 
 ## Further Reading
 - [ChatMCP source code](https://github.com/la-rebelion/chat-mcp)

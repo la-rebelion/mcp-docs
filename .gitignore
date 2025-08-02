@@ -1,3 +1,6 @@
+# Custom
+**/*.ignoreme.*
+
 # Dependencies
 /node_modules
 

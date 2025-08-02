@@ -56,12 +56,12 @@ The **HAPI MCP Architecture** simplifies AI integration by leveraging existing A
 2. **Manage MCP Servers**: runMCP orchestrates multiple HAPI Server instances, ensuring scalability and reliability.
 3. **Invoke Tools**: AI agents use chatMCP to discover and call tools, which are routed through runMCP to the appropriate backend.
 
-<div className="center-image">
-  <img src={require('@site/static/img/diagrams/runMCP-flow.svg').default} 
-    alt="runMCP Flow Diagram" 
-    width="80%" 
-  />
-</div>
+
+<InlineSVG name="runMCP-flow" 
+  alt="Serve and consume APIs with runMCP"
+  width="75%"
+  className="center-image"
+/>
 
 ## Benefits of the Architecture
 

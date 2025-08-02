@@ -1,0 +1,331 @@
+<svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a7a94;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#da7756;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b85d42;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lightBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#1193b0;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <linearGradient id="lightOrangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#da7756;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#da7756;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c084fc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lightPurpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c084fc;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#c084fc;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <!-- Glow effects -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Animated pattern for background -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1193b0" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Arrow markers -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1193b0"/>
+    </marker>
+    <marker id="arrowheadOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#da7756"/>
+    </marker>
+    <marker id="arrowheadPurple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c084fc"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="900" fill="#0f0f0f"/>
+  <rect width="1400" height="900" fill="url(#grid)"/>
+  
+  <!-- Title -->
+  <text x="570" y="60" fill="#1193b0" font-family="Arial, sans-serif" font-size="30" font-weight="bold" filter="url(#glow)">HAPI</text>
+  <text x="655" y="60" fill="#da7756" font-family="Arial, sans-serif" font-size="30" font-weight="bold" filter="url(#glow)">Agent</text>
+  <text x="750" y="60" fill="white" font-family="Arial, sans-serif" font-size="30" font-weight="bold" filter="url(#glow)">Architecture</text>
+  <text x="700" y="90" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">The Happiness Stack</text>
+  
+  <!-- Central Agent Core -->
+  <g id="agent-core" transform="translate(700,450)">
+    <circle r="150" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="2" filter="url(#glow)"/>
+    <circle id="agent-core-inner" r="120" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="2" filter="url(#glow)"/>
+    <image href="/img/chatmcp/chatmcp.svg" x="-50" y="-50" width="100" height="100"/>
+    <text y="-70" fill="white" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold">Agent Core</text>
+    <text y="100" fill="#1193b0" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">Reasoning Engine</text>
+    <!-- <text y="30" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">HAPI Powered</text> -->
+    
+    <!-- Pulsing effect -->
+    <circle r="180" fill="none" stroke="#1193b0" stroke-width="1" opacity="0.2">
+      <animate attributeName="r" values="180;200;180" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.2;0.05;0.2" dur="5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Input Processing Module -->
+  <g id="input-module">
+    <rect x="250" y="200" width="220" height="150" rx="20" fill="url(#lightPurpleGradient)" stroke="#c084fc" stroke-width="2"/>
+    <text x="360" y="230" fill="#c084fc" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" font-weight="bold">Input Processing</text>
+    
+    <!-- Input components -->
+    <rect x="270" y="250" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#c084fc" stroke-width="1"/>
+    <text x="310" y="275" fill="#c084fc" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">📥 Prompts</text>
+    
+    <rect x="370" y="250" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#c084fc" stroke-width="1"/>
+    <text x="410" y="275" fill="#c084fc" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🔤 NLP</text>
+    
+    <rect x="270" y="300" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#c084fc" stroke-width="1"/>
+    <text x="310" y="325" fill="#c084fc" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🧠 Intent</text>
+    
+    <rect x="370" y="300" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#c084fc" stroke-width="1"/>
+    <text x="410" y="325" fill="#c084fc" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🔍 Context</text>
+  </g>
+  
+  <!-- Knowledge Retrieval Module -->
+  <g id="knowledge-module">
+    <rect x="250" y="500" width="220" height="150" rx="20" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="2"/>
+    <text x="360" y="530" fill="#1193b0" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" font-weight="bold">Knowledge Retrieval</text>
+    
+    <!-- Knowledge components -->
+    <rect x="270" y="550" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="310" y="575" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🔍 RAG</text>
+    
+    <rect x="370" y="550" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="410" y="575" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">📚 LLM KB</text>
+    
+    <rect x="270" y="600" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="310" y="625" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🌐 Internet</text>
+    
+    <rect x="370" y="600" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="410" y="625" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🔄 Update</text>
+  </g>
+  
+  <!-- Tools &amp;Actions Module -->
+  <g id="tools-module">
+    <rect x="930" y="200" width="220" height="150" rx="20" fill="url(#lightOrangeGradient)" stroke="#da7756" stroke-width="2"/>
+    <text x="1040" y="230" fill="#da7756" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" font-weight="bold">Actions</text>
+    
+    <!-- Tools components -->
+    <rect x="950" y="250" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="990" y="275" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🧩 Tools</text>
+    
+    <rect x="1050" y="250" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="1090" y="275" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🔧 Functions</text>
+    
+    <rect x="950" y="300" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="990" y="325" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🌐 API</text>
+    
+    <rect x="1050" y="300" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="1090" y="325" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">📋 Plans</text>
+  </g>
+  
+  <!-- Memory Module -->
+  <g id="memory-module">
+    <rect x="930" y="500" width="220" height="150" rx="20" fill="url(#lightPurpleGradient)" stroke="#c084fc" stroke-width="2"/>
+    <text x="1040" y="530" fill="#c084fc" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" font-weight="bold">Memory</text>
+    
+    <!-- Memory components -->
+    <rect x="950" y="550" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#c084fc" stroke-width="1"/>
+    <text x="990" y="575" fill="#c084fc" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🗄️ Database</text>
+    
+    <rect x="1050" y="550" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#c084fc" stroke-width="1"/>
+    <text x="1090" y="575" fill="#c084fc" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">⚡ Cache</text>
+    
+    <rect x="950" y="600" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#c084fc" stroke-width="1"/>
+    <text x="990" y="625" fill="#c084fc" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">📚 Long Term</text>
+    
+    <rect x="1050" y="600" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#c084fc" stroke-width="1"/>
+    <text x="1090" y="625" fill="#c084fc" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">💾 Short Term</text>
+  </g>
+  
+  <!-- Output Generation Module -->
+  <g id="output-module">
+    <rect x="590" y="650" width="220" height="150" rx="20" fill="url(#lightOrangeGradient)" stroke="#da7756" stroke-width="2"/>
+    <text x="700" y="680" fill="#da7756" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" font-weight="bold">Output Generation</text>
+    
+    <!-- Output components -->
+    <rect x="610" y="700" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="650" y="725" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🔤 Response</text>
+    
+    <rect x="710" y="700" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="750" y="725" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">📊 Format</text>
+    
+    <rect x="610" y="750" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="650" y="775" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">📝 Refine</text>
+    
+    <rect x="710" y="750" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#da7756" stroke-width="1"/>
+    <text x="750" y="775" fill="#da7756" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🖼️ Media</text>
+  </g>
+  
+  <!-- User Interface Module -->
+  <g id="ui-module" transform="translate(590, 100)">
+    <rect x="0" y="0" width="220" height="150" rx="20" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="2"/>
+    <text x="110" y="30" fill="#1193b0" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" font-weight="bold">User Interface</text>
+    
+    <!-- UI components -->
+    <rect x="20" y="40" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="60" y="65" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">💬 Chat</text>
+
+    <rect x="120" y="40" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="160" y="65" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🖥️ Web</text>
+
+    <rect x="20" y="100" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="60" y="125" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">📱 Mobile</text>
+
+    <rect x="120" y="100" width="80" height="40" rx="8" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="160" y="125" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">🔌 API</text>
+  </g>
+  
+  <!-- Connection arrows -->
+  <g id="connection-arrows">
+    <!-- Input to Core -->
+    <path d="M 470 275 Q 550 300 600 380" stroke="#c084fc" stroke-width="2" fill="none" marker-end="url(#arrowheadPurple)" opacity="0.8">
+      <!-- <animate attributeName="stroke-dashoffset" values="200;0" dur="2s" repeatCount="indefinite"/> -->
+      <animate attributeName="stroke-dasharray" values="0 5; 5 10; 10 20; 20 50" dur="2s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Knowledge to Core -->
+    <path d="M 470 575 Q 530 570 595 520" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" opacity="0.8">
+      <animate attributeName="stroke-dashoffset" values="180;0" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0 180;180 0" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Core to Tools -->
+    <path d="M 820 450 Q 850 350 930 275" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#arrowheadOrange)" opacity="0.8">
+      <animate attributeName="stroke-dashoffset" values="240;0" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0 240;240 0" dur="2.2s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Core to Memory -->
+    <path d="M 820 500 Q 820 530 930 575" stroke="#c084fc" stroke-width="2" fill="none" marker-end="url(#arrowheadPurple)" opacity="0.8">
+      <animate attributeName="stroke-dashoffset" values="10;0" dur="2.3s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0 150;150 0" dur="1.3s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Memory to Core -->
+    <path d="M 930 525 Q 900 480 820 470" stroke="#c084fc" stroke-width="2" fill="none" marker-end="url(#arrowheadPurple)" opacity="0.8">
+      <animate attributeName="stroke-dashoffset" values="10;0" dur="2.7s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0 150;150 0" dur="2.7s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Core to Output -->
+    <path d="M 700 570 L 700 650" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#arrowheadOrange)" opacity="0.8">
+      <animate attributeName="stroke-dashoffset" values="80;0" dur="2.1s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0 80;80 0" dur="2.1s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- UI to Core -->
+    <path d="M 700 250 Q 720 300 700 330" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" opacity="0.8">
+      <animate attributeName="stroke-dashoffset" values="20;0" dur="1.9s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0 80;80 0" dur="1.9s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Core to UI -->
+    <path d="M 680 330 Q 670 300 680 250" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" opacity="0.8">
+      <animate attributeName="stroke-dashoffset" values="80;0" dur="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0 80;80 0" dur="2.4s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Tools to Memory -->
+    <path d="M 1040 350 L 1040 500" stroke="#c084fc" stroke-width="2" fill="none" marker-end="url(#arrowheadPurple)" opacity="0.8">
+      <animate attributeName="stroke-dashoffset" values="150;0" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0 150;150 0" dur="3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Floating particles animation -->
+  <g id="particles">
+    <circle r="2" fill="#1193b0" opacity="0.6">
+      <animate attributeName="cx" values="200;1000;200" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="500;200;500" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.6;0" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.5" fill="#da7756" opacity="0.4">
+      <animate attributeName="cx" values="300;900;300" dur="18s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="200;600;200" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.4;0" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2.5" fill="#c084fc" opacity="0.3">
+      <animate attributeName="cx" values="400;800;400" dur="20s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="300;400;300" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.3;0" dur="7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Component descriptions -->
+  <g id="descriptions" font-family="Arial, sans-serif" font-size="10" fill="#ccc">
+    <text x="300" y="370" text-anchor="middle">Processes user inputs and</text>
+    <text x="300" y="382" text-anchor="middle">extracts intents &amp;entities</text>
+    
+    <text x="300" y="670" text-anchor="middle">Retrieves relevant information</text>
+    <text x="300" y="682" text-anchor="middle">from various knowledge sources</text>
+    
+    <text x="1100" y="370" text-anchor="middle">Executes actions and</text>
+    <text x="1100" y="382" text-anchor="middle">interfaces with external systems</text>
+    
+    <text x="1100" y="670" text-anchor="middle">Stores and retrieves information</text>
+    <text x="1100" y="682" text-anchor="middle">with different persistence levels</text>
+    
+    <text x="700" y="500" text-anchor="middle">Coordinates all components</text>
+    <text x="700" y="512" text-anchor="middle">and manages the reasoning process</text>
+    
+    <text x="880" y="120" text-anchor="middle">Handles interactions with users</text>
+    <text x="880" y="132" text-anchor="middle">across multiple platforms</text>
+    
+    <text x="700" y="820" text-anchor="middle">Generates and refines responses</text>
+    <text x="700" y="832" text-anchor="middle">in appropriate formats</text>
+  </g>
+  
+  <!-- Performance metrics visualization -->
+  <g id="metrics" opacity="0.3">
+    <rect x="1050" y="730" width="120" height="80" rx="10" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="1110" y="750" fill="#1193b0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Metrics</text>
+    
+    <!-- Mini bars -->
+    <rect x="1060" y="760" width="15" height="20" fill="#1193b0" opacity="0.6"/>
+    <rect x="1080" y="765" width="15" height="15" fill="#1193b0" opacity="0.8"/>
+    <rect x="1100" y="755" width="15" height="25" fill="#1193b0" opacity="0.7"/>
+    <rect x="1120" y="770" width="15" height="10" fill="#1193b0" opacity="0.9"/>
+    <rect x="1140" y="762" width="15" height="18" fill="#1193b0" opacity="0.6"/>
+  </g>
+  <!-- HAPI Ecosystem logo -->
+  <g transform="translate(650, 880)">
+    <text x="0" y="0" fill="#1193b0" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle">HAPI</text>
+    <text x="70" y="0" fill="#da7756" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Ecosystem</text>
+    <!-- <text x="150" y="0" fill="white" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">The Happiness Stack</text> -->
+  </g>
+</svg>

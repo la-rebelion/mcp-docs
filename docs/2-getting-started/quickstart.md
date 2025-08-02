@@ -58,20 +58,20 @@ hapi serve example --mcp --headless
 - Cloud: Use the provided dashboard and API docs.
 - On-premise: you can either use the CLI or any MCP client (must support `HTTP` protocol):
 
-  * Open your browser and navigate to [http://localhost:8080](http://localhost:8080) to access the OpenAPI documentation or *test the APIs* in your browser.
+  * Open your browser and navigate to [http://localhost:8080/swagger](http://localhost:8080/swagger) to access the OpenAPI documentation or *test the APIs* in your browser.
   * Use any MCP client to connect to the server, such as [chatMCP](https://chat.mcp.com.ai), [MCP Inspector](https://www.npmjs.com/package/@modelcontextprotocol/inspector), [Postman](https://www.postman.com/downloads/) or curl.
 
-More detailed instructions are available in the [Hello World guide](./getting-started/hello-world.md).
+More detailed instructions to access and test the MCP tools are available in the [Hello World guide](./getting-started/hello-world.md).
 
 :::caution[Remember 🎗️]
-On-premise setup requires manual server start and DNS configuration. Use provided scripts for Caddy setup.
+On-premise setup requires manual server start and DNS configuration. Use provided scripts for Caddy setup or BYO DNS.
 :::
 
 ## Next Steps
 
 - Edit the OpenAPI schema to add endpoints.
 - Explore context and memory features in MCP.
-- Deploy to production (see Deployment Guide).
+- Deploy to production (see [Deployment Guide](./deployment/)).
 
 ## Further Reading
 

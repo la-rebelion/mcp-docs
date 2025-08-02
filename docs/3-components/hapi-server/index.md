@@ -17,24 +17,27 @@ dateModified: '2025-07-27'
 
 # HAPI Server: API-first approach for Model Context Protocol
 
-The HAPI server is a modern, API-first platform for building and exposing headless APIs. It is designed to work seamlessly with OpenAPI specifications and the Model Context Protocol (MCP), enabling robust schema validation, dynamic routing, and secure integration for any context-driven application.
+The HAPI server is a modern, API-first platform for building and exposing [headless APIs](http://localhost:3000/glossary#hapi---headless-api-stack-a-software-architecture-that-separates-the-business-logic-in-backend-services-from-the-client-layer-enabling-greater-flexibility-and-scalability). It is designed to work seamlessly with OpenAPI specifications, gRPC IDL, and the Model Context Protocol (MCP), enabling robust schema validation, dynamic routing, and secure integration for any context-driven application.
 
 ## What is the HAPI Server?
-HAPI (Headless API) is a lightweight, extensible server that:
-- Accepts OpenAPI/Swagger schemas as input
+[HAPI](http://localhost:3000/glossary#h) (**Headless API**) is a lightweight, extensible server that:
+- Accepts either OpenAPI specs or gRPC IDL as input
 - Auto-generates RESTful endpoints and validation layers
-- Integrates with MCP for context-aware operations
-- Supports dynamic subdomain routing and multi-tenancy
+- Translates API services into a context-aware, API-first architecture through MCP
+- Companions with the [routing engine](/component/routing-engine) for advanced traffic management, 
+  - Supports dynamic subdomain routing and multi-tenancy
+  - Included in the cloud [HAPI Stack](http://localhost:3000/glossary#hapi-stack), optional in on-premise setups (BYO)
 
-:::tip
-**API-first by default:** HAPI treats your OpenAPI schema as the contract. All endpoints, validation, and docs are generated from your spec—no manual wiring required.
+:::info[**API-first by default**]
+HAPI treats your [API schema as the contract](https://rebelion.la/you-dont-need-to-implement-mcp-servers-a-contract-first-approach-to-ai-tool-integration?showSharer=true). All endpoints, validation, and docs are generated from your spec—no manual wiring required.
 :::
 
 ## Core Features
-- **OpenAPI-driven:** Import your OpenAPI (Swagger) schema to instantly generate endpoints
+- **API-driven:** Import your API (Swagger or IDL) schema to instantly generate endpoints
 - **Validation layers:** Requests and responses are validated against your schema
 - **Dynamic routing:** Easily manage subdomains and route traffic to the right tenant or instance
 - **Security:** Supports OAuth2, API keys, and custom auth via OpenAPI security schemes
+  - For [gRPC authentication](https://grpc.io/docs/guides/auth/#extending-grpc-to-support-other-authentication-mechanisms), HAPI Server uses metadata and MCP context, or mutual TLS
 - **Extensible:** Add custom logic, hooks, or middleware as needed
 
 ## How HAPI Fits in the MCP Stack
@@ -43,6 +46,10 @@ HAPI acts as the API gateway and schema enforcer for MCP-powered systems. It ens
 - **Schema-first:** Your OpenAPI spec is the source of truth
 - **Context integration:** Passes context and session info to downstream services
 - **Tooling:** Enables agent and tool invocation via OpenAPI-defined operations
+
+:::tip[You Don’t Need to Implement MCP Servers Yourself]
+You don’t need to implement your own MCP servers to benefit from the protocol. The HAPI Stack provides reference implementations, so you can focus on designing your flows and context models, not infrastructure.
+:::
 
 ## Example: Bootstrapping HAPI with OpenAPI
 ```js

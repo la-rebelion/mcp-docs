@@ -46,10 +46,7 @@ const config: Config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/la-rebelion/mcp-docs/tree/main/',
+          // editUrl: 'https://github.com/la-rebelion/mcp-docs/tree/main/',
         },
         blog: false,
         theme: {
@@ -88,6 +85,11 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/dont-build-mcp-server.png',
+    docs: {
+      sidebar: {
+        autoCollapseCategories: true,
+      },
+    },
     navbar: {
       title: 'HAPI MCP',
       logo: {
@@ -117,11 +119,11 @@ const config: Config = {
           position: 'right',
           className: 'button--primary',
         },
-        {
-          href: 'https://github.com/la-rebelion/mcp-docs',
-          label: 'GitHub',
-          position: 'right',
-        },
+        // {
+        //   href: 'https://github.com/la-rebelion/mcp-docs',
+        //   label: 'GitHub',
+        //   position: 'right',
+        // },
       ],
     },
     footer: {

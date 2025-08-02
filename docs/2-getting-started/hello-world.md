@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-sidebar_label: Hello World (on-premise)
+sidebar_label: Hello AI World (on-premise)
 sidebar_class_name: blue
 title: 'Hello World: MCP, OpenAPI, API-first'
 description: 'A simple Hello World example using Model Context Protocol (MCP), OpenAPI, and API-first principles.'
@@ -16,9 +16,9 @@ publisher: 'MCP Project'
 dateModified: '2025-07-27'
 ---
 
-# Hello World: MCP, OpenAPI, API-first
+# Hello AI World:  MCP and API-first approach
 
-Let's build a "Hello World" API using MCP and OpenAPI.
+Let's build a simple "Hello World" API using MCP and OpenAPI. Something that can be used as a starting point for your own projects. This example will demonstrate how to define, implement, and consume an API using the Model Context Protocol (MCP) and OpenAPI.
 
 ## Choose Your Deployment
 

@@ -5,6 +5,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import HapiOverviewSvg from '@site/static/img/diagrams/hapi-overview.svg';
 import HapiMcpDiagramSvg from '@site/static/img/diagrams/hapi-mcp-diagram.svg';
 import RunMcpFlowSvg from '@site/static/img/diagrams/runMCP-flow.svg';
+import ChatMcpContextFlowSvg from '@site/static/img/diagrams/chatmcp-context-flow.svg';
+import ChatMCPContextEngineering from '@site/static/img/diagrams/chatmcp-context-engineering.svg';
+import AgentArchitecture from '@site/static/img/diagrams/agent-architecture-diagram.svg';
 
 interface InlineSVGProps {
   name: string;
@@ -24,6 +27,9 @@ const svgImages: Record<string, React.ComponentType<React.ComponentProps<'svg'>>
   'hapi-overview': HapiOverviewSvg,
   'hapi-mcp-diagram': HapiMcpDiagramSvg,
   'runMCP-flow': RunMcpFlowSvg,
+  'chatMCP-context-flow': ChatMcpContextFlowSvg,
+  'chatMCP-context-engineering': ChatMCPContextEngineering,
+  'agent-architecture-diagram': AgentArchitecture,
 };
 
 /**

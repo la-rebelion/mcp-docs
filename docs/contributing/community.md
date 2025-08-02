@@ -5,7 +5,4 @@ sidebar_class_name: green
 ---
 
 # Community: MCP, OpenAPI, API-first
-
-<JSONLD />
-
-Join the MCP, OpenAPI, and API-first community.
+Join the MCP community to collaborate, share ideas, and contribute to the evolution of API-first design and OpenAPI integration. Whether you're a developer, designer, or enthusiast, your input is valuable. 
