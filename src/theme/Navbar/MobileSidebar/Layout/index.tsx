@@ -4,16 +4,10 @@ import {useNavbarSecondaryMenu} from '@docusaurus/theme-common/internal';
 import {ThemeClassNames} from '@docusaurus/theme-common';
 import type {Props} from '@theme/Navbar/MobileSidebar/Layout';
 
-// TODO Docusaurus v4: remove temporary inert workaround
+// @todo Docusaurus v4: remove temporary inert workaround
 //  See https://github.com/facebook/react/issues/17157
 //  See https://github.com/radix-ui/themes/pull/509
-function inertProps(inert: boolean) {
-  const isBeforeReact19 = parseInt(version!.split('.')[0]!, 10) < 19;
-  if (isBeforeReact19) {
-    return {inert: inert ? '' : undefined};
-  }
-  return {inert};
-}
+import {useEffect, useRef} from 'react';
 
 function NavbarMobileSidebarPanel({
   children,
@@ -22,13 +16,26 @@ function NavbarMobileSidebarPanel({
   children: ReactNode;
   inert: boolean;
 }) {
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // @note: React does not support the inert attribute natively, so we set it imperatively.
+    if (panelRef.current) {
+      if (inert) {
+        panelRef.current.setAttribute('inert', '');
+      } else {
+        panelRef.current.removeAttribute('inert');
+      }
+    }
+  }, [inert]);
+
   return (
     <div
+      ref={panelRef}
       className={clsx(
         ThemeClassNames.layout.navbar.mobileSidebar.panel,
         'navbar-sidebar__item menu',
-      )}
-      {...inertProps(inert)}>
+      )}>
       {children}
     </div>
   );
