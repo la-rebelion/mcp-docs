@@ -2,6 +2,7 @@
 sidebar_position: 1
 sidebar_label: Contributing
 sidebar_class_name: blue
+draft: true
 ---
 
 # Contributing: MCP, OpenAPI, API-first

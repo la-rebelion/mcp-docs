@@ -23,27 +23,27 @@ import InlineSVG from '@site/src/components/SyncImage';
 
 Agents are the reasoning engines at the heart of the HAPI Stack, orchestrating context-driven conversational flows. They coordinate user input, context management, tool invocation, and memory, leveraging the Model Context Protocol (MCP) and API contracts for robust, API-first interactions.
 
+## Agent Architecture Overview
+
 <InlineSVG name="agent-architecture-diagram"
-    alt="HAPI Agent Architecture Diagram"
+    alt="HAPI Stack Components Overview"
     width="100%"
     className="center-image"
 />
 
-## Agent Architecture Overview
-
-The [architecture diagram](/img/diagrams/agent-architecture-diagram.svg) illustrates the modular design of agents in the HAPI Stack:
+The HAPI components diagram illustrates the high-level architecture where agents operate:
 
 - **Agent Core:** Central reasoning engine that coordinates all modules and manages the flow of information.
 - **Input Processing:** Handles user prompts, natural language processing (NLP), intent extraction, and context parsing.
 - **Knowledge Retrieval:** Uses RAG (Retrieval-Augmented Generation), LLM knowledge bases, and internet sources to fetch relevant information.
-- **Actions & Tools:** Executes structured actions via OpenAPI tools, functions, APIs, and planning modules.
+- **Actions:** Executes structured actions via MCP tools, functions, APIs, and planning modules.
 - **Memory:** Manages short-term (chat history) and long-term (database, cache) memory for continuity and personalization.
 - **Output Generation:** Produces, refines, and formats responses, including media generation.
 - **User Interface:** Connects agents to chat, web, mobile, and API endpoints for seamless user interaction.
 
 ## How Agents Orchestrate Chat Flows
 
-Agents in the HAPI Stack implement **Context Engineering** (see [ChatMCP Context Engineering](./index.md)) to ensure every chat flow is:
+Agents in the HAPI Stack implement **Context Engineering** (see [ChatMCP Context Engineering](//components/chatmcp#Context-Engineering-in-chatMCP)) to ensure every chat flow is:
 
 - **Context-Driven:** Each message is processed with full awareness of session and context, as defined by MCP.
 - **API-First:** All actions and tool calls are validated against OpenAPI contracts.
@@ -58,6 +58,7 @@ Agents in the HAPI Stack implement **Context Engineering** (see [ChatMCP Context
 4. **Tool Invocation:** Structured actions are performed via OpenAPI tools (e.g., fetch weather).
 5. **Answer Generation:** The agent generates a response, which is returned to the user and stored in memory.
 
+<!-- @todo We don't want the users to code, for users interaction is through the UI, so we don't need to show code examples here
 ```ts
 // @example Agent flow pseudocode
 addMessage(chat.id, { content: 'Hello!', senderId: 'user' });
@@ -65,7 +66,7 @@ const prompt = buildPrompt(chat.history);
 const answer = agent.processPrompt(prompt);
 const toolResult = agent.invokeTool('getWeather', { location: 'Berlin' });
 addMessage(chat.id, { content: answer, senderId: 'agent' });
-```
+``` -->
 
 ## Integration with MCP and OpenAPI
 
@@ -83,7 +84,6 @@ Agents validate all tool inputs/outputs against OpenAPI schemas, preventing runt
 
 ## Further Reading
 
-- [ChatMCP: Conversational AI](./index.md)
-- [Chat Flow Design](./chat-flow-design.md)
+- [ChatMCP: Conversational AI](/components/chatmcp/)
+- [Chat Flow Design](/components/chatmcp/chat-flow-design)
 - [OpenAPI Specification](https://swagger.io/specification/)
-- [Model Context Protocol (MCP)](https://github.com/la-rebelion)

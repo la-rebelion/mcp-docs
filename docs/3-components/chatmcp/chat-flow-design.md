@@ -15,6 +15,7 @@ keywords:
 author: 'La Rebelion Labs'
 publisher: 'MCP Project'
 dateModified: '2025-07-27'
+wip: true
 ---
 
 ## What is a Chat Flow?
@@ -37,6 +38,7 @@ ChatMCP's architecture (see `src/pages/Chat.tsx` and `src/contexts/ChatContext.t
 - Handles tool and agent invocations via MCPService
 - Supports authentication and retries for secure flows
 
+<!-- @todo We don't want the users to code, HAPI Stack is designed to accelerate development, so users interact through the UI or config, not code
 ### Example: Direct Chat Flow
 ```js
 // Pseudocode for direct chat initialization
@@ -74,7 +76,7 @@ const answer = agent.processPrompt(prompt);
 const toolResult = agent.invokeTool('getWeather', { location: 'Berlin' });
 // Answer is returned and stored in memory
 addMessage(chat.id, { content: answer, senderId: 'agent' });
-```
+``` -->
 
 ## Best Practices
 - **Design your flows with OpenAPI first:** Define all possible agent actions and tool invocations in your OpenAPI spec.

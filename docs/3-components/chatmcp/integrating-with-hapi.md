@@ -20,3 +20,5 @@ dateModified: '2025-07-27'
 
 
 How to integrate ChatMCP with HAPI server using OpenAPI and API-first approaches.
+
+WIP: This section is a work in progress and will be updated with more details soon.

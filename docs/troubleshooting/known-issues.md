@@ -2,6 +2,7 @@
 sidebar_position: 1
 sidebar_label: Known Issues
 sidebar_class_name: blue
+draft: true
 ---
 
 # Known Issues: MCP, OpenAPI, API-first

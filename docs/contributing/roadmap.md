@@ -2,6 +2,7 @@
 sidebar_position: 2
 sidebar_label: Roadmap
 sidebar_class_name: orange
+draft: true
 ---
 
 # Roadmap: MCP, OpenAPI, API-first

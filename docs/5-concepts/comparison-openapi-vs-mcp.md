@@ -2,29 +2,24 @@
 sidebar_position: 5
 sidebar_label: OpenAPI vs MCP
 sidebar_class_name: orange
+title: 'OpenAPI vs MCP: Comparison, API-first'
+description: 'Compare OpenAPI and Model Context Protocol (MCP) for API-first, context-driven development: use cases, strengths, and best practices.'
+keywords:
+  - OpenAPI
+  - MCP
+  - comparison
+  - API-first
+  - context
+  - interoperability
+  - schema
+  - contract
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
+draft: true
 ---
-import JSONLD from '@theme/JSONLD';
 
 # OpenAPI vs MCP: Comparison, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "OpenAPI vs MCP: Comparison, API-first",
-  "description": "Compare OpenAPI and Model Context Protocol (MCP) for API-first, context-driven development: use cases, strengths, and best practices.",
-  "keywords": "OpenAPI, MCP, comparison, API-first, context, interoperability, schema, contract",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 OpenAPI and MCP are both essential for API-first, context-driven systems—but they serve different roles.
 

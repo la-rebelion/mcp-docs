@@ -19,3 +19,5 @@ dateModified: '2025-07-27'
 # Memory & Context: ChatMCP, MCP, OpenAPI
 
 How ChatMCP manages memory and context using MCP and OpenAPI.
+
+WIP: This section is a work in progress and will be updated with more details soon.

@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // Hubspot account id
@@ -114,6 +114,10 @@ const config: Config = {
           position: 'left',
         },
         {
+          label: 'Blog',
+          href: 'https://rebelion.la/series/mcp',
+        },
+        {
           href: 'https://go.rebelion.la/demo-request',
           label: 'Request a Demo',
           position: 'right',
@@ -170,6 +174,14 @@ const config: Config = {
               label: 'GitHub',
               href: 'https://github.com/la-rebelion/mcp-docs',
             },
+            {
+              label: 'Blog',
+              href: 'https://rebelion.la/series/mcp',
+            },
+            {
+              label: 'Contact Us',
+              href: 'https://go.rebelion.la/contact-us',
+            }
             // {
             //   href: 'https://go.rebelion.la/sponsors',
             //   label: 'Sponsor',
@@ -206,6 +218,10 @@ const config: Config = {
       },
     },
   ],
+  themes: ['@docusaurus/theme-mermaid'],
+  markdown: {
+    mermaid: true,
+  },
 };
 
 export default config;

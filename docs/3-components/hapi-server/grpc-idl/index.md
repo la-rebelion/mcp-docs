@@ -14,6 +14,12 @@ keywords:
 author: 'La Rebelion Labs'
 publisher: 'MCP Project'
 dateModified: '2025-07-27'
+badges:
+  - type: beta
+    description: Protobuf/gRPC support is in beta
+  - type: roadmap
+    description: Features coming soon
+    color: #FFA500
 ---
 
 # Protobuf Integration in HAPI Server: API-first with MCP

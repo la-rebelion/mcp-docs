@@ -2,29 +2,22 @@
 sidebar_position: 2
 sidebar_label: API as Contract
 sidebar_class_name: orange
+title: 'API as Contract: MCP, OpenAPI, API-first'
+description: 'Understand how API-first and OpenAPI make APIs the contract in Model Context Protocol (MCP) systems, ensuring reliability and interoperability.'
+keywords:
+  - API as contract
+  - OpenAPI
+  - API-first
+  - MCP
+  - specification
+  - interoperability
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
+draft: true
 ---
-import JSONLD from '@theme/JSONLD';
 
 # API as Contract: MCP, OpenAPI, API-first
-
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "API as Contract: MCP, OpenAPI, API-first",
-  "description": "Understand how API-first and OpenAPI make APIs the contract in Model Context Protocol (MCP) systems, ensuring reliability and interoperability.",
-  "keywords": "API as contract, OpenAPI, API-first, MCP, specification, interoperability, contract testing",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
 
 In API-first, MCP-powered systems, the API specification is the contract between all participants—clients, agents, servers, and tools.
 

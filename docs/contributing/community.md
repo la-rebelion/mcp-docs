@@ -2,6 +2,7 @@
 sidebar_position: 3
 sidebar_label: Community
 sidebar_class_name: green
+draft: true
 ---
 
 # Community: MCP, OpenAPI, API-first

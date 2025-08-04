@@ -20,3 +20,11 @@ dateModified: '2025-07-27'
 
 
 Explore advanced conversational patterns with ChatMCP in API-first, OpenAPI-driven systems.
+
+## What are Advanced Patterns?
+
+Advanced patterns in ChatMCP refer to sophisticated conversational flows and interactions that leverage the full capabilities of the Model Context Protocol (MCP) and OpenAPI. These patterns enable developers to create rich, context-aware chat experiences that go beyond simple question-answering.
+
+## Key Advanced Patterns
+
+WIP: This section is a work in progress and will be updated with more details soon.

@@ -18,7 +18,17 @@ dateModified: '2025-07-27'
 
 import InlineSVG from '@site/src/components/SyncImage';
 
-Overview of ChatMCP, its context management, and integration with HAPI and MCP using API-first principles.
+
+**chatMCP** is a mobile-first messaging app inspired by WhatsApp, designed for seamless communication between humans and AI agents via the Model Context Protocol (MCP). It treats MCP servers as contacts, supports group chats with both humans and AI agents, and offers a clean, intuitive UI optimized for mobile devices.
+
+## 🚀 Features
+
+- **MCP Server Contacts:** Add AI agents by MCP server URL or identifier; add humans by phone, email, or username.
+- **Group Chats:** Mix humans and AI agents in group conversations.
+- **Messaging:** Send/receive text, images, files, and voice messages.
+- **Search:** Quickly find contacts and messages.
+- **Guest Access:** Interact with AI agents without registration; upgrade to a full account via phone/email verification.
+- **OAuth Integration:** Secure authentication with MCP servers.
 
 Designing conversational flows in ChatMCP means orchestrating how users, agents, and context interact through structured APIs. By leveraging OpenAPI and the Model Context Protocol (MCP), you can create scalable, maintainable, and context-aware chat systems.
 
