@@ -2,6 +2,7 @@
 sidebar_position: 5
 sidebar_label: Production
 sidebar_class_name: orange
+draft: true
 ---
 
 # Production Deployments: MCP, OpenAPI, API-first

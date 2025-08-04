@@ -2,29 +2,25 @@
 sidebar_position: 3
 sidebar_label: Intent Routing
 sidebar_class_name: green
+draft: true
+title: "Intent Routing: MCP, OpenAPI, API-first"
+description: "Learn how intent routing works in Model Context Protocol (MCP) and OpenAPI-powered systems for smart, context-aware workflows."
+keywords:
+  - intent routing
+  - MCP
+  - OpenAPI
+  - API-first
+  - conversational AI
+  - workflow
+  - orchestration
+author: 'La Rebelion'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # Intent Routing: MCP, OpenAPI, API-first
 
-<JSONLD data={{
-  "@context": "https://schema.org",
-  "@type": "TechArticle",
-  "headline": "Intent Routing: MCP, OpenAPI, API-first",
-  "description": "Learn how intent routing works in Model Context Protocol (MCP) and OpenAPI-powered systems for smart, context-aware workflows.",
-  "keywords": "intent routing, MCP, OpenAPI, API-first, conversational AI, workflow, orchestration, context",
-  "author": {
-    "@type": "Organization",
-    "name": "La Rebelion",
-    "url": "https://github.com/la-rebelion"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MCP Project",
-    "url": "https://github.com/la-rebelion/mcp-docs"
-  },
-  "dateModified": "2025-07-27"
-}} />
+Intent routing is a crucial aspect of building intelligent conversational systems. It allows the system to understand user or agent intents and route them to the appropriate API operations or workflows based on context and OpenAPI definitions.
 
 Intent routing is the process of mapping user or agent intents to the correct API operation or workflow, using context and OpenAPI definitions.
 

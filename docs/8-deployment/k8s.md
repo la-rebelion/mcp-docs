@@ -2,6 +2,7 @@
 sidebar_position: 3
 sidebar_label: Kubernetes (k8s)
 sidebar_class_name: blue
+draft: true
 ---
 
 # Kubernetes Deployment: MCP, OpenAPI, API-first
