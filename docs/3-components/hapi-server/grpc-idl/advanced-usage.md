@@ -14,6 +14,7 @@ keywords:
 author: 'La Rebelion Labs'
 publisher: 'MCP Project'
 dateModified: '2025-07-27'
+draft: true
 ---
 
 # Advanced Usage: HAPI Server, Protobuf, MCP

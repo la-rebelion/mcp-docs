@@ -15,7 +15,6 @@ author: 'La Rebelion Labs'
 publisher: 'MCP Project'
 dateModified: '2025-07-27'
 ---
-import JSONLD from '@theme/JSONLD';
 
 # OpenAPI Integration in HAPI Server: API-first with MCP
 

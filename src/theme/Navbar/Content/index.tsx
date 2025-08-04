@@ -93,7 +93,7 @@ function ComponentsDropdown(): ReactNode {
         },
         {
           label: 'API Reference',
-          href: '/components/chatmcp/api',
+          href: '/components/chatmcp/integrating-with-hapi',
           description: 'Complete API reference for chatMCP',
           icon: '📚',
         },
@@ -110,7 +110,7 @@ function ComponentsDropdown(): ReactNode {
         },
         {
           label: 'API Reference',
-          href: '/components/hapi-server/api',
+          href: '/components/hapi-server/openapi',
           description: 'Complete API reference for HAPI server',
           icon: '📚',
         },

@@ -39,7 +39,7 @@ By accessing or using the Service, You agree to be bound by these Terms and Cond
 
 You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service.
 
-Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the [Privacy Policy](./privacy-policy.md) of the Company. Please read our Privacy Policy carefully before using our Service.
+Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the [Privacy Policy](/privacy) of the Company. Please read our Privacy Policy carefully before using our Service.
 
 ## Links to Other Websites
 
