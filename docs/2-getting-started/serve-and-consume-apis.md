@@ -78,7 +78,7 @@ The above flow ensures a contract-driven, API-first development process, reducin
 - The HAPI Control Plane dynamically configures the Routing Engine to expose your API endpoints.
 
 :::tip[Extensions 🧩]
-[Extensions](https://swagger.io/specification/#specification-extensions) can be used to add custom metadata for [advanced HAPI-specific features](/advanced/) or MCP context. Features like throttling, rate limiting, and caching can be configured as needed.
+[Extensions](https://swagger.io/specification/#specification-extensions) can be used to add custom metadata for [advanced HAPI-specific features](/advanced-guides/) or MCP context. Features like throttling, rate limiting, and caching can be configured as needed.
 :::
 
 ## Step 4: Consume the API
@@ -100,7 +100,7 @@ The above flow ensures a contract-driven, API-first development process, reducin
 
 - [runMCP Documentation](/components/runmcp)
 - [chatMCP Documentation](/components/chatmcp)
-- [HAPI Stack Overview](/components/hapi-stack)
+- [HAPI Stack Overview](/components/architecture)
 - [OpenAPI Specification](https://swagger.io/specification/)
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
 - [API-first Design Principles](https://www.postman.com/api-first/)

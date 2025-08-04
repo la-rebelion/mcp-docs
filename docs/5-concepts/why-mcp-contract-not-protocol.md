@@ -68,9 +68,9 @@ Traditional APIs leave too much room for interpretation:
 With MCP:
 
 - You define contracts in a **developer-readable, AI-parsable format**.
-- You generate API endpoints automatically via [HAPI Server](../components/hapi-server).
-- You manage distributed deployments via [runMCP](../components/run-mcp).
-- You consume APIs via [chatMCP](../components/chat-mcp) — with intent-based UX.
+- You generate API endpoints automatically via [HAPI Server](/components/hapi-server).
+- You manage distributed deployments via [runMCP](/components/run-mcp).
+- You consume APIs via [chatMCP](/components/chat-mcp) — with intent-based UX.
 
 ---
 
@@ -91,5 +91,5 @@ MCP is the **full invoice**, **user manual**, and **business logic** in one — 
 - This approach fits especially well in **agentic workflows**, **LLM-first backends**, and **API-as-a-product environments**.
 
 Ready to rethink how we document and consume APIs?  
-→ [Start with the HAPI Server →](../components/hapi-server)
+→ [Start with the HAPI Server →](/components/hapi-server)
 
