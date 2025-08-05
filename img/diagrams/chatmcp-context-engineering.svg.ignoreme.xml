@@ -1,0 +1,384 @@
+<svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a7a94;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#da7756;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b85d42;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lightBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1193b0;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#1193b0;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <linearGradient id="lightOrangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#da7756;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#da7756;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <!-- Glow effects -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Animated grid pattern for background -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1193b0" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="900" fill="#0f0f0f"/>
+  <rect width="1400" height="900" fill="url(#grid)"/>
+  
+  <!-- Title -->
+  <image href="/img/chatmcp/chatmcp.svg" x="100" y="20" width="70" height="70"/>
+  <text x="180" y="50" fill="white" font-family="Arial, sans-serif" font-size="30" font-weight="bold" filter="url(#glow)">The</text>
+  <text x="245" y="50" fill="#1193b0" font-family="Arial, sans-serif" font-size="30" font-weight="bold" filter="url(#glow)">chat</text>
+  <text x="308" y="50" fill="#da7756" font-family="Arial, sans-serif" font-size="30" font-weight="bold" filter="url(#glow)">MCP</text>
+  <text x="180" y="80" fill="white" font-family="Arial, sans-serif" font-size="30" font-weight="bold" filter="url(#glow)">Context Engineering</text>
+  
+  <!-- Legend -->
+  <g id="legend" transform="translate(700, 20)">
+    <rect x="0" y="0" width="25" height="18" rx="3" fill="#c084fc" opacity="0.7"/>
+    <text x="35" y="13" fill="#c084fc" font-family="Arial, sans-serif" font-size="12">User input</text>
+    
+    <rect x="120" y="0" width="25" height="18" rx="3" fill="#1193b0" opacity="0.7"/>
+    <text x="155" y="13" fill="#1193b0" font-family="Arial, sans-serif" font-size="12">User info</text>
+    
+    <rect x="230" y="0" width="25" height="18" rx="3" fill="#4ade80" opacity="0.7"/>
+    <text x="265" y="13" fill="#4ade80" font-family="Arial, sans-serif" font-size="12">Tool use/schemas</text>
+    
+    <rect x="370" y="0" width="25" height="18" rx="3" fill="#60a5fa" opacity="0.7"/>
+    <text x="405" y="13" fill="#60a5fa" font-family="Arial, sans-serif" font-size="12">Agent reasoning</text>
+    
+    <rect x="490" y="0" width="25" height="18" rx="3" fill="#1193b0" opacity="0.7"/>
+    <text x="525" y="13" fill="#1193b0" font-family="Arial, sans-serif" font-size="12">RAG context</text>
+    
+    <rect x="600" y="0" width="25" height="18" rx="3" fill="#fbbf24" opacity="0.7"/>
+    <text x="635" y="13" fill="#fbbf24" font-family="Arial, sans-serif" font-size="12">Chat history</text>
+  </g>
+  
+  <!-- Step 1: User Input -->
+  <g id="user-input">
+    <circle cx="130" cy="350" r="35" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="2" filter="url(#softGlow)">
+      <animate attributeName="r" values="35;38;35" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <image href="/img/la-rebelion-user.png" x="105" y="325" width="50" height="50"/>
+    <text x="130" y="390" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">User</text>
+    
+    <!-- Input box -->
+    <rect x="180" y="420" width="120" height="50" rx="10" fill="url(#darkGradient)" stroke="#c084fc" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="240" y="440" fill="#c084fc" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">Input</text>
+    <circle cx="195" cy="455" r="12" fill="#333" stroke="#c084fc" stroke-width="1"/>
+    <text x="195" y="460" fill="#c084fc" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">1</text>
+
+    <!-- Arrow to Input -->
+    <path d="M 130 385 Q 120 440 180 445" stroke="#c084fc" stroke-width="2" fill="none" marker-end="url(#arrowheadPurple)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,10;10,0;0,10" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <!-- Arrow to prompt -->
+    <path d="M 300 445 L 450 445" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,10;10,0;0,10" dur="2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Central Prompt System -->
+  <g id="prompt-system">
+    <rect x="450" y="400" width="200" height="90" rx="15" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="stroke-width" values="2;3;2" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <text x="500" y="425" fill="white" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">Prompt</text>
+    
+    <!-- Context blocks in prompt -->
+    <g id="prompt-blocks">
+      <rect x="465" y="440" width="20" height="35" rx="3" fill="#c084fc" opacity="0.8">
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="495" y="440" width="20" height="35" rx="3" fill="#4ade80" opacity="0.8"/>
+      <rect x="525" y="440" width="20" height="35" rx="3" fill="#60a5fa" opacity="0.8"/>
+      <rect x="555" y="440" width="20" height="35" rx="3" fill="#1193b0" opacity="0.8"/>
+      <rect x="585" y="440" width="20" height="35" rx="3" fill="#fbbf24" opacity="0.8"/>
+      <rect x="615" y="440" width="20" height="35" rx="3" fill="white" opacity="0.8"/>
+    </g>
+    
+    <!-- Step 5 indicator -->
+    <circle cx="650" cy="485" r="12" fill="#da7756" stroke="white" stroke-width="1"/>
+    <text x="650" y="490" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">5</text>
+  </g>
+  
+  <!-- Agent -->
+  <g id="agent">
+    <rect x="1100" y="320" width="120" height="80" rx="15" fill="url(#blueGradient)" stroke="#1193b0" stroke-width="2" filter="url(#glow)"/>
+    <text x="1160" y="340" fill="white" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">😁 Agent</text>
+    <image href="/img/chatmcp/chatmcp.svg" x="1145" y="345" width="35" height="35"/>
+    <!-- <text x="1160" y="360" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">HAPI powered</text> -->
+    <circle cx="1220" cy="390" r="12" fill="#0f0f0f" stroke="white" stroke-width="1"/>
+    <text x="1220" y="395" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">2</text>
+
+    <!-- Agent processing animation -->
+    <circle cx="1160" cy="360" r="20" fill="none" stroke="#60a5fa" stroke-width="2" opacity="0.6">
+      <animate attributeName="r" values="20;25;20" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- RAG System -->
+  <g id="rag-system">
+    <rect x="1100" y="180" width="120" height="60" rx="10" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="2"/>
+    <text x="1160" y="200" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">🔍 RAG</text>
+    <text x="1160" y="220" fill="#1193b0" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">vector search</text>
+    <circle cx="1205" cy="195" r="12" fill="#ccc" stroke="#1193b0" stroke-width="1"/>
+    <text x="1205" y="200" fill="#1193b0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">3</text>
+  </g>
+  
+  <!-- Action Tools -->
+  <g id="action-tools">
+    <rect x="1100" y="450" width="120" height="100" rx="10" fill="url(#lightOrangeGradient)" stroke="#4ade80" stroke-width="2"/>
+    <text x="1160" y="475" fill="#4ade80" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">🧩 MCP Tools</text>
+    
+    <!-- Tool icons -->
+    <rect x="1110" y="485" width="20" height="20" rx="3" fill="#4ade80" opacity="0.8"/>
+    <text x="1120" y="498" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">&lt;/&gt;</text>
+    
+    <rect x="1140" y="485" width="20" height="20" rx="3" fill="#4ade80" opacity="0.8"/>
+    <text x="1150" y="498" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">📄</text>
+    
+    <rect x="1170" y="485" width="20" height="20" rx="3" fill="#4ade80" opacity="0.8"/>
+    <text x="1180" y="498" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">⏰</text>
+    
+    <rect x="1200" y="485" width="20" height="20" rx="3" fill="#4ade80" opacity="0.8"/>
+    <text x="1210" y="498" fill="white" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">🔧</text>
+    
+    <circle cx="1125" cy="525" r="12" fill="#000" stroke="#4ade80" stroke-width="1"/>
+    <text x="1125" y="530" fill="#4ade80" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">4</text>
+  </g>
+  
+  <!-- Long-Term Memory -->
+  <g id="long-term-memory">
+    <rect x="350" y="120" width="400" height="150" rx="15" fill="url(#lightBlueGradient)" stroke="#1193b0" stroke-width="2" filter="url(#softGlow)"/>
+    <text x="550" y="145" fill="#1193b0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">Long-Term Memory</text>
+    
+    <!-- MCP Servers -->
+    <rect x="370" y="165" width="150" height="80" rx="10" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="445" y="185" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">MCP Servers</text>
+    <text x="390" y="210" fill="#60a5fa" font-family="Arial, sans-serif" font-size="24">🎛️</text>
+    <text x="420" y="210" fill="#60a5fa" font-family="Arial, sans-serif" font-size="24">🔄</text>
+    <text x="450" y="210" fill="#60a5fa" font-family="Arial, sans-serif" font-size="24">😁</text>
+    <text x="390" y="235" fill="#60a5fa" font-family="Arial, sans-serif" font-size="24">☁️</text>
+    <text x="420" y="235" fill="#60a5fa" font-family="Arial, sans-serif" font-size="24">🧩</text>
+    
+    <!-- Databases -->
+    <rect x="570" y="165" width="150" height="80" rx="10" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+    <text x="645" y="185" fill="#1193b0" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Databases</text>
+    <text x="590" y="210" fill="#da7756" font-family="Arial, sans-serif" font-size="24">📊</text>
+    <text x="620" y="210" fill="#da7756" font-family="Arial, sans-serif" font-size="24">📈</text>
+    <text x="650" y="210" fill="#1193b0" font-family="Arial, sans-serif" font-size="24">🗄️</text>
+    <text x="680" y="210" fill="#1193b0" font-family="Arial, sans-serif" font-size="24">💾</text>
+  </g>
+  
+  <!-- Add to Memory -->
+  <g id="add-to-memory">
+    <rect x="200" y="180" width="100" height="60" rx="10" fill="url(#darkGradient)" stroke="#da7756" stroke-width="2"/>
+    <text x="250" y="200" fill="#da7756" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">Add to</text>
+    <text x="250" y="215" fill="#da7756" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">memory</text>
+    
+    <!-- Context blocks -->
+    <rect x="210" y="225" width="12" height="12" rx="2" fill="#c084fc" opacity="0.8"/>
+    <rect x="225" y="225" width="12" height="12" rx="2" fill="#4ade80" opacity="0.8"/>
+    <rect x="240" y="225" width="12" height="12" rx="2" fill="#60a5fa" opacity="0.8"/>
+    <rect x="255" y="225" width="12" height="12" rx="2" fill="#1193b0" opacity="0.8"/>
+    <rect x="270" y="225" width="12" height="12" rx="2" fill="#fbbf24" opacity="0.8"/>
+    
+    <circle cx="225" cy="155" r="12" fill="#ccc" stroke="#da7756" stroke-width="1"/>
+    <text x="225" y="160" fill="#da7756" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">8</text>
+  </g>
+  
+  <!-- Short-Term Memory -->
+  <g id="short-term-memory">  
+    <rect x="300" y="600" width="300" height="190" rx="15" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="2" filter="url(#glow)">
+      <animate attributeName="stroke-width" values="2;3;2" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <text x="400" y="620" fill="#1193b0" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" font-weight="bold">Short-Term Memory</text>
+    
+    <!-- Memory blocks -->
+    <g id="memory-blocks">
+      <rect x="350" y="650" width="200" height="50" rx="10" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+      <rect x="365" y="665" width="20" height="20" rx="3" fill="#c084fc" opacity="0.8"/>
+      <rect x="395" y="665" width="20" height="20" rx="3" fill="#4ade80" opacity="0.8"/>
+      <rect x="425" y="665" width="20" height="20" rx="3" fill="#60a5fa" opacity="0.8"/>
+      <rect x="455" y="665" width="20" height="20" rx="3" fill="#1193b0" opacity="0.8"/>
+      <rect x="485" y="665" width="20" height="20" rx="3" fill="#fbbf24" opacity="0.8"/>
+      <rect x="515" y="665" width="20" height="20" rx="3" fill="white" opacity="0.8"/>
+      
+      <!-- Second memory block -->
+      <rect x="350" y="720" width="200" height="50" rx="10" fill="url(#darkGradient)" stroke="#1193b0" stroke-width="1"/>
+      <rect x="365" y="735" width="20" height="20" rx="3" fill="#c084fc" opacity="0.8"/>
+      <rect x="395" y="735" width="20" height="20" rx="3" fill="#4ade80" opacity="0.8"/>
+      <rect x="425" y="735" width="20" height="20" rx="3" fill="#60a5fa" opacity="0.8"/>
+      <rect x="455" y="735" width="20" height="20" rx="3" fill="#1193b0" opacity="0.8"/>
+      <rect x="485" y="735" width="20" height="20" rx="3" fill="#fbbf24" opacity="0.8"/>
+      <rect x="515" y="735" width="20" height="20" rx="3" fill="white" opacity="0.8"/>
+    </g>
+    
+    <circle cx="450" cy="580" r="12" fill="#ccc" stroke="#1193b0" stroke-width="1"/>
+    <text x="450" y="582" fill="#1193b0" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">7</text>
+    <text x="400" y="550" fill="#ccc" font-family="Arial, sans-serif" font-size="10">store all context in</text>
+    <text x="400" y="560" fill="#ccc" font-family="Arial, sans-serif" font-size="10">chat history</text>
+  </g>
+  
+  <!-- Answer -->
+  <g id="answer">
+    <rect x="600" y="320" width="120" height="60" rx="15" fill="url(#darkGradient)" stroke="#da7756" stroke-width="2" filter="url(#glow)"/>
+    <text x="660" y="345" fill="#da7756" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">Answer</text>
+    <text x="660" y="365" fill="#da7756" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">HAPI formatted response</text>
+    <circle cx="615" cy="335" r="12" fill="#ccc" stroke="#da7756" stroke-width="1"/>
+    <text x="615" y="340" fill="#da7756" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" font-weight="bold">6</text>
+  </g>
+  
+  <!-- Animated flow arrows -->
+  <defs>
+    <marker id="arrowheadPurple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c084fc"/>
+    </marker>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1193b0"/>
+    </marker>
+    <marker id="arrowheadOrange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#da7756"/>
+    </marker>
+  </defs>
+  
+  <!-- Flow connections -->
+  <g id="flow-arrows">
+    <!-- Prompt to Agent -->
+    <path d="M 650 445 Q 800 445 1100 360" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,10;10,15;15,10;10,20" dur="3s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Agent to RAG -->
+    <path d="M 1160 320 L 1160 240" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,10;10,0;0,10" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Agent to Tools -->
+    <path d="M 1160 400 L 1160 450" stroke="#4ade80" stroke-width="2" fill="none" marker-end="url(#arrowhead)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,10;10,0;0,10" dur="2s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Agent to Answer -->
+    <path d="M 1100 350 Q 850 350 720 350" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#arrowheadOrange)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,15;15,0;0,15" dur="3.5s" repeatCount="indefinite"/>
+    </path>
+    <!-- Agent to Prompt -->
+    <path d="M 1100 380 Q 850 550 650 458" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#arrowheadOrange)" opacity="0.8">
+      <animate attributeName="stroke" values="#da7756;#1193b0;#da7756" dur="3.5s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dasharray" values="0,15;15,0;0,20" dur="3.5s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Answer to User -->
+    <path d="M 600 350 Q 400 350 200 350" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#arrowheadOrange)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,15;15,0;0,15" dur="4s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Prompt to Short-term Memory -->
+    <path d="M 500 490 L 500 650" stroke="#1193b0" stroke-width="2" fill="none" marker-end="url(#arrowhead)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,10;10,0;0,10" dur="3s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Add to memory connection -->
+    <path d="M 250 240 Q 250 300 350 300" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#arrowheadOrange)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,10;10,0;0,10" dur="4s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Memory to Add connection -->
+    <path d="M 350 200 L 300 200" stroke="#da7756" stroke-width="2" fill="none" marker-end="url(#arrowheadOrange)" opacity="0.8">
+      <animate attributeName="stroke-dasharray" values="0,8;8,0;0,8" dur="2s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Update prompt annotation -->
+    <text x="720" y="500" fill="#ccc" font-family="Arial, sans-serif" font-size="10">update prompt</text>
+    <text x="720" y="512" fill="#ccc" font-family="Arial, sans-serif" font-size="10">with answer</text>
+    
+    <!-- Agentic coordination annotation -->
+    <text x="1230" y="350" fill="#ccc" font-family="Arial, sans-serif" font-size="10">agentic</text>
+    <text x="1230" y="362" fill="#ccc" font-family="Arial, sans-serif" font-size="10">coordination &amp;</text>
+    <text x="1230" y="374" fill="#ccc" font-family="Arial, sans-serif" font-size="10">decision making</text>
+  </g>
+  
+  <!-- Pulsing effect for active components -->
+  <circle cx="1160" cy="360" r="60" fill="none" stroke="#1193b0" stroke-width="1" opacity="0.2">
+    <animate attributeName="r" values="60;70;60" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.2;0.05;0.2" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <circle cx="500" cy="445" r="150" fill="none" stroke="#1193b0" stroke-width="1" opacity="0.1">
+    <animate attributeName="r" values="150;160;150" dur="6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.1;0.02;0.1" dur="6s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Floating particles animation -->
+  <g id="particles">
+    <circle r="2" fill="#1193b0" opacity="0.6">
+      <animate attributeName="cx" values="200;1000;200" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="500;200;500" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.6;0" dur="5s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.5" fill="#da7756" opacity="0.4">
+      <animate attributeName="cx" values="300;900;300" dur="18s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="200;600;200" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.4;0" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2.5" fill="#1193b0" opacity="0.3">
+      <animate attributeName="cx" values="400;800;400" dur="20s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="300;400;300" dur="15s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.3;0" dur="7s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- HAPI Ecosystem logo -->
+  <g transform="translate(550, 840)">
+    <text x="0" y="0" fill="#1193b0" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">HAPI</text>
+    <text x="80" y="0" fill="#da7756" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">Ecosystem</text>
+    <text x="55" y="20" fill="#da7756" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">Part of The Happiness Stack</text>
+  </g>
+  <!-- Legend -->
+  <g transform="translate(800, 100)">
+    <rect x="60" y="600" width="320" height="140" rx="18" fill="#1a1a1a" opacity="0.8" stroke="#1193b0" stroke-width="1"/>
+    <text x="220" y="625" fill="#1193b0" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle">Legend</text>
+    <rect x="80" y="640" width="20" height="20" rx="5" fill="#c084fc"/>
+    <text x="110" y="655" fill="white" font-family="Arial, sans-serif" font-size="14">User Input</text>
+    <rect x="80" y="670" width="20" height="20" rx="5" fill="#1193b0"/>
+    <text x="110" y="685" fill="white" font-family="Arial, sans-serif" font-size="14">RAG Context</text>
+    <rect x="80" y="700" width="20" height="20" rx="5" fill="#60a5fa"/>
+    <text x="110" y="715" fill="white" font-family="Arial, sans-serif" font-size="14">Agent / Answer</text>
+    <rect x="220" y="640" width="20" height="20" rx="5" fill="#4ade80"/>
+    <text x="250" y="655" fill="white" font-family="Arial, sans-serif" font-size="14">Action Tools</text>
+    <rect x="220" y="670" width="20" height="20" rx="5" fill="white"/>
+    <text x="250" y="685" fill="white" font-family="Arial, sans-serif" font-size="14">User Info</text>
+    <rect x="220" y="700" width="20" height="20" rx="5" fill="#fbbf24"/>
+    <text x="250" y="715" fill="white" font-family="Arial, sans-serif" font-size="14">Chat History</text>
+  </g>
+</svg>
