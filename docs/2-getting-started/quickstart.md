@@ -71,7 +71,7 @@ On-premise setup requires manual server start and DNS configuration. Use provide
 
 - Edit the OpenAPI schema to add endpoints.
 - Explore context and memory features in MCP.
-- Deploy to production (see [Deployment Guide](./deployment/)).
+- Deploy to production (see [Deployment Guide](/deployment/)).
 
 ## Further Reading
 

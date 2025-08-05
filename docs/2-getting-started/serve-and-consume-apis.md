@@ -100,7 +100,7 @@ The above flow ensures a contract-driven, API-first development process, reducin
 
 - [runMCP Documentation](/components/runmcp)
 - [chatMCP Documentation](/components/chatmcp)
-- [HAPI Stack Overview](/components/architecture)
+- [HAPI Stack Overview](/overview)
 - [OpenAPI Specification](https://swagger.io/specification/)
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
 - [API-first Design Principles](https://www.postman.com/api-first/)

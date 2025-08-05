@@ -3,7 +3,20 @@ title: Glossary of Terms
 sidebar_position: 50
 sidebar_label: Glossary
 description: 'A comprehensive glossary of terms related to the HAPI MCP, OpenAPI, and API-first development.'
+hide_title: true
+keywords:
+  - Glossary
+  - MCP
+  - OpenAPI
+  - API-first
+  - HAPI
+  - Model Context Protocol
+author: 'La Rebelion Labs'
+publisher: 'MCP Project'
+dateModified: '2025-07-27'
 ---
+
+## Glossary of Terms
 
 ### Alphabet Links
 - [A](#a) | [C](#c) | [D](#d) | [G](#g) | [H](#h) | [I](#i) | [L](#l) | [M](#m) | [O](#o) | [R](#r) | [S](#s) | [T](#t)

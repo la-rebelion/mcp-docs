@@ -17,16 +17,16 @@ dateModified: '2025-07-27'
 
 # HAPI Server: API-first approach for Model Context Protocol
 
-The HAPI server is a modern, API-first platform for building and exposing [headless APIs](http://localhost:3000/glossary#hapi---headless-api-stack-a-software-architecture-that-separates-the-business-logic-in-backend-services-from-the-client-layer-enabling-greater-flexibility-and-scalability). It is designed to work seamlessly with OpenAPI specifications, gRPC IDL, and the Model Context Protocol (MCP), enabling robust schema validation, dynamic routing, and secure integration for any context-driven application.
+The HAPI server is a modern, API-first platform for building and exposing [headless APIs](/glossary#hapi---headless-api-stack-a-software-architecture-that-separates-the-business-logic-in-backend-services-from-the-client-layer-enabling-greater-flexibility-and-scalability). It is designed to work seamlessly with OpenAPI specifications, gRPC IDL, and the Model Context Protocol (MCP), enabling robust schema validation, dynamic routing, and secure integration for any context-driven application.
 
 ## What is the HAPI Server?
-[HAPI](http://localhost:3000/glossary#h) (**Headless API**) is a lightweight, extensible server that:
+[HAPI](/glossary#h) (**Headless API**) is a lightweight, extensible server that:
 - Accepts either OpenAPI specs or gRPC IDL as input
 - Auto-generates RESTful endpoints and validation layers
 - Translates API services into a context-aware, API-first architecture through MCP
-- Companions with the [routing engine](/component/routing-engine) for advanced traffic management, 
+- Companions with the [routing engine](/components/hapi-server/routing-engine) for advanced traffic management,
   - Supports dynamic subdomain routing and multi-tenancy
-  - Included in the cloud [HAPI Stack](http://localhost:3000/glossary#hapi-stack), optional in on-premise setups (BYO)
+  - Included in the cloud [HAPI Stack](/glossary#h), optional in on-premise setups (BYO)
 
 :::info[**API-first by default**]
 HAPI treats your [API schema as the contract](https://rebelion.la/you-dont-need-to-implement-mcp-servers-a-contract-first-approach-to-ai-tool-integration?showSharer=true). All endpoints, validation, and docs are generated from your spec—no manual wiring required.
