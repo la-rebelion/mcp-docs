@@ -1,0 +1,305 @@
+openapi: 3.0.3
+info:
+  title: VALORANT Content API
+  description: Get VALORANT content including agents, maps, game modes, and more
+  version: v1
+  contact:
+    name: Riot Games
+    url: https://developer.riotgames.com/
+  license:
+    name: Riot Games Developer Terms
+    url: https://developer.riotgames.com/policies/terms
+
+servers:
+  - url: https://{region}.api.riotgames.com/val/content/v1
+    variables:
+      region:
+        description: The region of the data to retrieve
+        enum: [na, eu, ap, kr]
+        default: na
+
+security:
+  - OAuth2:
+      - openid
+      - email
+      - profile
+      - offline_access
+
+paths:
+  /contents:
+    get:
+      summary: Get content optionally filtered by locale
+      description: Returns content including characters, maps, chromas, etc.
+      operationId: getContent
+      security:
+        - oauth2_authorization_code: [openid, email, profile]
+      parameters:
+        - $ref: '#/components/parameters/locale'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+  /userinfo:
+    get:
+      summary: Get user info from Riot Games
+      description: Retrieve user information from Riot Games.
+      operationId: getUserInfo
+      security:
+        - oauth2_authorization_code: [openid, email, profile]
+      responses:
+        '200':
+          description: User info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sub:
+                    type: string
+                    description: Subject - Identifier for the user
+                  email:
+                    type: string
+                    description: User's email address
+                  email_verified:
+                    type: boolean
+                    description: Email verification status
+                  name:
+                    type: string
+                    description: Full name of the user
+                  given_name:
+                    type: string
+                    description: User's given name
+                  family_name:
+                    type: string
+                    description: User's family name
+                  picture:
+                    type: string
+                    description: URL to the user's profile picture
+                  locale:
+                    type: string
+                    description: Locale of the user
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Last update time of the user's information
+                  other_claims:
+                    type: object
+                    additionalProperties:
+                      type: string
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.riotgames.com/authorize
+          tokenUrl: https://auth.riotgames.com/token
+          scopes:
+            openid: Authenticate using OpenID Connect
+            email: Access to user's email address
+            profile: Access to basic account information
+            offline_access: Get refresh token for long-lived access
+        clientCredentials:
+          tokenUrl: https://auth.riotgames.com/token
+          scopes:
+            openid: Authenticate using OpenID Connect
+      x-jwks_uri: https://auth.riotgames.com/jwks.json
+      x-userinfo_endpoint: https://auth.riotgames.com/userinfo
+
+  parameters:
+    locale:
+      name: locale
+      in: query
+      description: Locale code for returned data (e.g., en-US, es-ES, etc.)
+      schema:
+        type: string
+        default: en-US
+
+  schemas:
+    ContentDto:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Current content version
+        characters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        maps:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        chromas:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        skins:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        skinLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        equips:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        gameModes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        sprays:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        sprayLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        charms:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        charmLevels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        playerCards:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+        playerTitles:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItemDto'
+
+    ContentItemDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Display name of the content
+        id:
+          type: string
+          description: Unique identifier for the content
+        assetName:
+          type: string
+          description: Internal asset name
+        assetPath:
+          type: string
+          description: Path to the asset
+
+    Error:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            message:
+              type: string
+            status_code:
+              type: integer
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      headers:
+        WWW-Authenticate:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+            description: Number of seconds to wait before making another request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServiceUnavailable:
+      description: Service Unavailable
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+            description: Number of seconds to wait before making another request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    GatewayTimeout:
+      description: Gateway Timeout
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Error:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            message:
+              type: string
+            status_code:
+              type: integer

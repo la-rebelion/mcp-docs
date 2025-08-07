@@ -1,0 +1,88 @@
+{
+  "summary": {
+    "total_apis": 6,
+    "total_endpoints": 34,
+    "generated_at": "2025-08-07T20:33:59Z",
+    "script_version": "1.0.0"
+  },
+  "apis": [
+    {
+      "filename": "val-ranked.yaml",
+      "title": "VALORANT Ranked API",
+      "description": "Get ranked leaderboard and competitive tier information for VALORANT.",
+      "version": "v1",
+      "endpoints": 0,
+      "metadata": {
+        "file_size": 8666,
+        "file_hash": "56526a7cb6a42bbe236f687748ce6241305f21601720563bbfb22e1cbc1b4d1d",
+        "last_modified": 1754586670,
+        "format": "yaml"
+      }
+    },
+    {
+      "filename": "linkedin.yaml",
+      "title": "LinkedIn API",
+      "description": "LinkedIn API specification including 3-legged OAuth, 2-legged OAuth (Client Credentials), \nShare on LinkedIn endpoints, and LinkedIn Ad Library endpoints.",
+      "version": "1.0.0",
+      "endpoints": 0,
+      "metadata": {
+        "file_size": 18067,
+        "file_hash": "9135b244c0a091f77423080ef74154ed714b89af94bca909101a4ad6f206a91e",
+        "last_modified": 1754594091,
+        "format": "yaml"
+      }
+    },
+    {
+      "filename": "val-match.yaml",
+      "title": "VALORANT Match API",
+      "description": "Access VALORANT match data including matchlists, match details, and recent matches.",
+      "version": "v1",
+      "endpoints": 0,
+      "metadata": {
+        "file_size": 10371,
+        "file_hash": "2305ef9376915b2ffe646ac9c7f889ecb36face64dacf9b33958828df2c5a886",
+        "last_modified": 1754586670,
+        "format": "yaml"
+      }
+    },
+    {
+      "filename": "val-status.yaml",
+      "title": "VALORANT Status API",
+      "description": "Get the status of the VALORANT platform.",
+      "version": "v1",
+      "endpoints": 0,
+      "metadata": {
+        "file_size": 6144,
+        "file_hash": "7e7436b0bb73ea18caf9bbc06ac5ed86bde02308f17f87e1de12d491b4edadbe",
+        "last_modified": 1754586670,
+        "format": "yaml"
+      }
+    },
+    {
+      "filename": "strava.json",
+      "title": "Strava API v3",
+      "description": "The [Swagger Playground](https://developers.strava.com/playground) is the easiest way to familiarize yourself with the Strava API by submitting HTTP requests and observing the responses before you write any client code. It will show what a response will look like with different endpoints depending on the authorization scope you receive from your athletes. To use the Playground, go to https://www.strava.com/settings/api and change your “Authorization Callback Domain” to developers.strava.com. Please note, we only support Swagger 2.0. There is a known issue where you can only select one scope at a time. For more information, please check the section “client code” at https://developers.strava.com/docs.",
+      "version": "3.0.0",
+      "endpoints": 34,
+      "metadata": {
+        "file_size": 176203,
+        "file_hash": "94b60edcbad4aed115e56cb6b19f63ee447e953a28f5dd8279b53b6a52674830",
+        "last_modified": 1754594127,
+        "format": "json"
+      }
+    },
+    {
+      "filename": "val-content.yaml",
+      "title": "VALORANT Content API",
+      "description": "Get VALORANT content including agents, maps, game modes, and more",
+      "version": "v1",
+      "endpoints": 0,
+      "metadata": {
+        "file_size": 8707,
+        "file_hash": "6359cc1cf452a60c3aea95b5ca92aa302946f817580876812746a00487866658",
+        "last_modified": 1754586670,
+        "format": "yaml"
+      }
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+openapi: 3.0.3
+info:
+  title: VALORANT Status API
+  description: Get the status of the VALORANT platform.
+  version: v1
+  contact:
+    name: Riot Games
+    url: https://developer.riotgames.com/
+  license:
+    name: Riot Games Developer Terms
+    url: https://developer.riotgames.com/policies/terms
+
+servers:
+  - url: https://{region}.api.riotgames.com/val/status/v1
+    variables:
+      region:
+        description: The region of the data to retrieve
+        enum: [na, eu, ap, kr]
+        default: na
+
+security:
+  - OAuth2:
+      - openid
+      - email
+      - profile
+      - offline_access
+
+paths:
+  /platform-data:
+    get:
+      summary: Get platform status
+      description: Returns the status of the VALORANT platform for the specified region.
+      operationId: getPlatformData
+      security:
+        - oauth2_authorization_code: [openid, email, profile]
+      responses:
+        '200':
+          description: Platform status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformDataDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+  /userinfo:
+    get:
+      summary: Get user info from Riot Games
+      description: Retrieve user information from Riot Games.
+      operationId: getUserInfo
+      security:
+        - oauth2_authorization_code: [openid, email, profile]
+      responses:
+        '200':
+          description: User info
+          content:
+            application/json:
+              schema:
+                type: object
+                # Define the properties of the user info object as needed
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimitExceeded'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '502':
+          $ref: '#/components/responses/BadGateway'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.riotgames.com/authorize
+          tokenUrl: https://auth.riotgames.com/token
+          scopes:
+            openid: Authenticate using OpenID Connect
+            email: Access to user's email address
+            profile: Access to basic account information
+            offline_access: Get refresh token for long-lived access
+        clientCredentials:
+          tokenUrl: https://auth.riotgames.com/token
+          scopes:
+            openid: Authenticate using OpenID Connect
+      x-jwks_uri: https://auth.riotgames.com/jwks.json
+      x-userinfo_endpoint: https://auth.riotgames.com/userinfo
+
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      headers:
+        WWW-Authenticate:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimitExceeded:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+            description: Number of seconds to wait before making another request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadGateway:
+      description: Bad Gateway
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServiceUnavailable:
+      description: Service Unavailable
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+            description: Number of seconds to wait before making another request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    GatewayTimeout:
+      description: Gateway Timeout
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            message:
+              type: string
+            status_code:
+              type: integer
+    PlatformDataDto:
+      type: object
+      description: Platform status data (see Riot API docs for full schema)
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        locales:
+          type: array
+          items:
+            type: string
+        maintenances:
+          type: array
+          items:
+            type: object
+        incidents:
+          type: array
+          items:
+            type: object
+        # Add additional properties as needed based on the Riot API docs
