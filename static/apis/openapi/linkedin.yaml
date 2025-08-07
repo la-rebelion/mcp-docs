@@ -1,0 +1,622 @@
+openapi: 3.0.3
+info:
+  title: LinkedIn API
+  description: |
+    LinkedIn API specification including 3-legged OAuth, 2-legged OAuth (Client Credentials), 
+    Share on LinkedIn endpoints, and LinkedIn Ad Library endpoints.
+  version: 1.0.0
+  contact:
+    name: LinkedIn Developer Support
+    url: https://www.linkedin.com/developers/
+  license:
+    name: LinkedIn API License
+    url: https://www.linkedin.com/legal/l/api-terms-of-use
+
+servers:
+  - url: https://api.linkedin.com
+    description: LinkedIn API Server
+  - url: https://www.linkedin.com
+    description: LinkedIn OAuth Server
+x-hapi-allowed-origins:
+  - "http://localhost:8080"
+x-hapi:
+  cors:
+    enabled: true
+    origin: 
+      - "http://localhost:8080"
+    headers:
+      - "Content-Type"
+      - "Authorization"
+      - "X-Requested-With"
+    methods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+  security:
+    - oauth2_authorization_code:
+        client_id: $SECRETS.CLIENT_ID
+        client_secret: $SECRETS.CLIENT_SECRET
+        # @idea - shall we add the redirect_uri here?
+        # redirect_path: "/oauth/callback"
+    - oauth2_client_credentials:
+        # client credentials flow does not require client_id and client_secret, instead uses the client credentials directly
+
+components:
+  securitySchemes:
+    oauth2_authorization_code:
+      type: oauth2
+      description: 3-legged OAuth 2.0 Authorization Code Flow
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.linkedin.com/oauth/v2/authorization
+          tokenUrl: https://www.linkedin.com/oauth/v2/accessToken
+          refreshUrl: https://www.linkedin.com/oauth/v2/accessToken
+          scopes:
+            # https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin-v2
+            profile: Required to retrieve the member's lite profile including their id, name, and profile picture
+            email: Required to retrieve the member's email address
+            openid: Required to indicate the application wants to use OIDC to authenticate the member
+            # https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/share-on-linkedin
+            w_member_social: Write access to share on behalf of member
+    
+    oauth2_client_credentials:
+      type: oauth2
+      description: 2-legged OAuth 2.0 Client Credentials Flow
+      flows:
+        clientCredentials:
+          tokenUrl: https://www.linkedin.com/oauth/v2/accessToken
+          scopes:
+            profile: Required to retrieve the member's lite profile including their id, name, and profile picture
+            email: Required to retrieve the member's email address
+            openid: Required to indicate the application wants to use OIDC to authenticate the member
+            w_member_social: Write access to share on behalf of member
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+        error_uri:
+          type: string
+
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          enum: [bearer]
+        expires_in:
+          type: integer
+        scope:
+          type: string
+        refresh_token:
+          type: string
+
+    ShareContent:
+      type: object
+      properties:
+        author:
+          type: string
+          description: URN of the member or organization
+        lifecycleState:
+          type: string
+          enum: [PUBLISHED, DRAFT]
+          default: PUBLISHED
+        visibility:
+          type: object
+          properties:
+            'com.linkedin.ugc.MemberNetworkVisibility':
+              type: string
+              description: Visibility of the share post
+              enum: [PUBLIC, CONNECTIONS]
+              default: PUBLIC
+          required:
+            - 'com.linkedin.ugc.MemberNetworkVisibility'
+        specificContent:
+          type: object
+          properties:
+            'com.linkedin.ugc.ShareContent':
+              type: object
+              properties:
+                shareCommentary:
+                  type: object
+                  description: Text for the content of the share post, long format
+                  properties:
+                    text:
+                      type: string
+                shareMediaCategory:
+                  type: string
+                  enum: [NONE, ARTICLE, IMAGE]
+                  default: NONE
+                media:
+                  type: array
+                  items:
+                    type: object
+                  nullable: true
+                  minItems: 0
+              required: [shareCommentary, shareMediaCategory]
+      required: [author, lifecycleState, visibility, specificContent]
+
+    AdAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+
+    Campaign:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        account:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+
+paths:
+  # OAuth 2.0 Authorization Endpoints
+  /oauth/v2/authorization:
+    get:
+      tags:
+        - OAuth Authentication
+      summary: Authorization Code Request (3-legged OAuth)
+      description: Redirect users to LinkedIn to authorize your application
+      operationId: getAuthorizationCode
+      parameters:
+        - name: response_type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [code]
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: redirect_uri
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: scope
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to authorization URL
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /oauth/v2/accessToken:
+    post:
+      tags:
+        - OAuth Authentication
+      summary: Exchange authorization code for access token
+      description: Exchange authorization code for access token (3-legged) or get client credentials token (2-legged)
+      operationId: getAccessToken
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              oneOf:
+                - type: object
+                  title: Authorization Code Grant
+                  properties:
+                    grant_type:
+                      type: string
+                      enum: [authorization_code]
+                    code:
+                      type: string
+                    redirect_uri:
+                      type: string
+                    client_id:
+                      type: string
+                    client_secret:
+                      type: string
+                  required: [grant_type, code, redirect_uri, client_id, client_secret]
+                - type: object
+                  title: Client Credentials Grant
+                  properties:
+                    grant_type:
+                      type: string
+                      enum: [client_credentials]
+                    client_id:
+                      type: string
+                    client_secret:
+                      type: string
+                    scope:
+                      type: string
+                  required: [grant_type, client_id, client_secret]
+      responses:
+        '200':
+          description: Successful token response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # Share on LinkedIn Endpoints
+  /v2/ugcPosts:
+    post:
+      tags:
+        - Share on LinkedIn
+      summary: Share on LinkedIn, create a share post
+      description: Create a new share post on LinkedIn using text, URLs, and images
+      operationId: createSharePost
+      security:
+        - oauth2_authorization_code: [w_member_social]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareContent'
+      responses:
+        '201':
+          description: Share created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+    get:
+      tags:
+        - Share on LinkedIn
+      summary: Get share posts
+      description: Retrieve share posts for the authenticated user or organization
+      operationId: getSharePosts
+      security:
+        - oauth2_authorization_code: [r_organization_social]
+      parameters:
+        - name: authors
+          in: query
+          schema:
+            type: string
+          description: URN of the author (member or organization)
+        - name: count
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+        - name: start
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of share posts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  elements:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ShareContent'
+
+  /v2/shares:
+    post:
+      tags:
+        - Share on LinkedIn
+      summary: Create a legacy share
+      description: Create a share using the legacy shares API
+      operationId: createLegacyShare
+      security:
+        - oauth2_authorization_code: [w_member_social]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                content:
+                  type: object
+                visibility:
+                  type: object
+      responses:
+        '201':
+          description: Share created successfully
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+
+  /v2/userinfo:
+    get:
+      tags:
+        - Share on LinkedIn
+      summary: Get person profile
+      description: Get basic profile information for a person
+      operationId: getPersonProfile
+      security:
+        - oauth2_authorization_code: [r_liteprofile]
+      responses:
+        '200':
+          description: Person profile information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  firstName:
+                    type: object
+                  lastName:
+                    type: object
+
+  # LinkedIn Ad Library Endpoints
+  /v2/adAccountsV2:
+    get:
+      tags:
+        - LinkedIn Ad Library
+      summary: Get advertising accounts
+      description: Retrieve advertising accounts accessible to the authenticated application
+      operationId: getAdAccounts
+      security:
+        - oauth2_authorization_code: [r_ads]
+        - oauth2_client_credentials: [r_ads]
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+            enum: [search]
+        - name: search.id.values[0]
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of advertising accounts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  elements:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AdAccount'
+
+  /v2/adCampaignGroupsV2:
+    get:
+      tags:
+        - LinkedIn Ad Library
+      summary: Get campaign groups
+      description: Retrieve campaign groups (campaigns) for advertising accounts
+      operationId: getCampaignGroups
+      security:
+        - oauth2_authorization_code: [r_ads]
+        - oauth2_client_credentials: [r_ads]
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+            enum: [search]
+        - name: search.account.values[0]
+          in: query
+          schema:
+            type: string
+          description: Account URN
+      responses:
+        '200':
+          description: List of campaign groups
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  elements:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Campaign'
+
+  /v2/adCampaignsV2:
+    get:
+      tags:
+        - LinkedIn Ad Library
+      summary: Get campaigns
+      description: Retrieve campaigns for advertising accounts
+      operationId: getCampaigns
+      security:
+        - oauth2_authorization_code: [r_ads]
+        - oauth2_client_credentials: [r_ads]
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+            enum: [search]
+        - name: search.account.values[0]
+          in: query
+          schema:
+            type: string
+          description: Account URN
+      responses:
+        '200':
+          description: List of campaigns
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  elements:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Campaign'
+
+  /v2/adAnalyticsV2:
+    get:
+      tags:
+        - LinkedIn Ad Library
+      summary: Get advertising analytics
+      description: Retrieve analytics data for advertising campaigns
+      operationId: getAdAnalytics
+      security:
+        - oauth2_authorization_code: [r_ads_reporting]
+        - oauth2_client_credentials: [r_ads_reporting]
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+            enum: [analytics]
+        - name: pivot
+          in: query
+          schema:
+            type: string
+            enum: [ACCOUNT, CAMPAIGN_GROUP, CAMPAIGN, CREATIVE]
+        - name: dateRange.start.day
+          in: query
+          schema:
+            type: integer
+        - name: dateRange.start.month
+          in: query
+          schema:
+            type: integer
+        - name: dateRange.start.year
+          in: query
+          schema:
+            type: integer
+        - name: dateRange.end.day
+          in: query
+          schema:
+            type: integer
+        - name: dateRange.end.month
+          in: query
+          schema:
+            type: integer
+        - name: dateRange.end.year
+          in: query
+          schema:
+            type: integer
+        - name: accounts[0]
+          in: query
+          schema:
+            type: string
+          description: Account URN
+      responses:
+        '200':
+          description: Analytics data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  elements:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        pivot:
+                          type: string
+                        pivotValue:
+                          type: string
+                        impressions:
+                          type: integer
+                        clicks:
+                          type: integer
+                        costInUsd:
+                          type: number
+
+  /v2/adCreativesV2:
+    get:
+      tags:
+        - LinkedIn Ad Library
+      summary: Get ad creatives
+      description: Retrieve ad creatives for campaigns
+      operationId: getAdCreatives
+      security:
+        - oauth2_authorization_code: [r_ads]
+        - oauth2_client_credentials: [r_ads]
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+            enum: [search]
+        - name: search.account.values[0]
+          in: query
+          schema:
+            type: string
+          description: Account URN
+      responses:
+        '200':
+          description: List of ad creatives
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  elements:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        campaign:
+                          type: string
+                        variables:
+                          type: object
+
+tags:
+  - name: OAuth Authentication
+    description: OAuth 2.0 authentication flows for LinkedIn API
+  - name: Share on LinkedIn
+    description: Endpoints for sharing content on LinkedIn
+  - name: LinkedIn Ad Library
+    description: Endpoints for accessing LinkedIn advertising data and analytics

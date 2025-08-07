@@ -1,0 +1,356 @@
+.apiCardsContainer {
+  margin: 2rem 0;
+}
+
+.summary {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--ifm-color-content-primary);
+}
+
+.summary p {
+  margin: 0;
+  color: var(--ifm-color-content-secondary);
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.apiCard {
+  background: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.apiCard:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cardIcon {
+  background:  rgba(35, 53, 94, 0.733);
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTitle h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ifm-color-content-primary);
+}
+
+.status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.675rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  margin-right: 0.5rem; /* Add space between status components */
+}
+
+.status:last-child {
+  margin-right: 0; /* Remove margin from last status */
+}
+
+.status.version {
+  border: 1px solid var(--ifm-color-info);
+  color: var(--ifm-color-info-darker);
+}
+.status.apiFormat {
+  border: 1px solid var(--ifm-color-secondary);
+  color: var(--ifm-color-secondary-darker);
+}
+
+.cardDescription {
+  margin-bottom: 1.5rem;
+}
+
+.cardDescription p {
+  margin: 0;
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardStats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 8px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: var(--ifm-color-content-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cardUrl {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.urlText {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--ifm-color-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copyButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.copyButton:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.cardMetadata {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--ifm-background-surface-color);
+  border-radius: 6px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.metadataItem {
+  font-size: 0.875rem;
+  color: var(--ifm-color-content-secondary);
+}
+
+.metadataItem span {
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.cardActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.actionButton {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deployButton {
+  background: var(--ifm-color-primary);
+  color: black;
+}
+
+.deployButton:hover {
+  background: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+  color: white;
+}
+
+.viewButton {
+  background: var(--ifm-color-info-lighter);
+  color: black
+}
+
+.viewButton:hover {
+  background: var(--ifm-color-info);
+  color: white;
+}
+
+.downloadButton {
+  background: var(--ifm-color-secondary-lighter);
+  color: black;
+}
+
+.downloadButton:hover {
+  background: var(--ifm-color-secondary);
+  color: white;
+}
+
+/* Dialog Styles */
+.dialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.dialogContent {
+  background: var(--ifm-background-color);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.dialogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.dialogHeader h3 {
+  margin: 0;
+  color: var(--ifm-color-content-primary);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: var(--ifm-color-content-secondary);
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-content-primary);
+}
+
+.dialogBody {
+  flex: 1;
+  overflow: auto;
+  padding: 1.5rem;
+}
+
+.codeBlock {
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 0;
+  overflow: auto;
+  max-height: 60vh;
+}
+
+.codeBlock code {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ifm-color-content-primary);
+  white-space: pre;
+}
+
+/* Loading and Error States */
+.loading, .error, .empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--ifm-color-content-secondary);
+}
+
+.error {
+  color: var(--ifm-color-danger);
+  background: var(--ifm-color-danger-lighter);
+  border: 1px solid var(--ifm-color-danger-light);
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cardStats {
+    gap: 1rem;
+  }
+  
+  .cardMetadata {
+    grid-template-columns: 1fr;
+  }
+  
+  .actionButton {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .dialogOverlay {
+    padding: 1rem;
+  }
+  
+  .dialogContent {
+    max-height: 90vh;
+  }
+}

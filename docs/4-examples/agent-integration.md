@@ -16,6 +16,7 @@ keywords:
 author: 'La Rebelion Labs'
 publisher: 'MCP Project'
 dateModified: '2025-07-27'
+draft: true
 ---
 
 # Agent Integration: MCP, OpenAPI, API-first

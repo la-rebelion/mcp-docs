@@ -17,6 +17,7 @@ keywords:
 author: 'La Rebelion'
 publisher: 'MCP Project'
 dateModified: '2025-07-27'
+draft: true
 ---
 
 # Fullstack Example: MCP, OpenAPI, API-first
