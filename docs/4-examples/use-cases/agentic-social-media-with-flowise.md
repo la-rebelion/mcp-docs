@@ -1,0 +1,108 @@
+---
+title: "Agentic Social Media with Flowise and MCP"
+description: "Learn how to use agents to pull data from APIs with MCP and share it on social media using Flowise and HAPI Stack."
+---
+
+## Use Case Scenario: Automated Social Media Posting with Flowise Agents
+
+This scenario demonstrates how to leverage Flowise agents and HAPI Server to automate the process of pulling activity data from Strava and sharing a summary post on LinkedIn.
+
+### Overview
+
+- **Goal:** Automatically summarize monthly Strava activities and publish a post on LinkedIn.
+- **Tools:** Flowise (for agent workflow), HAPI Server (for API integration with MCP), Ollama (local LLM), OpenAI (for agent LLMs).
+
+### Architecture
+
+```mermaid
+flowchart TD
+    subgraph User
+        U[User]
+    end
+    subgraph Flowise
+        C["Coordinator (Ollama)"]
+        SA["Strava Agent (gpt-4o-mini)"]
+        LA["LinkedIn Agent (gpt-4.1)"]
+    end
+    subgraph MCP_Servers
+        S[Strava MCP Server<br/>Port 3301]
+        L[LinkedIn MCP Server<br/>Port 3302]
+    end
+
+    U --> C
+    C --> SA
+    SA --> S
+    S --> SA
+    SA --> C
+    C --> LA
+    LA --> L
+    L --> LA
+    LA --> C
+    C --> U
+```
+
+### Step-by-Step Workflow
+
+1. **User Initiates Request:**  
+   The user requests a summary of their monthly Strava activities and asks to share it on LinkedIn.
+
+2. **Coordinator Agent Decision:**  
+   The coordinator agent (Ollama) determines if new Strava data needs to be pulled.
+
+3. **Strava Agent Data Retrieval:**  
+   If required, the Strava Agent (gpt-4o-mini) fetches the latest activities from the Strava MCP Server (port 3301).
+
+4. **Activity Summarization:**  
+   The Strava Agent analyzes and summarizes the activities, highlighting key efforts.
+
+5. **LinkedIn Agent Posting:**  
+   The coordinator passes the summary to the LinkedIn Agent (gpt-4.1), which publishes the post via the LinkedIn MCP Server (port 3302).
+
+6. **Confirmation and Feedback:**  
+   The workflow provides feedback to the user, confirming the post was published.
+
+### Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Coordinator (Ollama)
+    participant Strava Agent (gpt-4o-mini)
+    participant Strava MCP Server
+    participant LinkedIn Agent (gpt-4.1)
+    participant LinkedIn MCP Server
+
+    User->>Coordinator (Ollama): Request activity summary & post
+    Coordinator (Ollama)->>Strava Agent: Should we pull Strava data?
+    Strava Agent->>Strava MCP Server: Fetch monthly activities
+    Strava MCP Server-->>Strava Agent: Return activities data
+    Strava Agent->>Coordinator (Ollama): Summarize efforts
+    Coordinator (Ollama)->>LinkedIn Agent: Prepare LinkedIn post
+    LinkedIn Agent->>LinkedIn MCP Server: Publish post
+    LinkedIn MCP Server-->>LinkedIn Agent: Post confirmation
+    LinkedIn Agent->>Coordinator (Ollama): Notify post published
+    Coordinator (Ollama)->>User: Show workflow result
+```
+
+### Notes & Tips
+
+- **Formatting Posts:**  
+  LinkedIn does not support markdown formatting. Ensure the agent generates plain text for posts.
+
+- **Extensibility:**  
+  You can easily adapt this workflow to other APIs or social platforms using HAPI Server and Flowise agents.
+
+- **Feedback:**  
+  If you know how to improve LinkedIn post formatting via API, please share your insights!
+
+### Demo
+
+<ReactPlayer 
+  style={{ width: '80%', height: 'auto', aspectRatio: '4/3' }}
+  controls
+  src='https://youtu.be/_EYENdNRRSo'
+></ReactPlayer>
+
+### Conclusion
+
+This use case demonstrates the power of combining Flowise agents with HAPI Server to automate social media interactions. By leveraging these tools, you can create efficient workflows that save time and enhance user engagement. Explore other potential use cases and APIs to further expand your automation capabilities!

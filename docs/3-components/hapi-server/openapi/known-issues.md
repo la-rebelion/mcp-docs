@@ -155,3 +155,144 @@ This code reads the input file with UTF-8 encoding and writes to an output file 
 Using Text Editors with Regular Expressions:
 
 Many advanced text editors like Notepad++, Sublime Text, or VS Code allow you to use regular expressions to find and replace non-ASCII characters. The specific regex might vary slightly between editors, but a common pattern is `[^\x00-\x7F]` to match characters outside the ASCII range. You would then replace these matches with an empty string.
+
+## JSON-RPC Error Response Format Issues
+
+When working with MCP (Model Context Protocol) over JSON-RPC, some clients (particularly tools like Postman and API inspectors) do not properly handle [JSON-RPC error](https://www.jsonrpc.org/specification#error_object) responses according to the specification. This leads to compatibility issues where errors are not displayed or processed correctly.
+
+### Error Scenario
+
+The issue occurs when:
+1. A JSON-RPC request fails and generates an error
+2. The error should be returned in the standard JSON-RPC format with an `error` field
+3. Some clients (Postman, API inspectors) include the error as part of the `result` field instead
+4. Developers testing the API cannot see the actual error details and get false positives
+
+### Standard JSON-RPC Error Format
+
+According to the [JSON-RPC 2.0 specification](https://www.jsonrpc.org/specification#error_object), errors should be formatted as:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "request-id",
+  "error": {
+    "code": -32603,
+    "message": "Internal error",
+    "data": "Additional error details"
+  }
+}
+```
+
+:::danger
+As per specs, the error [response](https://www.jsonrpc.org/specification#response_object) MUST include the `error` field, and MUST NOT include the `result` field.
+:::
+
+### Client Compatibility Problem
+
+Some API testing tools and clients expect errors to be in the `result` field instead of the `error` field, or they don't properly display JSON-RPC errors. This creates a poor developer experience when testing MCP endpoints.
+
+### Current Workaround
+
+The current implementation includes a feature flag `--dirty-jsonrpc` that, when enabled, returns errors in the `result` field instead of the standard `error` field:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": "request-id",
+  "result": {
+    "code": -32603,
+    "message": "Internal error",
+    "data": "Additional error details"
+  }
+}
+```
+
+### Cause
+
+The root cause is that some HTTP clients and API testing tools:
+- Don't implement full JSON-RPC 2.0 specification support
+- Only look for data in the `result` field
+- Don't have proper error handling for the `error` field
+- May not distinguish between HTTP-level errors and JSON-RPC-level errors
+
+### Solution
+
+#### Short-term Solution
+
+1. **Use the feature flag**: Enable `--dirty-jsonrpc` in development environments when using incompatible clients:
+
+#### Long-term Solution
+
+1. **Use proper JSON-RPC clients**: Switch to clients that properly support JSON-RPC 2.0:
+   - Use dedicated JSON-RPC client libraries
+   - Implement custom MCP clients that follow the specification
+   - Use command-line tools that support JSON-RPC properly
+
+This ensures backward compatibility while encouraging proper JSON-RPC implementation.
+
+## Three-Legged OAuth (3LO) and `enableOpaqueOAuth` Feature Flag
+
+[Three-legged OAuth (3LO)](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/) is an authorization flow within the OAuth 2.0 framework that involves three distinct parties: a client application (MCP Client or agent), a resource owner (user), and an authorization server/resource server, i.e.: LinkedIn, Facebook, Strava, etc.. This flow allows a third-party application to access a user's protected resources without the user sharing credentials directly.
+
+### Challenge with AI Agents
+
+AI Agents and MCP Clients often face challenges interacting with user's protected resources, especially when the MCP client does not support the full OAuth authorization flow. In such cases, the agent cannot complete the 3LO flow natively.
+
+### Workaround: `enableOpaqueOAuth` Feature Flag
+
+To address this, the HAPI server provides the `enableOpaqueOAuth` feature flag. When enabled, it exposes the `/oauth2/opaque` endpoint, allowing users to manually share their access token with the MCP server. This enables MCP Clients/Agents to interact with protected resources on the user's behalf.
+
+#### Usage Flow
+
+1. The user authenticates with the authorization server and obtains an access token.
+2. The user POSTs the access token to the `/oauth2/opaque` endpoint on the HAPI server.
+3. The MCP server stores the token and allows MCP Clients/Agents to use it for subsequent requests.
+
+#### Example
+
+```http
+POST /oauth2/opaque
+Content-Type: application/json
+
+{
+  "state": "<state>",
+  "access_token": "<user_access_token>"
+}
+```
+
+#### Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant AuthorizationServer
+    participant ResourceServer
+    participant MCPServer
+    participant MCPClient
+
+    User->>AuthorizationServer: Authenticate & grant access
+    AuthorizationServer-->>User: Return access_token
+    User->>MCPServer: POST /oauth2/opaque {access_token, state}
+    MCPServer-->>User: Store token, acknowledge
+    User<<-->>MCPClient: Chat with AI Agent
+    MCPClient->>MCPServer: Request resource with state
+    MCPServer->>ResourceServer: Use access_token to access protected resource
+    ResourceServer-->>MCPServer: Return protected resource
+    MCPServer-->>MCPClient: Return resource data
+```
+
+#### Limitations
+
+- This is a workaround for clients/agents that do not support the full OAuth flow.
+- The access token must be handled securely and only shared with trusted MCP servers.
+- This approach is not recommended for production unless absolutely necessary.
+
+#### Solution
+
+- Enable the `enableOpaqueOAuth` feature flag in development or integration environments where 3LO is required but not natively supported.
+- Prefer full OAuth 2.0 flows for production and compliant clients.
+
+::note
+This workaround is essential for AI Agent scenarios where direct user interaction with OAuth flows is not feasible.
+::
