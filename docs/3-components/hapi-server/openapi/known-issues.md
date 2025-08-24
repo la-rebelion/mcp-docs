@@ -293,6 +293,6 @@ sequenceDiagram
 - Enable the `enableOpaqueOAuth` feature flag in development or integration environments where 3LO is required but not natively supported.
 - Prefer full OAuth 2.0 flows for production and compliant clients.
 
-::note
+:::note
 This workaround is essential for AI Agent scenarios where direct user interaction with OAuth flows is not feasible.
-::
+:::
