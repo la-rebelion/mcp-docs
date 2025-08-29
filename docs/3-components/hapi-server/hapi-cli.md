@@ -18,9 +18,10 @@ The HAPI CLI is a command-line tool for managing and serving API projects using 
 You can install the HAPI CLI globally using Bun or npm:
 
 ```bash
-bun install -g hapi
-# or
-npm install -g hapi
+# Linux
+curl -fsSL https://get.mcp.com.ai/install | bash
+# Windows
+irm https://get.mcp.com.ai/install.ps1 | iex
 ```
 
 ## Basic Usage
@@ -34,10 +35,10 @@ hapi serve <projectname> [options]
 ### Example
 
 ```bash
-hapi serve petstore --port 3000
+hapi serve petstore --headless
 ```
 
-This will start the HAPI server for the "petstore" project on port 3000.
+This will start the Headless API (HAPI) MCP server for the "petstore" project on port 3000 (default).
 
 ## Common Options
 
@@ -45,9 +46,9 @@ This will start the HAPI server for the "petstore" project on port 3000.
 |-------------------|------------------------------------------------------------------|------------------------|
 | `-p, --port`      | Port to listen on                                                | `3000`                 |
 | `-d, --debug`     | Enable debug mode                                                |                        |
-| `-m, --mcp`       | Enable MCP mode                                                  | `false`                |
-| `--headless`      | Run in headless mode (no REST API, only MCP)                     | `false`                |
-| `-u, --url`       | Base URL for backend API (used in headless mode)                 | `http://localhost:3000`|
+| `-m, --mcp`       | Enable MCP mode (Greenfield)                                     | `false`                |
+| `--headless`      | Run in headless mode (no REST API, only MCP - Brownfield)        | `false`                |
+| `-u, --url`       | Base URL for backend API (used in headless mode) - default: Swagger's servers | `http://localhost:3000`|
 | `--cert`          | Path to SSL certificate file (.pem) for HTTPS                    |                        |
 | `--key`           | Path to SSL key file (.pem) for HTTPS                            |                        |
 | `-c, --cors`      | Comma-separated list of allowed origins for CORS                 | `*` (all origins)      |
@@ -99,7 +100,7 @@ hapi --help
 
 ## Further Reading
 
-- [HAPI Server Documentation](./hapi-server.md)
+- [HAPI Server Documentation](../hapi-server)
 - [OpenAPI Specification](https://swagger.io/specification/)
 - [Model Context Protocol (MCP)](https://github.com/la-rebelion)
 

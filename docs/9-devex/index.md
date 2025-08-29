@@ -18,8 +18,8 @@ Usage
 hapi serve petstore --mcp --cert ~/.hapi/certs/cert.pem --key ~/.hapi/certs/key.pem
 ```
 
-[Download here](/scripts/ssl-cert.sh).
+[Download here](@site/static/scripts/ssl-cert.sh).
 
 Since: v0.3.1
 
-[Go to top](#devex)
+[Go to top](#DevEx)
