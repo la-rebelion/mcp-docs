@@ -52,12 +52,11 @@ You don’t need to implement your own MCP servers to benefit from the protocol.
 :::
 
 ## Example: Bootstrapping HAPI with OpenAPI
-```js
-// Pseudocode for starting HAPI server with a schema
-const schema = require('./openapi.json');
-const hapiServer = new HAPIServer({ schema });
-hapiServer.listen(8080);
+```bash
+hapi serve linkedin --port 443 --headless --cert ./certs/cert.pem --key ./certs/key.pem
 ```
+
+This command starts the HAPI server for the "linkedin" project, using the specified SSL certificate and key for secure connections.
 
 :::caution
 Always keep your OpenAPI spec up to date! Out-of-sync schemas can cause validation errors and break API consumers.
