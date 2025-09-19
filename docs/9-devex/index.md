@@ -7,7 +7,7 @@ hide_title: true
 
 # DevEx
 
-## Script to help end-users generate self-signed certificates.
+## Generate self-signed certificates.
 ### `ssl-cert.sh`
 
 Usage
@@ -18,7 +18,7 @@ Usage
 hapi serve petstore --mcp --cert ~/.hapi/certs/cert.pem --key ~/.hapi/certs/key.pem
 ```
 
-[Download here](@site/static/scripts/ssl-cert.sh).
+[Download here](pathname:///scripts/ssl-cert.sh).
 
 Since: v0.3.1
 

@@ -15,14 +15,21 @@ The HAPI CLI is a command-line tool for managing and serving API projects using 
 
 ## Installation
 
-You can install the HAPI CLI globally using Bun or npm:
+You can install the HAPI CLI with the following commands:
+
+**Linux users**
 
 ```bash
-# Linux
-curl -fsSL https://get.mcp.com.ai/install | bash
-# Windows
-irm https://get.mcp.com.ai/install.ps1 | iex
+curl -fsSL https://get.mcp.com.ai/hapi.sh | bash
 ```
+
+**Windows users**
+
+```shell
+irm https://get.mcp.com.ai/hapi.ps1 | iex
+```
+
+Or **download the binary directly** from the [releases page](https://github.com/la-rebelion/hapimcp/releases/)
 
 ## Basic Usage
 
