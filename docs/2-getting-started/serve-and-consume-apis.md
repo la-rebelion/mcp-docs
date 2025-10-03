@@ -1,7 +1,6 @@
 ---
 sidebar_position: 3
 sidebar_label: Serve & Consume APIs
-sidebar_class_name: green
 title: 'Serve and Consume APIs with the HAPI Stack for MCP'
 description: 'Step-by-step guide to serving and consuming APIs using HAPI Stack, following the Model Context Protocol (MCP) flow for API-first development.'
 keywords:

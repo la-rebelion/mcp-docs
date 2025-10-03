@@ -1,0 +1,45 @@
+apiVersion: mcp.com.ai/v1
+kind: Security
+metadata:
+  name: hapi-security-config
+  namespace: demo
+  labels:
+    app: demo
+  annotations:
+    description: HAPI server security configuration
+    owner: team-hapi
+    environment: development
+    version: v1.0.0
+spec:
+  cors:
+    enabled: true
+    origin:
+      - http://localhost:8080 # your MCP Client
+      - http://localhost:6274 # MCP Inspector
+    headers:
+      - Content-Type
+      - Authorization
+      - X-Requested-With
+    methods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+  security:
+    demo_auth:
+      client_id: client_0
+      # WorkOS AuthKit App
+      well-known: https://*****.app/.well-known/oauth-authorization-server
+  securitySchemes:
+    demo_auth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.workos.com/sso/authorize?connection=conn_01 # WorkOS Connection ID
+          tokenUrl: https://*****.app/oauth2/token
+          scopes:
+            read: Read
+            write: Modify
+            admin: Access to admin operations
+            read_all: Read private resources

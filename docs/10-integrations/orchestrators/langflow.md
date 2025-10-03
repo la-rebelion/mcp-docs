@@ -1,5 +1,6 @@
 ---
 title: LangFlow Integration
+sidebar_label: LangFlow
 description: Guide on integrating LangFlow with APICove HAPI using the MCP protocol.
 label: LangFlow
 draft: true
