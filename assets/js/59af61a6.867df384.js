@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmcp_docs=self.webpackChunkmcp_docs||[]).push([[9174],{5332:a=>{a.exports=JSON.parse('{"tags":[{"label":"integrations","permalink":"/tags/integrations","count":1},{"label":"authentication","permalink":"/tags/authentication","count":1},{"label":"hapi","permalink":"/tags/hapi","count":1},{"label":"demo","permalink":"/tags/demo","count":1}]}')}}]);
