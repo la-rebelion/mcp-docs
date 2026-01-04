@@ -12,6 +12,39 @@ This guide explains how to deploy the HAPI MCP Server on Fly.io using the offici
 - A [Fly.io](https://fly.io) account
 - The [flyctl CLI](https://fly.io/docs/hands-on/install-flyctl/) installed on your machine
 
+## Quick Start: Run a HAPI MCP Server Instantly
+
+For rapid prototyping or testing, you can use `fly machine run` to launch a HAPI MCP Server instance immediately, bypassing the need for manual app creation or configuration files.
+
+```sh
+fly machine run hapimcp/hapi-cli:latest --command "hapi serve" \
+  -e openapi="https://petstore3.swagger.io/api/v3/openapi.json" \
+  -e url="https://petstore3.swagger.io/api/v3"
+```
+
+* Replace `latest` with a specific version tag if needed.
+* The `--command "hapi serve"` flag tells the container to start the HAPI MCP server.
+* Use `-e` to set required environment variables.
+
+**Possible Combinations**
+
+* Custom Port:
+  Add `-p 8080` to expose a specific port.
+
+* Additional Environment Variables:
+Add more `-e VAR=value` flags as needed.
+
+* Custom Command:
+Run a different command if you need to override the default entrypoint.
+
+### Ephemeral Machines:
+
+Add `--ephemeral` to create a machine that is automatically destroyed when stopped.
+
+**Recommended: Launch and Deploy for Production**
+
+If you plan to run a production MCP server, follow the full deployment steps below to create a persistent app with proper configuration that can be managed and scaled.
+
 ## Steps
 
 ### 1. Authenticate with Fly.io
@@ -22,7 +55,7 @@ Log in to your Fly.io account:
 fly auth login
 ```
 
-If you don’t have an account, sign up with:
+If you don't have an account, sign up with:
 
 ```sh
 fly auth signup
@@ -54,7 +87,7 @@ Open the generated `fly.toml` and ensure it does **not** reference a build secti
 Deploy your app using the official image:
 
 ```sh
-fly deploy
+fly deploy -- serve
 # Or specify the image explicitly:
 fly deploy --image hapimcp/hapi-cli:latest
 ```
