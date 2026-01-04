@@ -1,0 +1,118 @@
+---
+title: Deploying HAPI MCP Server on Fly.io
+sidebar_label: Fly.io Deployment
+description: Guide on deploying the HAPI MCP Server on Fly.io using the official pre-built image.
+position: 2
+---
+
+This guide explains how to deploy the HAPI MCP Server on Fly.io using the official pre-built image (`hapimcp/hapi-cli`). You do not need to build or customize a Dockerfile—just use the official image for a fast, reliable deployment.
+
+## Prerequisites
+
+- A [Fly.io](https://fly.io) account
+- The [flyctl CLI](https://fly.io/docs/hands-on/install-flyctl/) installed on your machine
+
+## Steps
+
+### 1. Authenticate with Fly.io
+
+Log in to your Fly.io account:
+
+```sh
+fly auth login
+```
+
+If you don’t have an account, sign up with:
+
+```sh
+fly auth signup
+```
+
+### 2. Create and Configure Your App/MCP Server
+
+Create a new Fly.io app and generate a configuration file:
+
+```sh
+fly launch --no-deploy --image hapimcp/hapi-cli:latest \
+    -e openapi="https://petstore3.swagger.io/api/v3/openapi.json" \
+    -e url="https://petstore3.swagger.io/api/v3"
+```
+
+- When prompted, choose a unique app name and region.
+- For the HAPI MCP Server instance, you need to provide at least:
+  - the `openapi` - the URL to your OpenAPI specification (e.g., `https://petstore3.swagger.io/api/v3/openapi.json`)
+  - and `url` - the 'head' URL of the MCP server (e.g., `https://petstore3.swagger.io/api/v3`).
+
+This will create a `fly.toml` file in your directory. If you prefer, you can also manually create the `fly.toml` file with the necessary configuration. Example is provided at the end of this guide.
+
+### 3. Edit `fly.toml` for the Pre-Built Image
+
+Open the generated `fly.toml` and ensure it does **not** reference a build section. You will deploy using the pre-built image, so the build section can be removed or ignored.
+
+### 4. Deploy the Pre-Built HAPI MCP Image
+
+Deploy your app using the official image:
+
+```sh
+fly deploy
+# Or specify the image explicitly:
+fly deploy --image hapimcp/hapi-cli:latest
+```
+
+- Replace `latest` with a specific version tag if needed.
+- This command will push the pre-built image to Fly.io and start your HAPI MCP Server.
+
+### 5. (Optional) Set Environment Variables
+
+If your HAPI MCP Server requires environment variables, set them with:
+
+```sh
+fly secrets set VAR_NAME=value
+```
+
+Or add them to your `fly.toml` under the [`[env]` section](https://fly.io/docs/reference/configuration/#the-env-variables-section).
+
+:::warning
+Use [secrets](https://fly.io/docs/apps/secrets/) for sensitive data like API keys.
+:::
+
+### 6. Monitor and Access Your App/MCP Server
+
+After deployment, Fly.io will provide a public URL for your app. You can monitor logs with:
+
+```sh
+fly logs
+```
+
+## Notes
+
+- No Dockerfile or local build is required.
+- You can redeploy at any time with the same `fly deploy --image ...` command.
+- For advanced configuration (volumes, scaling, etc.), refer to the [Fly.io documentation](https://fly.io/docs/).
+
+## `fly.toml` example for HAPI MCP Server
+
+```toml
+app = 'my-mcp-server'
+primary_region = 'dfw'
+
+[build]
+  image = 'hapimcp/hapi-cli:latest'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[env]
+  openapi = 'https://petstore3.swagger.io/api/v3/openapi.json'
+  url = 'https://petstore3.swagger.io/api/v3'
+
+[[vm]]
+  memory = '256mb'
+  cpus = 1
+  memory_mb = 256
+```

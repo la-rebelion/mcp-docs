@@ -1,0 +1,126 @@
+---
+title: Deploying HAPI MCP Server on Cloudflare Workers
+sidebar_label: Cloudflare Workers Deployment
+description: Guide on deploying the HAPI MCP Server to Cloudflare Workers using the HAPI MCP CLI.
+---
+
+This guide explains how to deploy the HAPI MCP Server to Cloudflare Workers using the HAPI MCP CLI (`hapi deploy`). This approach leverages the built-in deployment command and does not require you to write your own worker code or configuration from scratch.
+
+## Prerequisites
+
+- A [Cloudflare](https://dash.cloudflare.com/) account
+- The [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) installed (`npm install -g wrangler` or `bun install -g wrangler`)
+- The [HAPI MCP CLI](https://hapi.mcp.com.ai) installed (`bunx @la-rebelion/hapimcp` or download and install the binary)
+- An OpenAPI specification URL for your backend API
+
+## Steps
+
+### 1. Authenticate with Cloudflare
+
+Ensure you are authenticated with Cloudflare:
+
+```sh
+wrangler whoami
+```
+
+If not authenticated, log in:
+
+```sh
+wrangler login
+```
+
+Or, if using the HAPI MCP CLI:
+
+```sh
+hapi login
+```
+
+### 2. Deploy to Cloudflare Workers
+
+The HAPI MCP CLI provides a `deploy` command that deploys the HAPI MCP Server as a Cloudflare Worker. The minimum required option is the OpenAPI spec URL.
+
+**Basic example:**
+
+```sh
+hapi deploy --openapi https://petstore3.swagger.io/api/v3/openapi.json
+```
+
+**With backend URL and custom worker name:**
+
+```sh
+hapi deploy --openapi https://petstore3.swagger.io/api/v3/openapi.json \
+  --url https://petstore3.swagger.io/api/v3 \
+  --name my-hapi-worker
+```
+
+**With extra environment variables:**
+
+```sh
+hapi deploy --openapi <OPENAPI_URL> --var API_KEY=your-key --var DEBUG=true
+```
+
+#### Key Options
+
+- `--openapi <url>`: **(Required)** URL or path to your OpenAPI spec.
+- `--url <url>`: (Optional) Backend base URL for headless mode.
+- `--name <name>`: (Optional) Custom worker name (must be RFC 1123 compliant).
+- `--project <project>`: (Optional) Project name for grouping deployments.
+- `--var <key=value>`: (Optional, repeatable) Extra environment variables.
+- `--dry-run`: (Optional) Print actions without executing.
+
+Example output:
+
+```
+📝 Generating temporary Wrangler config...
+⚙️ Deploying to Cloudflare Workers...
+🌍 Live at: https://my-hapi-worker.your-account.workers.dev
+✅ Deployed successfully!
+```
+
+### 3. (Optional) Advanced Usage
+
+- **Dry Run:** See what would be deployed without making changes:
+
+  ```sh
+  hapi deploy --openapi <OPENAPI_URL> --dry-run
+  ```
+
+- **Keep Config:** Retain the generated worker files for inspection:
+
+  ```sh
+  hapi deploy --openapi <OPENAPI_URL> --keep-config
+  ```
+
+- **Custom Project Name:** Useful for grouping or CI/CD:
+
+  ```sh
+  hapi deploy --openapi <OPENAPI_URL> --project my-hapi-project
+  ```
+
+### 4. Monitor and Manage Your Worker
+
+- View logs and status in the [Cloudflare dashboard](https://dash.cloudflare.com/).
+- Use `wrangler` commands for further management (see [Wrangler docs](https://developers.cloudflare.com/workers/wrangler/commands/)).
+
+## Notes
+
+- The worker name must be unique, start with a letter, and use only lowercase letters, numbers, and hyphens.
+- The CLI will attempt to generate a valid name if not provided.
+- For sensitive data, use Cloudflare secrets.
+- The deployment process will clean up temporary files unless `--keep-config` is specified.
+
+## Example: Full Command
+
+```sh
+hapi deploy --openapi https://petstore3.swagger.io/api/v3/openapi.json \
+  --url https://petstore3.swagger.io/api/v3 \
+  --name petstore-hapi \
+  --var API_KEY=your-key
+```
+
+## References
+
+- [HAPI MCP CLI Documentation](https://docs.mcp.com.ai)
+- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
+- [Wrangler CLI Reference](https://developers.cloudflare.com/workers/wrangler/commands/)
+- [OpenAPI Specification](https://swagger.io/specification/)

@@ -11,11 +11,13 @@ keywords:
 
 # HAPI CLI
 
-The HAPI CLI is a command-line tool for managing and serving API projects using the HAPI server. It enables you to bootstrap, configure, and run API-first services with ease.
+The HAPI CLI is a command-line tool for managing and serving API projects using the HAPI server for Model Context Protocol (MCP). It enables you to bootstrap, configure, and run API-first services with ease.
 
 ## Installation
 
-You can install the HAPI CLI with the following commands:
+To install HAPI CLI, you can download the latest release from the [HAPI GitHub repository](https://github.com/la-rebelion/hapi-cli/releases).
+
+Another option is to use the `install` script accessible via curl:
 
 **Linux users**
 
@@ -36,7 +38,10 @@ Or **download the binary directly** from the [releases page](https://github.com/
 To start a HAPI server for your API project, use the `serve` command:
 
 ```bash
+# local file
 hapi serve <projectname> [options]
+# remote URL
+hapi serve https://petstore3.swagger.io/api/v3/openapi.json [options]
 ```
 
 ### Example
@@ -94,7 +99,7 @@ hapi serve myproject --cors "https://example.com,https://another.com"
 Enable debug mode to see detailed logs and registered routes:
 
 ```bash
-hapi serve myproject --debug
+hapi serve myproject --dev
 ```
 
 ## Help

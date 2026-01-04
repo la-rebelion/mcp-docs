@@ -1,0 +1,57 @@
+apiVersion: mcp.com.ai/v1
+kind: Security
+metadata:
+  name: kubernetes-security-config
+  namespace: kubernetes
+  labels:
+    app: kubernetes
+  annotations:
+    description: HAPI server example security configuration
+    owner: team-hapi
+    environment: development
+    version: v1.0.0
+spec:
+# x-hapi:
+  cors:
+    enabled: true
+    origin:
+      - http://localhost:8080 # Your Application
+      - http://localhost:6274 # MCP Inspector UI
+    headers:
+      - Content-Type
+      - Authorization
+      - X-Requested-With
+    methods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - OPTIONS
+  # Mutual TLS configuration
+  mtls:
+    # optional, trusted Certificate Authority (CA) for server cert validation
+    ca: <base64-encoded-ca-bundle> 
+    clientCertificate: <base64-encoded-client-cert> # optional, if static
+    clientKey: <base64-encoded-client-key> # optional, PEM/base64-encoded private key for client cert
+    clientCertificateSubjectDN: "CN=client,OU=dev,O=example,L=city,C=US" # optional, used for OAuth2 client identification
+    clientCertificateThumbprint: "<SHA-256-thumbprint>" # optional, for certificate-bound tokens (RFC 8705)
+    tokenBinding: true # true if access tokens are bound to cert (RFC 8705)
+    oauth2ClientAuthMethod: tls_client_auth # tls_client_auth | self_signed_tls_client_auth (RFC 8705)
+    additionalTrustAnchors: [] # optional, array of base64 CA bundles for extra trust roots
+  security:
+    workos_auth:
+      client_id: client_01...
+      # RFC 7591 - dynamic client registration support
+      well-known: https://YOUR_APP_SUBDOMAIN.authkit.app/.well-known/oauth-authorization-server
+  securitySchemes:
+    workos_auth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.workos.com/sso/authorize?connection=conn_01...
+          tokenUrl: https://api.workos.com/user_management/authenticate
+          scopes:
+            read: Read
+            write: Modify
+            admin: Access to admin operations
+            read_all: Read private resources

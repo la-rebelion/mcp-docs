@@ -5,7 +5,7 @@ keywords: ["developer", "productivity", "best practices"]
 hide_title: true
 ---
 
-# DevEx
+## DevEx
 
 ## Generate self-signed certificates.
 ### `ssl-cert.sh`

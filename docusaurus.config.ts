@@ -8,8 +8,8 @@ const hubspot = {
 };
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 const config: Config = {
-  title: 'HAPI MCP Documentation',
-  tagline: 'The Happiness Stack for MCP',
+  title: 'HAPI MCP Docs',
+  tagline: 'The Happiness Stack for seamless LLM integration with Model Context Protocol (MCP)',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
