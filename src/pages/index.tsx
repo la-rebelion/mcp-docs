@@ -86,15 +86,13 @@ function HomepageHeader() {
 }
 
 export default function Home(): ReactNode {
-  const { siteConfig } = useDocusaurusContext();
-  
-  // Suppress ResizeObserver warnings in development mode
-  // useSuppressResizeObserverWarning();
+  // const { siteConfig } = useDocusaurusContext();
   
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title="Home of Model Context Protocol with no-code deployment"
+      // title={`Hello from ${siteConfig.title}`}
+      description="Deploy and manage Model Context Protocol servers effortlessly with HAPI MCP Server, MCPs with no shadows.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
