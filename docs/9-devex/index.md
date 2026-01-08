@@ -22,4 +22,4 @@ hapi serve petstore --mcp --cert ~/.hapi/certs/cert.pem --key ~/.hapi/certs/key.
 
 Since: v0.3.1
 
-[Go to top](#DevEx)
+[Go to top](#devex)

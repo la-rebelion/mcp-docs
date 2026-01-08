@@ -42,6 +42,28 @@ check_dependencies() {
     done
 }
 
+# Convert YAML to JSON using whatever yq variant is installed.
+# @note Supports mikefarah/yq v4 (`yq eval -o=json`), python yq (`yq -j`), and legacy yq v3 (`yq r -j`).
+yaml_to_json() {
+    local file="$1"
+    # Try mikefarah/yq v4
+    if yq eval -o=json '.' "$file" >/dev/null 2>&1; then
+        yq eval -o=json '.' "$file"
+        return 0
+    fi
+    # Try python yq (jq wrapper)
+    if yq -j '.' "$file" >/dev/null 2>&1; then
+        yq -j '.' "$file"
+        return 0
+    fi
+    # Try legacy mikefarah/yq v3
+    if yq r -j "$file" >/dev/null 2>&1; then
+        yq r -j "$file"
+        return 0
+    fi
+    return 1
+}
+
 # Count endpoints in OpenAPI spec
 count_endpoints() {
     local file="$1"
@@ -56,13 +78,17 @@ count_endpoints() {
             add // 0
         ' "$file" 2>/dev/null || echo "0"
     else
-        # Count paths and their methods for YAML files
-        yq eval '
-            .paths // {} | 
-            to_entries | 
-            map(.value | keys | length) | 
+        # Count paths and their methods for YAML files (convert to JSON first for consistent jq processing)
+        if yaml_to_json "$file" | jq -r '
+            .paths // {} |
+            to_entries |
+            map(.value | keys | length) |
             add // 0
-        ' "$file" 2>/dev/null || echo "0"
+        ' 2>/dev/null; then
+            true
+        else
+            echo "0"
+        fi
     fi
 }
 
