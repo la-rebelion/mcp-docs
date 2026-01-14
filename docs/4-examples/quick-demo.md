@@ -2,8 +2,8 @@
 sidebar_position: 1
 sidebar_label: Quick Demo
 sidebar_class_name: blue
-title: 'Quick Demo: MCP, OpenAPI, API-first'
-description: 'A quick demonstration of MCP, OpenAPI, and API-first integration with code and deployment steps.'
+title: 'Quick Demo: Greenfield MCP+OpenAPI'
+description: 'A quick demonstration of MCP, OpenAPI, and API-first integration with code and deployment steps for greenfield scenarios'
 keywords:
   - MCP
   - quick demo
@@ -17,8 +17,6 @@ publisher: 'MCP Project'
 dateModified: '2025-07-27'
 ---
 
-# Quick Demo: MCP, OpenAPI, API-first
-
 This example shows how to:
 - Define a simple OpenAPI schema
 - Implement a minimal MCP-compliant API
@@ -26,6 +24,7 @@ This example shows how to:
 
 ## 1. Define OpenAPI Schema
 ```yaml
+# ~/.hapi/specs/ping-pong.yaml
 openapi: 3.1.0
 info:
   title: Quick Demo API
@@ -47,22 +46,20 @@ paths:
                     type: boolean
 ```
 
-## 2. Implement the Endpoint
+## 2. Init and Start the MCP Server
+
 ```js
-// Minimal Express example
-const express = require('express');
-const app = express();
-app.get('/ping', (req, res) => {
-  res.json({ pong: true });
-});
-app.listen(3000, () => console.log('Quick Demo API running on port 3000'));
+hapi init ping-pong
+hapi serve ping-pong --port 443 --cert ./certs/cert.pem --key ./certs/key.pem
 ```
 
 ## 3. Test the API
 ```sh
-curl http://localhost:3000/ping
+curl https://localhost:3000/ping
 # { "pong": true }
 ```
+
+From here you can connect your prefer MCP client.
 
 :::tip
 You can extend this demo by adding context, authentication, or more endpoints following MCP and OpenAPI best practices.

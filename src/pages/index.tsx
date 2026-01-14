@@ -36,7 +36,7 @@ function HomepageHeader() {
             {/* Problem-matching: Speak to pain points */}
             <p className={styles.heroDescription}>
               Stop building custom MCP servers from scratch. Deploy production-ready 
-              API integrations in <strong>minutes, not weeks</strong>.
+              API integrations in <strong>seconds, not weeks</strong>.
             </p>
             <div className={styles.heroCta}>
               <Link
@@ -71,7 +71,7 @@ function HomepageHeader() {
             </div>
             <div className={styles.heroIllustrationLabel}>
               <span className={styles.labelText}>HAPI Server</span>
-              <span className={styles.labelSubtext}>The Happiness Stack</span>
+              <span className={styles.labelSubtext}>Headless API for MCP</span>
             </div>
           </div>
         </div>
@@ -210,9 +210,9 @@ function FeaturesSection() {
 function QuickLinks() {
   const links = [
     { title: 'Quickstart', description: 'Deploy your first MCP server', link: '/getting-started/quickstart', icon: '🚀' },
-    { title: 'Concepts', description: 'Understand MCP fundamentals', link: '/concepts/', icon: '📖' },
+    { title: 'Concepts', description: 'Understand HAPI MCP fundamentals', link: '/overview', icon: '📖' },
     { title: 'Examples', description: 'Real-world implementations', link: '/examples/', icon: '💡' },
-    { title: 'API Reference', description: 'Explore available tools', link: '/servers-apis/', icon: '📋' },
+    { title: 'API Reference', description: 'Explore available tools', link: '/servers-apis/openapi', icon: '📋' },
   ];
 
   return (
