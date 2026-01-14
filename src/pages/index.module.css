@@ -1,18 +1,611 @@
 /**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
+ * HAPI MCP Docs Homepage - Modern Professional Design
+ * Inspired by mcp-use clean aesthetic with dark/light mode support
  */
 
+/* =============================================
+   HERO SECTION
+   ============================================= */
+
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
+  padding: 4rem 0 5rem;
+  text-align: left;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, hsl(222.2 84% 4.9%) 0%, hsl(217.2 32.6% 12%) 100%);
 }
+
+[data-theme='light'] .heroBanner {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: hsla(187, 85%, 53%, 0.15);
+  border: 1px solid hsla(187, 85%, 53%, 0.3);
+  color: hsl(187 85% 53%);
+  padding: 0.375rem 0.875rem;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.badgeIcon {
+  font-size: 1rem;
+}
+
+.heroContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroText {
+  flex: 1;
+  max-width: 600px;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+  color: #f8fafc;
+  background: linear-gradient(135deg, #ffffff 0%, hsl(187 85% 53%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme='light'] .heroTitle {
+  color: hsl(222.2 84% 4.9%);
+  background: linear-gradient(135deg, hsl(222.2 84% 4.9%) 0%, hsl(187 85% 43%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: hsl(215 20.2% 65.1%);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+[data-theme='light'] .heroSubtitle {
+  color: hsl(215 20.2% 35%);
+}
+
+.heroDescription {
+  font-size: 1.1rem;
+  color: hsl(215 20.2% 75%);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.heroDescription strong {
+  color: hsl(187 85% 53%);
+}
+
+[data-theme='light'] .heroDescription {
+  color: hsl(215 20.2% 45%);
+}
+
+[data-theme='light'] .heroDescription strong {
+  color: hsl(187 85% 40%);
+}
+
+.heroCta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  background: hsl(187 85% 53%) !important;
+  border-color: hsl(187 85% 53%) !important;
+  color: hsl(222.2 84% 4.9%) !important;
+  font-weight: 600 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.ctaPrimary:hover {
+  background: hsl(187 85% 45%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px hsla(187, 85%, 53%, 0.3);
+}
+
+.ctaArrow {
+  transition: transform 0.2s ease;
+}
+
+.ctaPrimary:hover .ctaArrow {
+  transform: translateX(4px);
+}
+
+.ctaSecondary {
+  background: transparent !important;
+  border: 1px solid hsl(215 20.2% 35%) !important;
+  color: #f8fafc !important;
+}
+
+.ctaSecondary:hover {
+  border-color: hsl(187 85% 53%) !important;
+  color: hsl(187 85% 53%) !important;
+  background: hsla(187, 85%, 53%, 0.1) !important;
+}
+
+[data-theme='light'] .ctaSecondary {
+  border-color: hsl(215 20.2% 65%) !important;
+  color: hsl(222.2 84% 4.9%) !important;
+}
+
+.installCommands {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: hsla(217.2, 32.6%, 12%, 0.8);
+  border: 1px solid hsl(217.2 32.6% 20%);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  max-width: fit-content;
+}
+
+[data-theme='light'] .installCommands {
+  background: hsla(0, 0%, 100%, 0.9);
+  border-color: hsl(214.3 31.8% 85%);
+}
+
+.installCode {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.9rem;
+  color: hsl(215 20.2% 75%);
+  background: transparent;
+  padding: 0;
+}
+
+.installPrefix {
+  color: hsl(187 85% 53%);
+  margin-right: 0.5rem;
+}
+
+[data-theme='light'] .installCode {
+  color: hsl(222.2 47.4% 25%);
+}
+
+.copyButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.copyButton:hover {
+  opacity: 1;
+}
+
+/* Hero Illustration */
+.heroIllustrationCol {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.heroIllustration {
+  background: linear-gradient(135deg, hsl(217.2 32.6% 15%) 0%, hsl(217.2 32.6% 20%) 100%);
+  border-radius: 50%;
+  padding: 2rem;
+  box-shadow: 0 20px 40px hsla(222.2, 84%, 4.9%, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  height: 280px;
+}
+
+[data-theme='light'] .heroIllustration {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  box-shadow: 0 20px 40px hsla(222.2, 20%, 50%, 0.15);
+}
+
+.heroLogo {
+  width: 220px;
+  height: auto;
+}
+
+.heroIllustrationLabel {
+  text-align: center;
+}
+
+.labelText {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(187 85% 53%);
+}
+
+.labelSubtext {
+  display: block;
+  font-size: 0.8rem;
+  color: hsl(215 20.2% 55%);
+}
+
+/* =============================================
+   COMPONENTS SECTION
+   ============================================= */
+
+.componentsSection {
+  padding: 5rem 0;
+  background: hsl(222.2 84% 4.9%);
+}
+
+[data-theme='light'] .componentsSection {
+  background: #ffffff;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionBadge {
+  display: inline-block;
+  background: hsla(187, 85%, 53%, 0.15);
+  border: 1px solid hsla(187, 85%, 53%, 0.3);
+  color: hsl(187 85% 53%);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.75rem;
+}
+
+[data-theme='light'] .sectionTitle {
+  color: hsl(222.2 84% 4.9%);
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  color: hsl(215 20.2% 55%);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+[data-theme='light'] .sectionSubtitle {
+  color: hsl(215 20.2% 45%);
+}
+
+.componentCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.componentCard {
+  background: hsl(217.2 32.6% 10%);
+  border: 1px solid hsl(217.2 32.6% 17.5%);
+  border-radius: 12px;
+  padding: 1.75rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.componentCard:hover {
+  border-color: hsl(187 85% 53%);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px hsla(187, 85%, 53%, 0.15);
+  text-decoration: none;
+}
+
+[data-theme='light'] .componentCard {
+  background: #ffffff;
+  border-color: hsl(214.3 31.8% 91.4%);
+}
+
+[data-theme='light'] .componentCard:hover {
+  border-color: hsl(187 85% 53%);
+  box-shadow: 0 12px 32px hsla(187, 85%, 53%, 0.1);
+}
+
+.cardIcon {
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsla(187, 85%, 53%, 0.1);
+  border-radius: 10px;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0;
+}
+
+[data-theme='light'] .cardTitle {
+  color: hsl(222.2 84% 4.9%);
+}
+
+.cardDescription {
+  font-size: 0.95rem;
+  color: hsl(215 20.2% 55%);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+
+[data-theme='light'] .cardDescription {
+  color: hsl(215 20.2% 45%);
+}
+
+.cardTags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.cardTag {
+  font-size: 0.75rem;
+  color: hsl(187 85% 53%);
+  background: hsla(187, 85%, 53%, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* =============================================
+   FEATURES SECTION
+   ============================================= */
+
+.featuresSection {
+  padding: 5rem 0;
+  background: hsl(217.2 32.6% 8%);
+}
+
+[data-theme='light'] .featuresSection {
+  background: #f8fafc;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.featureItem {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.featureIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.featureTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+}
+
+[data-theme='light'] .featureTitle {
+  color: hsl(222.2 84% 4.9%);
+}
+
+.featureDescription {
+  font-size: 0.95rem;
+  color: hsl(215 20.2% 55%);
+  line-height: 1.5;
+  margin: 0;
+}
+
+[data-theme='light'] .featureDescription {
+  color: hsl(215 20.2% 45%);
+}
+
+/* =============================================
+   QUICK LINKS SECTION
+   ============================================= */
+
+.quickLinksSection {
+  padding: 5rem 0;
+  background: hsl(222.2 84% 4.9%);
+}
+
+[data-theme='light'] .quickLinksSection {
+  background: #ffffff;
+}
+
+.quickLinksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.quickLinkCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: hsl(217.2 32.6% 10%);
+  border: 1px solid hsl(217.2 32.6% 17.5%);
+  border-radius: 10px;
+  padding: 1.25rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.quickLinkCard:hover {
+  border-color: hsl(187 85% 53%);
+  background: hsl(217.2 32.6% 12%);
+  text-decoration: none;
+}
+
+[data-theme='light'] .quickLinkCard {
+  background: #ffffff;
+  border-color: hsl(214.3 31.8% 91.4%);
+}
+
+[data-theme='light'] .quickLinkCard:hover {
+  background: #f8fafc;
+  border-color: hsl(187 85% 53%);
+}
+
+.quickLinkIcon {
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsla(187, 85%, 53%, 0.1);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.quickLinkContent {
+  flex: 1;
+}
+
+.quickLinkTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0 0 0.25rem 0;
+}
+
+[data-theme='light'] .quickLinkTitle {
+  color: hsl(222.2 84% 4.9%);
+}
+
+.quickLinkDescription {
+  font-size: 0.85rem;
+  color: hsl(215 20.2% 55%);
+  margin: 0;
+}
+
+[data-theme='light'] .quickLinkDescription {
+  color: hsl(215 20.2% 45%);
+}
+
+.quickLinkArrow {
+  color: hsl(187 85% 53%);
+  font-size: 1.25rem;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.quickLinkCard:hover .quickLinkArrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .heroText {
+    max-width: 100%;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroCta {
+    justify-content: center;
+  }
+
+  .installCommands {
+    margin: 0 auto;
+  }
+
+  .heroIllustration {
+    width: 220px;
+    height: 220px;
+  }
+
+  .heroLogo {
+    width: 160px;
+  }
+}
+
+@media (max-width: 700px) {
+  .heroIllustrationCol {
+    display: none;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+
+  .componentCards,
+  .featuresGrid,
+  .quickLinksGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroCta {
+    flex-direction: column;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -20,14 +613,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.heroIllustrationCol {
-  /* No default styles needed, just for targeting */
-}
-
-@media (max-width: 700px) {
-  .heroIllustrationCol {
-    display: none !important;
-  }
 }
