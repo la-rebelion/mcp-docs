@@ -56,7 +56,7 @@ function HomepageHeader() {
             {/* Quick install commands - like mcp-use */}
             <div className={styles.installCommands}>
               <code className={styles.installCode}>
-                <span className={styles.installPrefix}>$</span> curl -fsSL https://hapi.sh | bash
+                <span className={styles.installPrefix}>$</span> curl -fsSL https://get.mcp.com.ai/hapi.sh | bash
               </code>
               <button className={styles.copyButton} title="Copy to clipboard">
                 📋

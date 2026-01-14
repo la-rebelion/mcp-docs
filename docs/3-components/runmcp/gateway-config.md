@@ -36,11 +36,11 @@ You can update gateway config via file or API—no need to restart the gateway f
 services:
   - name: chatmcp
     openapi: ./chatmcp-openapi.json
-    url: https://chatmcp.run.mcp.com.ai
+    url: https://chat.mcp.com.ai
     subdomain: chatmcp
   - name: hapi
     openapi: ./hapi-openapi.json
-    url: https://hapi.run.mcp.com.ai
+    url: https://hapi.mcp.com.ai
     subdomain: hapi
 ```
 
