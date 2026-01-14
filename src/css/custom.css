@@ -530,3 +530,92 @@
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
+/* Mobile Sidebar Fixes - Hide/Show Pattern */
+@media (max-width: 996px) {
+  /* Ensure sidebar container fits viewport */
+  .navbar-sidebar {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    position: fixed;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+  }
+
+  /* Container for both panels */
+  .navbar-sidebar__items {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: calc(100vh - 60px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Each panel takes full viewport width and stacks */
+  .navbar-sidebar__item.menu {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  /* Hide primary menu when secondary is shown */
+  .navbar-sidebar__items--show-secondary .navbar-sidebar__item.menu:first-child {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Show secondary menu only when flag is active */
+  .navbar-sidebar__item.menu:last-child {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .navbar-sidebar__items--show-secondary .navbar-sidebar__item.menu:last-child {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Ensure menu content fits within panel */
+  .navbar-sidebar .menu__list {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .navbar-sidebar .menu__link {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+  }
+
+  /* Reduce padding for nested items to maximize space */
+  .navbar-sidebar .menu__list .menu__list {
+    padding-left: 0.75rem;
+  }
+
+  .navbar-sidebar .menu__list .menu__list .menu__list {
+    padding-left: 0.5rem;
+  }
+
+  /* Ensure proper spacing for menu items */
+  .navbar-sidebar .menu__list-item {
+    margin: 0.25rem 0;
+  }
+
+  /* Fix category toggle to stay within bounds */
+  .navbar-sidebar .menu__link--sublist-caret::after {
+    flex-shrink: 0;
+  }
+}
