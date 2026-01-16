@@ -18,6 +18,7 @@ interface ApiSpec {
   description: string;
   version: string;
   endpoints: number;
+  server_url: string;
   metadata: ApiMetadata;
 }
 
@@ -240,6 +241,17 @@ const APICards: React.FC<APICardsProps> = ({
                     onClick={() => copyToClipboard(apiUrl)}
                     className={styles.copyButton}
                     title="Copy URL"
+                  >
+                    📋
+                  </button>
+                </div>
+
+                <div className={styles.cardUrl}>
+                  <span className={styles.urlText}>{api.server_url}</span>
+                  <button 
+                    onClick={() => copyToClipboard(api.server_url)}
+                    className={styles.copyButton}
+                    title="Copy Server URL"
                   >
                     📋
                   </button>

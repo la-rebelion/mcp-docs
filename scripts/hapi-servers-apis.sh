@@ -98,18 +98,20 @@ parse_openapi_file() {
     local filename=$(basename "$file")
     local extension="${file##*.}"
     
-    local title description version endpoints
+    local title description version endpoints server_url
     
     if [[ "$extension" == "json" ]]; then
         # Parse JSON files with jq
         title=$(jq -r '.info.title // "Unknown"' "$file" 2>/dev/null || echo "Unknown")
         description=$(jq -r '.info.description // ""' "$file" 2>/dev/null || echo "")
         version=$(jq -r '.info.version // "Unknown"' "$file" 2>/dev/null || echo "Unknown")
+        server_url=$(jq -r '.servers[0].url // "not-defined-servers"' "$file" 2>/dev/null || echo "not-defined-servers")
     else
         # Parse YAML files with yq
         title=$(yq eval '.info.title // "Unknown"' "$file" 2>/dev/null || echo "Unknown")
         description=$(yq eval '.info.description // ""' "$file" 2>/dev/null || echo "")
         version=$(yq eval '.info.version // "Unknown"' "$file" 2>/dev/null || echo "Unknown")
+        server_url=$(yq eval '.servers[0].url // "not-defined-servers"' "$file" 2>/dev/null || echo "not-defined-servers")
     fi
     
     endpoints=$(count_endpoints "$file")
@@ -126,6 +128,7 @@ parse_openapi_file() {
         --arg description "$description" \
         --arg version "$version" \
         --argjson endpoints "$endpoints" \
+        --arg server_url "$server_url" \
         --arg file_size "$file_size" \
         --arg file_hash "$file_hash" \
         --argjson last_modified "$last_modified" \
@@ -136,6 +139,7 @@ parse_openapi_file() {
             description: $description,
             version: $version,
             endpoints: $endpoints,
+            server_url: $server_url,
             metadata: {
                 file_size: ($file_size | tonumber),
                 file_hash: $file_hash,

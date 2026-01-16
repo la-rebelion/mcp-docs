@@ -14,9 +14,26 @@ dateModified: '2025-08-07'
 ---
 import APICards from '@site/src/components/APICards';
 
-## OpenAPI Specifications
-
 The HAPI Stack provides a set of APIs that are essential for the Model Context Protocol (MCP) and other related functionalities. These APIs are documented using OpenAPI specifications, which allow for easy understanding and integration.
+
+Do you want to deploy your own instance of these APIs or **any OAS v3** compliant API? Check out our [HAPI Stack Deployment Guide](/servers-apis/deployment-guide).
+
+**Deploying the MCP Server to Cloudflare Workers**
+
+```bash
+hapi deploy --name <NAME> --project <PROJ_NAME> --openapi <COPY_URL_FROM_BELOW_LIST> --url <POINT_TO_YOUR_HEAD_API> --headless
+```
+
+**Running Locally with Docker**
+
+```bash
+docker run -d --name mcp-server \
+  hapimcp/hapi-cli:0.6.0 serve mcp-server \
+  --openapi <COPY_URL_FROM_BELOW_LIST> --url <POINT_TO_YOUR_HEAD_API> \
+  --headless
+```
+
+## Available APIs
 
 <APICards runMcpUrl={(process.env.NODE_ENV === 'production' ? `https://run.mcp.com.ai` : `http://localhost:8080`)} />
 
