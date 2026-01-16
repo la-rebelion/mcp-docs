@@ -1,0 +1,582 @@
+openapi: 3.0.3
+info:
+  title: Podcast Resources API (MCP Resource Resolver)
+  version: 0.1.0
+  description: >
+    HTTP API that exposes podcast episode transcripts as MCP-style Resources using a custom
+    URI scheme (podcast://...). Clients can list resources, resolve/read a resource URI,
+    and access episode-specific views (metadata, transcript, chunks, search).
+
+servers:
+  - url: https://lenny-rachitsky.search.mcp.com.ai
+    description: Production server
+
+tags:
+  - name: Resources
+    description: MCP-like resource catalog + resolver
+  - name: Episodes
+    description: Episode-specific endpoints (views over transcripts)
+  - name: Search
+    description: Search over transcripts / metadata
+
+paths:
+  /episodes:
+    get:
+      tags: [Episodes]
+      summary: List episodes
+      description: >
+        Lists episodes with parsed frontmatter (guest, title, duration, youtube_url, etc.)
+        and their canonical resource URIs.
+      parameters:
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Cursor"
+        - name: sort
+          in: query
+          description: Sorting method
+          required: false
+          schema:
+            type: string
+            enum: [recent, views, title]
+            default: recent
+      responses:
+        "200":
+          description: Episode list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EpisodeListResponse"
+
+  /episodes/{guest}:
+    get:
+      tags: [Episodes]
+      summary: Get an episode card (metadata + key URIs)
+      parameters:
+        - $ref: "#/components/parameters/Guest"
+      responses:
+        "200":
+          description: Episode detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Episode"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /episodes/{guest}/metadata.json:
+    get:
+      tags: [Episodes]
+      summary: Get episode metadata as JSON (frontmatter)
+      parameters:
+        - $ref: "#/components/parameters/Guest"
+      responses:
+        "200":
+          description: Episode metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EpisodeMetadata"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /episodes/{guest}/transcript.{format}:
+    get:
+      tags: [Episodes]
+      summary: Get transcript in a specific format
+      description: >
+        Returns the transcript in the requested format:
+        - md: markdown (may include or exclude frontmatter based on include_frontmatter)
+        - txt: clean text (best for LLM ingestion)
+        - json: structured form (metadata + transcript text)
+      parameters:
+        - $ref: "#/components/parameters/Guest"
+        - name: format
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [md, txt, json]
+        - name: include_frontmatter
+          in: query
+          required: false
+          description: Include YAML frontmatter when format=md
+          schema:
+            type: boolean
+            default: false
+      responses:
+        "200":
+          description: Transcript response (content type varies by format)
+          content:
+            text/markdown:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TranscriptJson"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /episodes/{guest}/chunks:
+    get:
+      tags: [Episodes]
+      summary: List chunk descriptors for an episode
+      description: >
+        Returns chunk boundaries and URIs for chunk retrieval. Chunks may be computed
+        on-demand using size/overlap parameters.
+      parameters:
+        - $ref: "#/components/parameters/Guest"
+        - name: size
+          in: query
+          required: false
+          description: Approximate chunk size in characters
+          schema:
+            type: integer
+            minimum: 200
+            maximum: 20000
+            default: 3000
+        - name: overlap
+          in: query
+          required: false
+          description: Overlap in characters between chunks
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 5000
+            default: 200
+      responses:
+        "200":
+          description: Chunk list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChunkListResponse"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /episodes/{guest}/chunks/{chunkId}.txt:
+    get:
+      tags: [Episodes]
+      summary: Get a specific transcript chunk as plain text
+      parameters:
+        - $ref: "#/components/parameters/Guest"
+        - name: chunkId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+      responses:
+        "200":
+          description: Chunk text
+          content:
+            text/plain:
+              schema:
+                type: string
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /search:
+    get:
+      tags: [Search]
+      summary: Search episodes and transcripts
+      description: >
+        Searches across metadata (D1) and transcript text (Vectorize). Returns matches as
+        resources, including per-hit URIs pointing to episode cards and transcript chunks.
+        Note: pagination cursor applies to metadata search only.
+        Example (vector search with filters):
+
+          GET /search?q=pricing&mode=vector&guest=Marty%20Cagan&keywords=pricing,monetization&top_k=5
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          example: "model context protocol resources"
+        - name: mode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [metadata, transcript, vector, both]
+            default: both
+          description: >
+            "transcript" and "vector" are synonyms for semantic vector search.
+        - name: episode_slug
+          in: query
+          required: false
+          description: Filter results to a specific episode slug.
+          schema:
+            type: string
+        - name: guest
+          in: query
+          required: false
+          description: Exact match filter for guest name.
+          schema:
+            type: string
+        - name: title
+          in: query
+          required: false
+          description: Exact match filter for episode title.
+          schema:
+            type: string
+        - name: keywords
+          in: query
+          required: false
+          description: Comma-separated keyword filter (matches any keyword).
+          schema:
+            type: string
+            example: "pricing,monetization"
+        - name: namespace
+          in: query
+          required: false
+          description: Vectorize namespace filter.
+          schema:
+            type: string
+        - name: top_k
+          in: query
+          required: false
+          description: Vector search result count (defaults to limit).
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Cursor"
+      responses:
+        "200":
+          description: Search results
+          headers:
+            X-RateLimit-Limit:
+              $ref: "#/components/headers/XRateLimitLimit"
+            X-RateLimit-Remaining:
+              $ref: "#/components/headers/XRateLimitRemaining"
+            X-RateLimit-Reset:
+              $ref: "#/components/headers/XRateLimitReset"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchResponse"
+        "429":
+          $ref: "#/components/responses/RateLimited"
+    post:
+      tags: [Search]
+      summary: Search episodes and transcripts (POST body)
+      description: >
+        Same search as GET /search, but parameters are provided in the request body.
+        This is useful for longer filter payloads.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchRequest"
+            example:
+              q: "pricing"
+              mode: "vector"
+              guest: "Marty Cagan"
+              keywords: ["pricing", "monetization"]
+              top_k: 5
+      responses:
+        "200":
+          description: Search results
+          headers:
+            X-RateLimit-Limit:
+              $ref: "#/components/headers/XRateLimitLimit"
+            X-RateLimit-Remaining:
+              $ref: "#/components/headers/XRateLimitRemaining"
+            X-RateLimit-Reset:
+              $ref: "#/components/headers/XRateLimitReset"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchResponse"
+        "429":
+          $ref: "#/components/responses/RateLimited"
+
+components:
+  parameters:
+    Guest:
+      name: guest
+      in: path
+      required: true
+      schema:
+        type: string
+      example: guest-name
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 50
+    Cursor:
+      name: cursor
+      in: query
+      required: false
+      schema:
+        type: string
+        description: Opaque pagination cursor
+
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    RateLimited:
+      description: Too many requests
+      headers:
+        X-RateLimit-Limit:
+          $ref: "#/components/headers/XRateLimitLimit"
+        X-RateLimit-Remaining:
+          $ref: "#/components/headers/XRateLimitRemaining"
+        X-RateLimit-Reset:
+          $ref: "#/components/headers/XRateLimitReset"
+        Retry-After:
+          $ref: "#/components/headers/RetryAfter"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+
+  headers:
+    XRateLimitLimit:
+      description: The total number of requests permitted in the current window.
+      schema:
+        type: integer
+        example: 120
+    XRateLimitRemaining:
+      description: The number of requests remaining in the current window.
+      schema:
+        type: integer
+        example: 42
+    XRateLimitReset:
+      description: Unix timestamp (seconds) when the current window resets.
+      schema:
+        type: integer
+        example: 1714765200
+    RetryAfter:
+      description: Seconds to wait before retrying the request.
+      schema:
+        type: integer
+        example: 30
+
+  schemas:
+    Error:
+      type: object
+      required: [error, message]
+      properties:
+        error:
+          type: string
+          example: not_found
+        message:
+          type: string
+          example: Resource not found
+
+    EpisodeMetadata:
+      type: object
+      required: [guest, title]
+      properties:
+        guest:
+          type: string
+          example: "Guest Name"
+        title:
+          type: string
+          example: "How to Build MCP-Native Tools"
+        youtube_url:
+          type: string
+          nullable: true
+        video_id:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        duration_seconds:
+          type: integer
+          nullable: true
+          example: 4521
+        duration:
+          type: string
+          nullable: true
+          example: "01:15:21"
+        view_count:
+          type: integer
+          nullable: true
+          example: 12345
+        channel:
+          type: string
+          nullable: true
+          example: "My Podcast Channel"
+
+    Episode:
+      type: object
+      required: [guest_slug, metadata, uris]
+      properties:
+        guest_slug:
+          type: string
+          example: "guest-name"
+        metadata:
+          $ref: "#/components/schemas/EpisodeMetadata"
+        uris:
+          type: object
+          required: [card, metadata, transcript_md, transcript_txt, transcript_json]
+          properties:
+            card:
+              type: string
+              example: "podcast://episodes/guest-name"
+            metadata:
+              type: string
+              example: "podcast://episodes/guest-name/metadata.json"
+            transcript_md:
+              type: string
+              example: "podcast://episodes/guest-name/transcript.md"
+            transcript_txt:
+              type: string
+              example: "podcast://episodes/guest-name/transcript.txt"
+            transcript_json:
+              type: string
+              example: "podcast://episodes/guest-name/transcript.json"
+            chunks:
+              type: string
+              example: "podcast://episodes/guest-name/chunks"
+
+    EpisodeListResponse:
+      type: object
+      required: [episodes]
+      properties:
+        episodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Episode"
+        next_cursor:
+          type: string
+          nullable: true
+
+    TranscriptJson:
+      type: object
+      required: [metadata, transcript]
+      properties:
+        metadata:
+          $ref: "#/components/schemas/EpisodeMetadata"
+        transcript:
+          type: string
+          description: Full transcript text (frontmatter removed)
+        original_markdown_uri:
+          type: string
+          nullable: true
+          example: "podcast://episodes/guest-name/transcript.md"
+
+    ChunkDescriptor:
+      type: object
+      required: [chunkId, uri, start_char, end_char]
+      properties:
+        chunkId:
+          type: integer
+          example: 0
+        uri:
+          type: string
+          example: "podcast://episodes/guest-name/chunks/0.txt"
+        start_char:
+          type: integer
+          example: 0
+        end_char:
+          type: integer
+          example: 2999
+
+    ChunkListResponse:
+      type: object
+      required: [episode_uri, chunks]
+      properties:
+        episode_uri:
+          type: string
+          example: "podcast://episodes/guest-name"
+        chunks:
+          type: array
+          items:
+            $ref: "#/components/schemas/ChunkDescriptor"
+
+    SearchHit:
+      type: object
+      required: [score, episode_uri]
+      properties:
+        score:
+          type: number
+          format: float
+          example: 0.82
+        episode_uri:
+          type: string
+          example: "podcast://episodes/guest-name"
+        title:
+          type: string
+          nullable: true
+          example: "How to Build MCP-Native Tools"
+        guest:
+          type: string
+          nullable: true
+          example: "Guest Name"
+        snippet:
+          type: string
+          nullable: true
+          example: "…resources should use a custom URI scheme when the server must resolve them…"
+        transcript_chunk_uri:
+          type: string
+          nullable: true
+          example: "podcast://episodes/guest-name/chunks/3.txt"
+
+    SearchResponse:
+      type: object
+      required: [q, hits]
+      properties:
+        q:
+          type: string
+          example: "mcp resources"
+        hits:
+          type: array
+          items:
+            $ref: "#/components/schemas/SearchHit"
+        next_cursor:
+          type: string
+          nullable: true
+    SearchRequest:
+      type: object
+      required: [q]
+      properties:
+        q:
+          type: string
+          example: "pricing"
+        mode:
+          type: string
+          enum: [metadata, transcript, vector, both]
+          default: both
+        episode_slug:
+          type: string
+        guest:
+          type: string
+        title:
+          type: string
+        keywords:
+          oneOf:
+            - type: string
+              description: Comma-separated keywords.
+            - type: array
+              items:
+                type: string
+        namespace:
+          type: string
+        top_k:
+          type: integer
+          minimum: 1
+          maximum: 200
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 200
+        cursor:
+          type: string

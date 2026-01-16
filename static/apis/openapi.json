@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total_apis": 7,
-    "total_endpoints": 179,
-    "generated_at": "2026-01-08T13:05:01Z",
+    "total_apis": 8,
+    "total_endpoints": 187,
+    "generated_at": "2026-01-16T01:15:05Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -17,6 +17,19 @@
         "file_hash": "4bb7f3aaef12a5d1cac5d9df764315a2c22518ae5518de1e54171f72e6f64c59",
         "last_modified": 1767875699,
         "format": "json"
+      }
+    },
+    {
+      "filename": "podcast-transcripts.yaml",
+      "title": "Podcast Resources API (MCP Resource Resolver)",
+      "description": "HTTP API that exposes podcast episode transcripts as MCP-style Resources using a custom URI scheme (podcast://...). Clients can list resources, resolve/read a resource URI, and access episode-specific views (metadata, transcript, chunks, search).",
+      "version": "0.1.0",
+      "endpoints": 8,
+      "metadata": {
+        "file_size": 16534,
+        "file_hash": "e9bdc098853c531d106c99590365c83628d6805cb756081c71e67db2ca26a453",
+        "last_modified": 1768526068,
+        "format": "yaml"
       }
     },
     {
