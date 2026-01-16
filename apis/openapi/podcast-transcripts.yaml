@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Podcast Resources API (MCP Resource Resolver)
+  title: Podcast Transcripts API
   version: 0.1.0
   description: >
     HTTP API that exposes podcast episode transcripts as MCP-style Resources using a custom

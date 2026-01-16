@@ -1,12 +1,12 @@
 {
   "openapi_json": {
-    "file_hash": "7606b841c7d19967f2f66ff83725f315a8e04edf65d45c38a87f604172ca2381",
-    "file_size": 16858,
-    "generated_at": "2026-01-16T01:15:05Z"
+    "file_hash": "6190079cc52a741293b5195baacef88805245856da3979ccc5047088afc95dc8",
+    "file_size": 17359,
+    "generated_at": "2026-01-16T01:39:18Z"
   },
   "generation": {
     "script_path": "/home/ades/dev/ai/mcp-docs/scripts/hapi-servers-apis.sh",
     "source_directory": "/home/ades/dev/ai/mcp-docs/static/apis/openapi",
-    "timestamp": "2026-01-16T01:15:05Z"
+    "timestamp": "2026-01-16T01:39:18Z"
   }
 }
