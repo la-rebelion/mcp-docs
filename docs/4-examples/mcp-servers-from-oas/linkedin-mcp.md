@@ -1,8 +1,14 @@
 ---
-title: How to setup a LinkedIn MCP Server
+title: LinkedIn MCP Server
+description: Instructions to create and run a LinkedIn MCP Server using HAPI MCP.
+keywords:
+  - LinkedIn MCP Server
+  - HAPI MCP
+  - OpenAPI
+  - API Integration
+authors:
+  - adrian
 ---
-
-# How to setup a LinkedIn MCP Server
 
 If you want to integrate LinkedIn data into your application using the Model Context Protocol (MCP), you can set up a LinkedIn MCP Server by following these steps:
 
@@ -23,17 +29,16 @@ If you want to integrate LinkedIn data into your application using the Model Con
 4. **Install HAPI MCP**: Make sure you have the HAPI MCP CLI installed. You can install it downloading from the HAPI MCP GitHub repository. Or running the install bash script provided in the repository.
 
   ```bash
-  curl -o hapi-mcp.zip -L https://github.com/hapi-server/hapi-mcp/archive/refs/heads/main.zip
-  unzip hapi-mcp.zip
-  cd hapi-mcp-main
-  ./install.sh
+  curl -fsSL https://get.mcp.com.ai/hapi.sh | bash
   ```
 
-5. **Start the MCP Server**: Run the following command to start the MCP Server:
+  Find more installation options in the [HAPI CLI documentation](/docs/3-components/hapi-server/hapi-cli), or at [HAPI MCP CLI microsite](https://hapi.mcp.com.ai).
+
+1. **Start the MCP Server**: Run the following command to start the MCP Server:
    ```
    hapi serve linkedin --headless
    ```
 
-6. **Test the MCP Server**: Use tools like Postman or Insomnia to test the API endpoints and ensure they are working as expected.
+2. **Test the MCP Server**: Use tools like Postman or Insomnia to test the API endpoints and ensure they are working as expected.
 
 By following these steps, you can successfully set up a LinkedIn MCP Server and integrate LinkedIn data into your application.
