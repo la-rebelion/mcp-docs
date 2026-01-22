@@ -1,8 +1,8 @@
 {
   "summary": {
     "total_apis": 9,
-    "total_endpoints": 193,
-    "generated_at": "2026-01-21T23:05:12Z",
+    "total_endpoints": 196,
+    "generated_at": "2026-01-22T02:08:56Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -77,6 +77,20 @@
       }
     },
     {
+      "filename": "openai-tools.yaml",
+      "title": "OpenAI API",
+      "description": "APIs for sampling from and fine-tuning language models",
+      "version": "2.0.0",
+      "endpoints": 9,
+      "server_url": "https://api.openai.com/v1",
+      "metadata": {
+        "file_size": 68881,
+        "file_hash": "c3afd4a5169059775ef19ff62c6cab65b99f1ca63e708a81fd0698ece6707d3f",
+        "last_modified": 1769047694,
+        "format": "yaml"
+      }
+    },
+    {
       "filename": "val-status.yaml",
       "title": "VALORANT Status API",
       "description": "Get the status of the VALORANT platform.",
@@ -88,20 +102,6 @@
         "file_hash": "7e7436b0bb73ea18caf9bbc06ac5ed86bde02308f17f87e1de12d491b4edadbe",
         "last_modified": 1754586670,
         "format": "yaml"
-      }
-    },
-    {
-      "filename": "openai-tools.json",
-      "title": "OpenAI API",
-      "description": "The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.",
-      "version": "2.3.0",
-      "endpoints": 6,
-      "server_url": "https://api.openai.com/v1",
-      "metadata": {
-        "file_size": 960537,
-        "file_hash": "a57ad2b2fb8f8ef78a4d19b5c71aaeaf44828cf157df2aee9f0a56208459227d",
-        "last_modified": 1769036690,
-        "format": "json"
       }
     },
     {

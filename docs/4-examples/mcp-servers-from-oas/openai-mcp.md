@@ -51,7 +51,7 @@ For more installation options, visit the [HAPI CLI documentation](/components/ha
 ### 2. Download OpenAI Tools OAS
 
 ```bash
-curl -o ~/.hapi/specs/openai-tools.json https://docs.mcp.com.ai/servers-apis/openapi/openai-tools.json
+curl -o ~/.hapi/specs/openai-tools.yaml https://docs.mcp.com.ai/servers-apis/openapi/openai-tools.yaml
 ```
 
 ### 3. Start the MCP Server
@@ -62,7 +62,7 @@ Use the `hapi serve` command to launch the server. We are using the HAPI MCP pre
 hapi serve openai-tools --headless --port 3030 --url https://api.openai.com/v1
 ```
 
-This OAS is a slimmed-down version of the [full OpenAI API](https://github.com/openai/openai-openapi/tree/manual_spec) from OpenAI's GitHub, focusing on image generation and audio transcription endpoints.
+This OAS is a **slimmed-down version** of the [full OpenAI API](https://github.com/openai/openai-openapi/releases) from OpenAI's GitHub, focusing on image generation and audio transcription endpoints.
 
 ### 4. Test and Integrate
 
@@ -98,7 +98,7 @@ For production environments, you can run the OpenAI MCP server as a Docker conta
 docker run --name hapi-openai -d \
   -p 3030:3030 \
   hapimcp/hapi-cli:latest serve \
-  --openapi https://docs.mcp.com.ai/servers-apis/openapi/openai-tools.json \
+  --openapi https://docs.mcp.com.ai/servers-apis/openapi/openai-tools.yaml \
   --headless \
   --url https://api.openai.com/v1
 ```
@@ -107,6 +107,5 @@ docker run --name hapi-openai -d \
 
 *   [HAPI MCP Deployment Guide](/deployment)
 *   [Docker Deployment](/deployment/docker)
-*   [Scaling MCP Servers](/mcp-at-scale)
 
 Find more ways to deploy in our [Deployment documentation](/deployment), including Cloudflare and other cloud providers.
