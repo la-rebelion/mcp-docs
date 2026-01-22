@@ -14,14 +14,16 @@ dateModified: '2025-08-07'
 ---
 import APICards from '@site/src/components/APICards';
 
-The HAPI Stack provides a set of APIs that are essential for the Model Context Protocol (MCP) and other related functionalities. These APIs are documented using OpenAPI specifications, which allow for easy understanding and integration.
+The **HAPI MCP Stack** offers a comprehensive suite of APIs essential for your AI agents and applications. These APIs are fully documented using OpenAPI specifications, ensuring easy understanding and rapid integration. Leverage the Model Context Protocol (MCP) to seamlessly connect your AI agents to these services.
 
-Do you want to deploy your own instance of these APIs or **any OAS v3** compliant API? Check out our [HAPI Stack Deployment Guide](/deployment) or CLI reference of the [HAPI CLI](/components/hapi-server/hapi-cli).
+Do you want to deploy your own instance of these APIs or **any OAS v3** compliant API? Check out the [BYO MCP Server](/examples/mcp-servers-from-oas) section, our [HAPI Stack Deployment Guide](/deployment), or CLI reference of the [HAPI CLI](/components/hapi-server/hapi-cli).
 
-**Deploying the MCP Server to Cloudflare Workers**
+**Deploying the MCP Server to Cloudflare Workers**. More details in the [Cloudflare Deployment Guide](deployment/cloud/cloudflare).
 
 ```bash
-hapi deploy --name <NAME> --project <PROJ_NAME> --openapi <COPY_URL_FROM_BELOW_LIST> --url <POINT_TO_YOUR_HEAD_API> --headless
+hapi deploy --name <NAME> --project <PROJ_NAME> \
+  --openapi <COPY_URL_FROM_BELOW_LIST> \
+  --url <POINT_TO_YOUR_HEAD_API> --headless
 ```
 
 **Running Locally with Docker**
@@ -29,8 +31,16 @@ hapi deploy --name <NAME> --project <PROJ_NAME> --openapi <COPY_URL_FROM_BELOW_L
 ```bash
 docker run -d --name mcp-server \
   hapimcp/hapi-cli:0.6.0 serve mcp-server \
-  --openapi <COPY_URL_FROM_BELOW_LIST> --url <POINT_TO_YOUR_HEAD_API> \
-  --headless
+  --openapi <COPY_URL_FROM_BELOW_LIST> \
+  --url <POINT_TO_YOUR_HEAD_API> --headless
+```
+
+**Running Locally with HAPI CLI**
+
+```bash
+hapi serve my-oas-api \
+  --openapi <COPY_URL_FROM_BELOW_LIST> \
+  --url <POINT_TO_YOUR_HEAD_API> --headless
 ```
 
 ## Available APIs

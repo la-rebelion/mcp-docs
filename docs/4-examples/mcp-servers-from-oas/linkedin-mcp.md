@@ -1,44 +1,81 @@
 ---
-title: LinkedIn MCP Server
-description: Instructions to create and run a LinkedIn MCP Server using HAPI MCP.
+title: "LinkedIn MCP Server: Integration Guide"
+description: "Learn how to integrate LinkedIn data into your AI agents using HAPI MCP. Follow our step-by-step guide to set up a Model Context Protocol server for LinkedIn."
 keywords:
   - LinkedIn MCP Server
   - HAPI MCP
   - OpenAPI
   - API Integration
+  - MCP Tools
 authors:
   - adrian
 ---
 
-If you want to integrate LinkedIn data into your application using the Model Context Protocol (MCP), you can set up a LinkedIn MCP Server by following these steps:
+Integrating LinkedIn data into your application using the Model Context Protocol (MCP) allows your AI agents to interact with professional network data seamlessly. By using **HAPI MCP**, you can wrap LinkedIn's API into a standardized interface.
 
-1. **Create a LinkedIn Developer Account**: If you haven't already, sign up for a LinkedIn Developer account and create a new application. This will give you access to the LinkedIn API and the necessary credentials (Client ID and Client Secret).
+Follow these steps to set up your LinkedIn MCP Server:
 
-2. Download the LinkedIn OpenAPI specification file (usually in JSON or YAML format), LinkedIn doesn't provide an official OpenAPI spec, but you can create your own based on their API documentation. Ask your favorite LLM to generate it, or download from the HAPI MCP non-official OAS repository.
+## Prerequisites
 
-3. **Configure the MCP Server**: Open your OAS file and add `x-hapi` extensions as needed to support LinkedIn's API features.
+1.  **LinkedIn Developer Account**: Sign up at the [LinkedIn Developer Portal](https://developer.linkedin.com/) and create a new application.
+2.  **API Credentials**: Obtain your **Client ID** and **Client Secret** from the application dashboard.
+3.  **OpenAPI Specification**: You will need an OAS file for LinkedIn. Since LinkedIn does not provide an official one, you can:
+    *   Generate one using an LLM based on official docs.
+    *   Download one from the [HAPI MCP Community Repository](https://github.com/hapimcp/openapi-specs).
 
-  ```yaml
-  x-hapi:
+---
+
+## Setup Steps
+
+### 1. Configure the MCP Server
+
+Create or edit your LinkedIn OpenAPI (`.json` or `.yaml`) file. Add the `x-hapi` extension to handle LinkedIn's OAuth2 authentication:
+
+```bash
+curl -o linkedin.yaml https://docs.mcp.com.ai/apis/openapi/linkedin.yaml
+```
+
+```yaml
+x-hapi:
   security:
     - oauth2_authorization_code:
         client_id: "YOUR_CLIENT_ID"           # Replace with your LinkedIn app's Client ID
         client_secret: "YOUR_CLIENT_SECRET"   # Replace with your LinkedIn app's Client Secret
-  ```
+```
 
-4. **Install HAPI MCP**: Make sure you have the HAPI MCP CLI installed. You can install it downloading from the HAPI MCP GitHub repository. Or running the install bash script provided in the repository.
+### 2. Install HAPI MCP
 
-  ```bash
-  curl -fsSL https://get.mcp.com.ai/hapi.sh | bash
-  ```
+If you haven't already, install the HAPI MCP CLI:
 
-  Find more installation options in the [HAPI CLI documentation](/docs/3-components/hapi-server/hapi-cli), or at [HAPI MCP CLI microsite](https://hapi.mcp.com.ai).
+```bash
+curl -fsSL https://get.mcp.com.ai/hapi.sh | bash
+```
 
-1. **Start the MCP Server**: Run the following command to start the MCP Server:
-   ```
-   hapi serve linkedin --headless
-   ```
+For more options, see the [HAPI CLI documentation](/components/hapi-server/hapi-cli).
 
-2. **Test the MCP Server**: Use tools like Postman or Insomnia to test the API endpoints and ensure they are working as expected.
+### 3. Start the MCP Server
 
-By following these steps, you can successfully set up a LinkedIn MCP Server and integrate LinkedIn data into your application.
+Launch your server by pointing to your LinkedIn configuration:
+
+```bash
+hapi serve linkedin --headless --port 3030 --url https://api.linkedin.com
+```
+
+### 4. Test the Integration
+
+Use an MCP-aware client or testing tool to verify the endpoints:
+
+*   **[chatMCP](https://chat.mcp.com.ai)**: Ideal for verifying tool execution.
+*   **[VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers#_add-an-mcp-server)**: Add the server to your GitHub Copilot configuration.
+
+Using the MCP Inspector:
+
+```bash
+hapi serve linkedin --headless --port 3030 --url https://api.linkedin.com | bunx @modelcontextprotocol/inspector
+```
+
+---
+
+## Conclusion
+
+By following these steps, you have successfully exposed LinkedIn as an MCP server. Your AI agents can now leverage professional insights and data through the standardized Model Context Protocol.
