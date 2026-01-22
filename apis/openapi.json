@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total_apis": 8,
-    "total_endpoints": 187,
-    "generated_at": "2026-01-16T01:39:18Z",
+    "total_apis": 9,
+    "total_endpoints": 193,
+    "generated_at": "2026-01-21T23:05:12Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -22,15 +22,15 @@
     },
     {
       "filename": "podcast-transcripts.yaml",
-      "title": "Podcast Resources API (MCP Resource Resolver)",
+      "title": "Podcast Transcripts API",
       "description": "HTTP API that exposes podcast episode transcripts as MCP-style Resources using a custom URI scheme (podcast://...). Clients can list resources, resolve/read a resource URI, and access episode-specific views (metadata, transcript, chunks, search).",
       "version": "0.1.0",
       "endpoints": 8,
       "server_url": "https://lenny-rachitsky.search.mcp.com.ai",
       "metadata": {
-        "file_size": 16534,
-        "file_hash": "e9bdc098853c531d106c99590365c83628d6805cb756081c71e67db2ca26a453",
-        "last_modified": 1768526068,
+        "file_size": 16512,
+        "file_hash": "36b9d7460f8368480981fed4b020a272c0f2cff79d08c0a40d5461c3fd582762",
+        "last_modified": 1768527669,
         "format": "yaml"
       }
     },
@@ -88,6 +88,20 @@
         "file_hash": "7e7436b0bb73ea18caf9bbc06ac5ed86bde02308f17f87e1de12d491b4edadbe",
         "last_modified": 1754586670,
         "format": "yaml"
+      }
+    },
+    {
+      "filename": "openai-tools.json",
+      "title": "OpenAI API",
+      "description": "The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference for more details.",
+      "version": "2.3.0",
+      "endpoints": 6,
+      "server_url": "https://api.openai.com/v1",
+      "metadata": {
+        "file_size": 960537,
+        "file_hash": "a57ad2b2fb8f8ef78a4d19b5c71aaeaf44828cf157df2aee9f0a56208459227d",
+        "last_modified": 1769036690,
+        "format": "json"
       }
     },
     {
