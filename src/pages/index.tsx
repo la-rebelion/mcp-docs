@@ -6,6 +6,7 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
+import { TerminalDemo } from '../components/TerminalDemo';
 
 const SvgLogo: React.ComponentType<React.ComponentProps<'svg'>> = require('@site/static/img/diagrams/mcp-hapi-server-face.svg').default;
 
@@ -53,7 +54,7 @@ function HomepageHeader() {
                 Learn More
               </Link>
             </div>
-            {/* Quick install commands - like mcp-use */}
+            {/* Quick install commands */}
             <div className={styles.installCommands}>
               <code className={styles.installCode}>
                 <span className={styles.installPrefix}>$</span> curl -fsSL https://get.mcp.com.ai/hapi.sh | bash
@@ -65,14 +66,8 @@ function HomepageHeader() {
           </div>
 
           {/* Right Column: Illustration */}
-          <div className={styles.heroIllustrationCol}>
-            <div className={styles.heroIllustration}>
-              <SvgLogo className={styles.heroLogo} role="img" />
-            </div>
-            <div className={styles.heroIllustrationLabel}>
-              <span className={styles.labelText}>HAPI Server</span>
-              <span className={styles.labelSubtext}>Headless API for MCP</span>
-            </div>
+          <div className="mt-20">
+            <TerminalDemo />
           </div>
         </div>
       </div>

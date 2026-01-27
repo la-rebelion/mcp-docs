@@ -1,0 +1,214 @@
+.container {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.textCenter {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--ifm-color-emphasis-600);
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.order1 { order: 1; }
+.order2 { order: 2; }
+
+@media (min-width: 768px) {
+  .terminalWrapper { order: 1; }
+  .descriptionWrapper { order: 2; }
+}
+
+/* On mobile terminal is usually below text, or above? 
+   Original code: Terminal is order-2 (second). Description is order-1 (first).
+   So text first, then terminal.
+   On Desktop (md): Terminal order-1 (left). Description order-2 (right).
+*/
+.descriptionWrapper {
+  order: 1; /* Default mobile: text first */
+}
+.terminalWrapper {
+  order: 2; /* Default mobile: terminal second */
+}
+
+@media (min-width: 768px) {
+  .descriptionWrapper { order: 2; }
+  .terminalWrapper { order: 1; }
+}
+
+
+.terminalCard {
+  background-color: var(--ifm-card-background-color, #1b1b1d);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--ifm-color-emphasis-100, #f6f8fa);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+[data-theme='dark'] .terminalHeader {
+  background-color: #2d2d2d;
+}
+
+.dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+}
+.dotRed { background-color: #ef4444; }
+.dotYellow { background-color: #eab308; }
+.dotGreen { background-color: #22c55e; }
+
+.headerTitle {
+  flex: 1;
+  text-align: center;
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.terminalBody {
+  padding: 1rem;
+  background-color: #1e1e1e; /* Standard dark terminal */
+  color: #e5e5e5;
+  font-family: monospace;
+  font-size: 0.875rem;
+  min-height: 200px;
+  line-height: 1.5;
+}
+
+.commandLine {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff; /* Bright command */
+  margin-bottom: 0.5rem;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.output {
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.outputLine {
+  color: #a0a0a0; /* muted foreground */
+  animation: fadeIn 0.3s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.cursor {
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Description styles */
+.descContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.currentStepTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.currentStepDesc {
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.125rem;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.featureDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--ifm-color-primary);
+  /* animate-pulse */
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.featureText {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.stepIndicators {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 1rem;
+}
+
+.stepDot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  transition: all 0.3s;
+  background-color: var(--ifm-color-emphasis-200);
+}
+
+.stepDotActive {
+  background-color: var(--ifm-color-primary);
+  transform: scale(1.1);
+}
