@@ -4,8 +4,62 @@
  */
 
 /* =============================================
-   HERO SECTION
+   HERO SECTION - ELECTRIC AURA EFFECTS
    ============================================= */
+
+/* Expanding aura pulse keyframe */
+@keyframes auraPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes auraGlow {
+  0%, 100% {
+    opacity: 0.4;
+    filter: blur(60px);
+  }
+  50% {
+    opacity: 0.7;
+    filter: blur(80px);
+  }
+}
+
+/* Electric border shimmer effect */
+@keyframes electricShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes electricPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px hsla(187, 85%, 53%, 0.3),
+      0 0 40px hsla(187, 85%, 53%, 0.1),
+      inset 0 0 60px hsla(187, 85%, 53%, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 0 40px hsla(187, 85%, 53%, 0.5),
+      0 0 80px hsla(187, 85%, 53%, 0.2),
+      inset 0 0 80px hsla(187, 85%, 53%, 0.1);
+  }
+}
 
 .heroBanner {
   padding: 4rem 0 5rem;
@@ -13,10 +67,96 @@
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, hsl(222.2 84% 4.9%) 0%, hsl(217.2 32.6% 12%) 100%);
+  animation: electricPulse 4s ease-in-out infinite;
+}
+
+/* Expanding aura circles in background */
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, hsla(187, 85%, 53%, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  animation: auraPulse 4s ease-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heroBanner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, hsla(187, 85%, 53%, 0.25) 0%, hsla(220, 80%, 50%, 0.1) 40%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  animation: auraPulse 4s ease-out infinite 1s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Electric border line at bottom */
+.heroBanner .container {
+  position: relative;
+  z-index: 1;
 }
 
 [data-theme='light'] .heroBanner {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  animation: none;
+}
+
+[data-theme='light'] .heroBanner::before,
+[data-theme='light'] .heroBanner::after {
+  background: radial-gradient(circle, hsla(187, 85%, 53%, 0.15) 0%, transparent 70%);
+}
+
+/* Electric particles overlay */
+.electricParticles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: hsla(187, 85%, 53%, 0.8);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px hsla(187, 85%, 53%, 0.8),
+    0 0 20px hsla(187, 85%, 53%, 0.4);
+}
+
+.particle:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation: floatParticle1 8s ease-in-out infinite;
+}
+
+.particle:nth-child(2) {
+  top: 60%;
+  right: 20%;
+  animation: floatParticle2 10s ease-in-out infinite;
+}
+
+.particle:nth-child(3) {
+  bottom: 30%;
+  left: 40%;
+  animation: floatParticle3 7s ease-in-out infinite;
+}
+
+[data-theme='light'] .electricParticles {
+  opacity: 0.5;
 }
 
 .heroBadge {
@@ -31,10 +171,32 @@
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(4px);
 }
 
 .badgeIcon {
   font-size: 1rem;
+}
+
+/* Floating electric particles container */
+@keyframes floatParticle1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  25% { transform: translate(100px, -50px) scale(0.8); opacity: 0.3; }
+  50% { transform: translate(200px, 20px) scale(1.2); opacity: 0.8; }
+  75% { transform: translate(50px, -30px) scale(0.6); opacity: 0.4; }
+}
+
+@keyframes floatParticle2 {
+  0%, 100% { transform: translate(0, 0) scale(0.8); opacity: 0.4; }
+  33% { transform: translate(-80px, 40px) scale(1); opacity: 0.7; }
+  66% { transform: translate(60px, -20px) scale(0.5); opacity: 0.3; }
+}
+
+@keyframes floatParticle3 {
+  0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+  50% { transform: translate(-120px, -60px); opacity: 0.8; }
 }
 
 .heroContent {
@@ -49,6 +211,22 @@
 .heroText {
   flex: 1;
   max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Electric glow text animation */
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px hsla(187, 85%, 53%, 0.3),
+      0 0 20px hsla(187, 85%, 53%, 0.1);
+  }
+  50% {
+    text-shadow: 
+      0 0 20px hsla(187, 85%, 53%, 0.5),
+      0 0 40px hsla(187, 85%, 53%, 0.2);
+  }
 }
 
 .heroTitle {
@@ -61,6 +239,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: textGlow 3s ease-in-out infinite;
 }
 
 [data-theme='light'] .heroTitle {
@@ -108,6 +287,33 @@
   flex-wrap: wrap;
 }
 
+/* Animated button glow keyframe */
+@keyframes buttonGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px hsla(187, 85%, 53%, 0.5),
+      0 0 20px hsla(187, 85%, 53%, 0.3),
+      0 0 40px hsla(187, 85%, 53%, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 10px hsla(187, 85%, 53%, 0.8),
+      0 0 30px hsla(187, 85%, 53%, 0.5),
+      0 0 60px hsla(187, 85%, 53%, 0.3);
+  }
+}
+
+@keyframes buttonPulseRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
 .ctaPrimary {
   background: hsl(187 85% 53%) !important;
   border-color: hsl(187 85% 53%) !important;
@@ -116,13 +322,35 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible;
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
+/* Pulse ring effect on button */
+.ctaPrimary::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid hsla(187, 85%, 53%, 0.5);
+  animation: buttonPulseRing 2s ease-out infinite;
+  pointer-events: none;
 }
 
 .ctaPrimary:hover {
   background: hsl(187 85% 45%) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px hsla(187, 85%, 53%, 0.3);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 8px 20px hsla(187, 85%, 53%, 0.4),
+    0 0 40px hsla(187, 85%, 53%, 0.3) !important;
+  animation: none;
+}
+
+.ctaPrimary:hover::before {
+  animation: none;
+  opacity: 0;
 }
 
 .ctaArrow {
@@ -243,6 +471,40 @@
   display: block;
   font-size: 0.8rem;
   color: hsl(215 20.2% 55%);
+}
+
+/* Electric line divider animation */
+@keyframes electricLine {
+  0% {
+    background-position: 0% 50%;
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    background-position: 200% 50%;
+    opacity: 0.5;
+  }
+}
+
+.heroBanner + main::before {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsla(187, 85%, 53%, 0.3) 10%,
+    hsla(187, 85%, 53%, 1) 50%,
+    hsla(187, 85%, 53%, 0.3) 90%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: electricLine 3s linear infinite;
+  box-shadow: 
+    0 0 10px hsla(187, 85%, 53%, 0.5),
+    0 0 20px hsla(187, 85%, 53%, 0.3);
 }
 
 /* =============================================

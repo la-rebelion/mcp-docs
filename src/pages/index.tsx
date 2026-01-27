@@ -13,11 +13,19 @@ const SvgLogo: React.ComponentType<React.ComponentProps<'svg'>> = require('@site
 /**
  * Hero section with clear value proposition and CTA
  * Follows "Blank-for-Blank" positioning strategy
+ * Includes electric aura effects
  */
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
+      {/* Electric particles overlay */}
+      <div className={styles.electricParticles} aria-hidden="true">
+        <div className={styles.particle} />
+        <div className={styles.particle} />
+        <div className={styles.particle} />
+      </div>
+      
       <div className="container">
         {/* Badge for credibility */}
         <div className={styles.heroBadge}>

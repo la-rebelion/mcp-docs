@@ -14,7 +14,7 @@ export const TerminalDemo: React.FC<TerminalDemoProps> = ({ showDescription = fa
     {
       title: "Developer View",
       command: "hapi serve petstore --headless",
-      description: "Test endpoints instantly with any MCP Client",
+      description: "Test instantly with any MCP Client",
       output: [
         "🚀 HAPI CLI v2.1.0",
         "📄 Loading petstore...",
@@ -77,7 +77,7 @@ export const TerminalDemo: React.FC<TerminalDemoProps> = ({ showDescription = fa
             {/* Terminal Content */}
             <div className={styles.terminalBody}>
               <div className={styles.commandLine}>
-                <Terminal className={styles.icon} />
+                {/* <Terminal className={styles.icon} /> */}
                 <span>$</span>
                 <span>
                   {currentStepData.command}
