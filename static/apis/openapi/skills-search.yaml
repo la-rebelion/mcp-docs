@@ -1,0 +1,165 @@
+openapi: 3.1.0
+info:
+  title: Agent Skills Search API
+  version: 1.0.0
+  description: |
+    API for searching Agent Skills from the skills.sh registry.
+    
+    Reference: https://agentskills.io/specification
+  contact:
+    url: https://agentskills.io
+  license:
+    name: MIT
+servers:
+  - url: https://skills.sh
+    description: Production server
+paths:
+  /api/search:
+    get:
+      operationId: searchSkills
+      summary: Search for Agent Skills
+      description: |
+        Search for Agent Skills using fuzzy matching. Returns skills that match
+        the provided query string, ordered by relevance and install count.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search query string for finding skills
+          schema:
+            type: string
+          example: mcp-com-ai
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of results to return
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+          example: 50
+      responses:
+        '200':
+          description: Successful search response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+              examples:
+                mcpSearch:
+                  summary: Search for MCP-related skills
+                  value:
+                    query: mcp-com-ai
+                    searchType: fuzzy
+                    skills:
+                      - id: mcp-com-ai/mcp-server-evaluations-skills/mcp-server-evaluations
+                        skillId: mcp-server-evaluations
+                        name: mcp-server-evaluations
+                        installs: 7
+                        source: mcp-com-ai/mcp-server-evaluations-skills
+                      - id: mcp-com-ai/api-to-mcp-skills/api-to-mcp
+                        skillId: api-to-mcp
+                        name: api-to-mcp
+                        installs: 1
+                        source: mcp-com-ai/api-to-mcp-skills
+                    count: 2
+                    duration_ms: 7
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Too many requests - rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    SearchResponse:
+      type: object
+      required:
+        - query
+        - searchType
+        - skills
+        - count
+        - duration_ms
+      properties:
+        query:
+          type: string
+          description: The processed search query string
+          example: mcp-com-ai
+        searchType:
+          type: string
+          enum:
+            - fuzzy
+            - exact
+          description: Type of search performed
+          example: fuzzy
+        skills:
+          type: array
+          description: Array of matching skills
+          items:
+            $ref: '#/components/schemas/Skill'
+        count:
+          type: integer
+          description: Number of skills returned
+          minimum: 0
+          example: 2
+        duration_ms:
+          type: number
+          description: Search duration in milliseconds
+          minimum: 0
+          example: 7
+    Skill:
+      type: object
+      required:
+        - id
+        - skillId
+        - name
+        - installs
+        - source
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the skill (full path)
+          example: mcp-com-ai/mcp-server-evaluations-skills/mcp-server-evaluations
+        skillId:
+          type: string
+          description: Short skill identifier
+          example: mcp-server-evaluations
+        name:
+          type: string
+          description: Display name of the skill
+          example: mcp-server-evaluations
+        installs:
+          type: integer
+          description: Number of times the skill has been installed
+          minimum: 0
+          example: 7
+        source:
+          type: string
+          description: Source repository or collection for the skill
+          example: mcp-com-ai/mcp-server-evaluations-skills
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: Invalid search query
+        code:
+          type: string
+          description: Error code
+          example: INVALID_QUERY
