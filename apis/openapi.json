@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total_apis": 9,
-    "total_endpoints": 196,
-    "generated_at": "2026-01-22T14:36:22Z",
+    "total_apis": 10,
+    "total_endpoints": 197,
+    "generated_at": "2026-02-04T12:44:01Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -87,6 +87,20 @@
         "file_size": 68881,
         "file_hash": "c3afd4a5169059775ef19ff62c6cab65b99f1ca63e708a81fd0698ece6707d3f",
         "last_modified": 1769047694,
+        "format": "yaml"
+      }
+    },
+    {
+      "filename": "skills-search.yaml",
+      "title": "Agent Skills Search API",
+      "description": "API for searching Agent Skills from the skills.sh registry.\n\nReference: https://agentskills.io/specification",
+      "version": "1.0.0",
+      "endpoints": 1,
+      "server_url": "https://skills.sh",
+      "metadata": {
+        "file_size": 4868,
+        "file_hash": "7ea60d5d5ae5e92321004bfc5da5d89cbdc540038fe2b8db14f9fcd5aab63e0e",
+        "last_modified": 1770208921,
         "format": "yaml"
       }
     },
