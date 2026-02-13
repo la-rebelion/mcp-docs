@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total_apis": 10,
-    "total_endpoints": 197,
-    "generated_at": "2026-02-04T12:44:01Z",
+    "total_apis": 11,
+    "total_endpoints": 200,
+    "generated_at": "2026-02-13T02:41:06Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -87,6 +87,20 @@
         "file_size": 68881,
         "file_hash": "c3afd4a5169059775ef19ff62c6cab65b99f1ca63e708a81fd0698ece6707d3f",
         "last_modified": 1769047694,
+        "format": "yaml"
+      }
+    },
+    {
+      "filename": "mcp-registry-safe.yaml",
+      "title": "MCP Server Registry API",
+      "description": "Specification for the REST API that serves up metadata about MCP servers. ONLY GET methods. This API is designed for use by MCP clients and subregistries to discover available servers, retrieve detailed metadata, and access registry-managed information such as publication timestamps and lifecycle status. The API focuses on server metadata and does not include endpoints for publishing or modifying server entries, which are expected to be handled through separate registry-specific mechanisms.\n\n The API includes pagination support for listing endpoints, and allows filtering by various criteria such as update timestamps and version. Server metadata includes information about the server's repository, packages, transport protocols, icons, and other details that can help clients determine how to install and run the server.\n\n This specification defines the standard API format and behavior, but individual MCP registries may have additional requirements or extensions. Always refer to your specific registry's documentation for details on authentication, rate limits, and any custom features.",
+      "version": "2025-12-01",
+      "endpoints": 3,
+      "server_url": "https://registry.modelcontextprotocol.io",
+      "metadata": {
+        "file_size": 26634,
+        "file_hash": "6098a01a4234f30c24f51440d4b3e4f0912dac7949b43807f6f6402dd132fb5d",
+        "last_modified": 1770950441,
         "format": "yaml"
       }
     },
