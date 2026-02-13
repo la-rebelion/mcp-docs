@@ -68,7 +68,7 @@ const ApiViewDialog: React.FC<{
 };
 
 const APICards: React.FC<APICardsProps> = ({ 
-  runMcpUrl = 'http://localhost:8080'
+  runMcpUrl = 'https://run.mcp.com.ai'
 }) => {
   const [apiData, setApiData] = useState<ApiData | null>(null);
   const [loading, setLoading] = useState(true);
