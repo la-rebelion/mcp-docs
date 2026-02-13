@@ -2,7 +2,7 @@
   "summary": {
     "total_apis": 11,
     "total_endpoints": 200,
-    "generated_at": "2026-02-13T02:41:06Z",
+    "generated_at": "2026-02-13T05:21:30Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -98,9 +98,9 @@
       "endpoints": 3,
       "server_url": "https://registry.modelcontextprotocol.io",
       "metadata": {
-        "file_size": 26634,
-        "file_hash": "6098a01a4234f30c24f51440d4b3e4f0912dac7949b43807f6f6402dd132fb5d",
-        "last_modified": 1770950441,
+        "file_size": 26706,
+        "file_hash": "98f0d5e5a1127b29544e63800650f71c8a865c4e2fa7ae200b09944fcf5b20b8",
+        "last_modified": 1770960054,
         "format": "yaml"
       }
     },
