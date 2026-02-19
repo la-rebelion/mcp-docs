@@ -38,8 +38,6 @@ x-hapi:
     - oauth2_authorization_code:
         client_id: $SECRETS.CLIENT_ID
         client_secret: $SECRETS.CLIENT_SECRET
-        # @idea - shall we add the redirect_uri here?
-        # redirect_path: "/oauth/callback"
     - oauth2_client_credentials:
         # client credentials flow does not require client_id and client_secret, instead uses the client credentials directly
 
