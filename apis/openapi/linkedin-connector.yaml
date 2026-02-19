@@ -1,0 +1,250 @@
+openapi: 3.0.2
+info:
+  title: LinkedIn API
+  description: |
+    LinkedIn API specification for MCPs to get person profile, and share content on LinkedIn. Empower professionals to operate smarter on LinkedIn by enabling them to share content and retrieve profile information seamlessly through AI-powered applications. 
+  version: 1.0.0
+  contact:
+    name: LinkedIn Developer Support
+    url: https://www.linkedin.com/developers/
+  license:
+    name: LinkedIn API License
+    url: https://www.linkedin.com/legal/l/api-terms-of-use
+
+servers:
+  - url: https://api.linkedin.com
+    description: LinkedIn API Server
+  - url: https://www.linkedin.com
+    description: LinkedIn OAuth Server
+security:
+  - oauth2_authorization_code: []
+
+components:
+  securitySchemes:
+    oauth2_authorization_code:
+      type: oauth2
+      description: 3-legged OAuth 2.0 Authorization Code Flow
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.linkedin.com/oauth/v2/authorization
+          tokenUrl: https://www.linkedin.com/oauth/v2/accessToken
+          refreshUrl: https://www.linkedin.com/oauth/v2/accessToken
+          scopes:
+            # https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin-v2
+            profile: Required to retrieve the member's lite profile including their id, name, and profile picture
+            email: Required to retrieve the member's email address
+            openid: Required to indicate the application wants to use OIDC to authenticate the member
+            # https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/share-on-linkedin
+            w_member_social: Write access to share on behalf of member
+    # LinkedIn's primary well-known configuration endpoint for OpenID Connect (OIDC) is https://www.linkedin.com/oauth/.well-known/openid-configuration, which provides metadata for developer integrations, such as authentication and API scopes
+    openIdConnect:
+      type: openIdConnect
+      openIdConnectUrl: https://www.linkedin.com/oauth/.well-known/openid-configuration
+
+  # parameters:
+  #   # API client should use versioning: https://learn.microsoft.com/en-us/linkedin/talent/versioning?view=li-lts-2025-04#how-your-api-client-should-use-versioning
+  #   APIVersion:
+  #     name: LinkedIn-Version
+  #     in: header
+  #     required: true
+  #     description: LinkedIn API version
+  #     schema:
+  #       type: string
+  #       example: 202504
+  #       default: 202504
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+        error_uri:
+          type: string
+
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          enum: [bearer]
+        expires_in:
+          type: integer
+        scope:
+          type: string
+        refresh_token:
+          type: string
+
+    ShareContent:
+      type: object
+      properties:
+        author:
+          type: string
+          description: URN of the member or organization
+        lifecycleState:
+          type: string
+          enum: [PUBLISHED, DRAFT]
+          default: PUBLISHED
+        visibility:
+          type: object
+          properties:
+            'com.linkedin.ugc.MemberNetworkVisibility':
+              type: string
+              description: Visibility of the share post
+              enum: [PUBLIC, CONNECTIONS]
+              default: PUBLIC
+          required:
+            - 'com.linkedin.ugc.MemberNetworkVisibility'
+        specificContent:
+          type: object
+          properties:
+            'com.linkedin.ugc.ShareContent':
+              type: object
+              properties:
+                shareCommentary:
+                  type: object
+                  description: Text for the content of the share post, long format
+                  properties:
+                    text:
+                      type: string
+                shareMediaCategory:
+                  type: string
+                  enum: [NONE, ARTICLE, IMAGE]
+                  default: NONE
+                media:
+                  type: array
+                  items:
+                    type: object
+                  nullable: true
+                  minItems: 0
+              required: [shareCommentary, shareMediaCategory]
+      required: [author, lifecycleState, visibility, specificContent]
+
+    AdAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+
+    Campaign:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        account:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+
+paths:
+  # Share on LinkedIn Endpoints
+  /v2/ugcPosts:
+    post:
+      tags:
+        - Share on LinkedIn
+      summary: Share on LinkedIn, create a share post
+      description: Create a new share post on LinkedIn using text, URLs, and images
+      operationId: createSharePost
+      security:
+        - oauth2_authorization_code: [w_member_social]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShareContent'
+      responses:
+        '201':
+          description: Share created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+    get:
+      tags:
+        - Share on LinkedIn
+      summary: Get share posts
+      description: Retrieve share posts for the authenticated user or organization
+      operationId: getSharePosts
+      security:
+        - oauth2_authorization_code: [r_organization_social]
+      parameters:
+        - name: authors
+          in: query
+          schema:
+            type: string
+          description: URN of the author (member or organization)
+        - name: count
+          in: query
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+        - name: start
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of share posts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  elements:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ShareContent'
+
+  /v2/userinfo:
+    get:
+      tags:
+        - Share on LinkedIn
+      summary: Get person profile
+      description: Get basic profile information for a person
+      operationId: getPersonProfile
+      security:
+        - oauth2_authorization_code: [r_liteprofile]
+      responses:
+        '200':
+          description: Person profile information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  firstName:
+                    type: object
+                  lastName:
+                    type: object
+
+tags:
+  - name: Share on LinkedIn
+    description: Endpoints for sharing content on LinkedIn

@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total_apis": 11,
-    "total_endpoints": 200,
-    "generated_at": "2026-02-13T05:21:30Z",
+    "total_apis": 12,
+    "total_endpoints": 203,
+    "generated_at": "2026-02-19T14:15:16Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -35,6 +35,20 @@
       }
     },
     {
+      "filename": "linkedin-connector.yaml",
+      "title": "LinkedIn API",
+      "description": "LinkedIn API specification for MCPs to get person profile, and share content on LinkedIn. Empower professionals to operate smarter on LinkedIn by enabling them to share content and retrieve profile information seamlessly through AI-powered applications. ",
+      "version": "1.0.0",
+      "endpoints": 3,
+      "server_url": "https://api.linkedin.com",
+      "metadata": {
+        "file_size": 7621,
+        "file_hash": "735211b880a7110db6a18e5e2d030f662ee2fb5f8cab495b8e9cc0dc72eb2948",
+        "last_modified": 1771510457,
+        "format": "yaml"
+      }
+    },
+    {
       "filename": "val-ranked.yaml",
       "title": "VALORANT Ranked API",
       "description": "Get ranked leaderboard and competitive tier information for VALORANT.",
@@ -56,9 +70,9 @@
       "endpoints": 11,
       "server_url": "https://api.linkedin.com",
       "metadata": {
-        "file_size": 18067,
-        "file_hash": "9135b244c0a091f77423080ef74154ed714b89af94bca909101a4ad6f206a91e",
-        "last_modified": 1754594091,
+        "file_size": 17970,
+        "file_hash": "f70ad7004f2553e8fe26b1b2fa2d54c479739e78bad81b60f5a0a1a54399cc2c",
+        "last_modified": 1771510494,
         "format": "yaml"
       }
     },
