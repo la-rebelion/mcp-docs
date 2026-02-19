@@ -1,9 +1,8 @@
 openapi: 3.0.3
 info:
-  title: LinkedIn API
+  title: LinkedIn MCP Connector
   description: |
-    LinkedIn API specification including 3-legged OAuth, 2-legged OAuth (Client Credentials), 
-    Share on LinkedIn endpoints, and LinkedIn Ad Library endpoints.
+    LinkedIn API specification for MCPs to get person profile, and share content on LinkedIn. Empower professionals to operate smarter on LinkedIn by enabling them to share content and retrieve profile information seamlessly through AI-powered applications. 
   version: 1.0.0
   contact:
     name: LinkedIn Developer Support
