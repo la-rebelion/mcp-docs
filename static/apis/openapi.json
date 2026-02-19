@@ -2,7 +2,7 @@
   "summary": {
     "total_apis": 12,
     "total_endpoints": 203,
-    "generated_at": "2026-02-19T14:15:16Z",
+    "generated_at": "2026-02-19T16:14:30Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -64,15 +64,15 @@
     },
     {
       "filename": "linkedin.yaml",
-      "title": "LinkedIn API",
-      "description": "LinkedIn API specification including 3-legged OAuth, 2-legged OAuth (Client Credentials), \nShare on LinkedIn endpoints, and LinkedIn Ad Library endpoints.",
+      "title": "LinkedIn MCP Connector",
+      "description": "LinkedIn API specification for MCPs to get person profile, and share content on LinkedIn. Empower professionals to operate smarter on LinkedIn by enabling them to share content and retrieve profile information seamlessly through AI-powered applications. ",
       "version": "1.0.0",
       "endpoints": 11,
       "server_url": "https://api.linkedin.com",
       "metadata": {
-        "file_size": 17970,
-        "file_hash": "f70ad7004f2553e8fe26b1b2fa2d54c479739e78bad81b60f5a0a1a54399cc2c",
-        "last_modified": 1771510494,
+        "file_size": 18076,
+        "file_hash": "590e9705d6108dcc3310803b78bfd04461498d8349406be707371838ecb539a2",
+        "last_modified": 1771510940,
         "format": "yaml"
       }
     },
@@ -149,14 +149,14 @@
     {
       "filename": "strava.json",
       "title": "Strava API v3",
-      "description": "The [Swagger Playground](https://developers.strava.com/playground) is the easiest way to familiarize yourself with the Strava API by submitting HTTP requests and observing the responses before you write any client code. It will show what a response will look like with different endpoints depending on the authorization scope you receive from your athletes. To use the Playground, go to https://www.strava.com/settings/api and change your “Authorization Callback Domain” to developers.strava.com. Please note, we only support Swagger 2.0. There is a known issue where you can only select one scope at a time. For more information, please check the section “client code” at https://developers.strava.com/docs.",
-      "version": "3.0.0",
+      "description": "The Strava API v3 OpenAPI specification for use with HAPI Model Context Protocol (MCP) servers. Enables AI integration with Strava's athlete activity tracking, segments, clubs, and performance data. For interactive testing, visit the [chatMCP Playground](https://chat.mcp.com.ai). To use the playground, configure your MCP Endpoint, connect your Strava account, and start making calls to retrieve athlete stats, segment information, and more.",
+      "version": "3.0.0+0.7.1",
       "endpoints": 34,
       "server_url": "https://www.strava.com/api/v3",
       "metadata": {
-        "file_size": 176203,
-        "file_hash": "94b60edcbad4aed115e56cb6b19f63ee447e953a28f5dd8279b53b6a52674830",
-        "last_modified": 1754594127,
+        "file_size": 175273,
+        "file_hash": "3f682b9069b03b675c6d1d6d474b8709e71dad39483db77993cac57c8c95a669",
+        "last_modified": 1771517267,
         "format": "json"
       }
     },

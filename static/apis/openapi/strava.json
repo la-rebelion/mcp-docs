@@ -2,48 +2,14 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Strava API v3",
-    "description": "The [Swagger Playground](https://developers.strava.com/playground) is the easiest way to familiarize yourself with the Strava API by submitting HTTP requests and observing the responses before you write any client code. It will show what a response will look like with different endpoints depending on the authorization scope you receive from your athletes. To use the Playground, go to https://www.strava.com/settings/api and change your “Authorization Callback Domain” to developers.strava.com. Please note, we only support Swagger 2.0. There is a known issue where you can only select one scope at a time. For more information, please check the section “client code” at https://developers.strava.com/docs.",
-    "version": "3.0.0"
+    "description": "The Strava API v3 OpenAPI specification for use with HAPI Model Context Protocol (MCP) servers. Enables AI integration with Strava's athlete activity tracking, segments, clubs, and performance data. For interactive testing, visit the [chatMCP Playground](https://chat.mcp.com.ai). To use the playground, configure your MCP Endpoint, connect your Strava account, and start making calls to retrieve athlete stats, segment information, and more.",
+    "version": "3.0.0+0.7.1"
   },
   "servers": [
     {
       "url": "https://www.strava.com/api/v3"
     }
   ],
-  "x-hapi-allowed-origins": [
-    "http://localhost:8080",
-    "http://localhost:3000",
-    "http://localhost:5173"
-  ],
-  "x-hapi": {
-    "cors": {
-      "enabled": true,
-      "origin": [
-        "http://localhost:8080",
-        "http://localhost:3000"
-      ],
-      "headers": [
-        "Content-Type",
-        "Authorization",
-        "X-Requested-With"
-      ],
-      "methods": [
-        "GET",
-        "POST",
-        "PUT",
-        "DELETE",
-        "OPTIONS"
-      ]
-    },
-    "security": [
-      {
-        "strava_oauth": {
-          "client_id": "$SECRETS.CLIENT_ID",
-          "client_secret": "$SECRETS.CLIENT_SECRET"
-        }
-      }
-    ]
-  },
   "security": [
     {
       "strava_oauth": [
