@@ -1,8 +1,8 @@
 {
   "summary": {
-    "total_apis": 12,
-    "total_endpoints": 203,
-    "generated_at": "2026-02-19T16:14:30Z",
+    "total_apis": 13,
+    "total_endpoints": 216,
+    "generated_at": "2026-02-21T13:28:07Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -18,6 +18,20 @@
         "file_hash": "4bb7f3aaef12a5d1cac5d9df764315a2c22518ae5518de1e54171f72e6f64c59",
         "last_modified": 1767875699,
         "format": "json"
+      }
+    },
+    {
+      "filename": "strava-connector.yaml",
+      "title": "MCP Strava Connector",
+      "description": "The Strava API v3 OpenAPI specification for use with HAPI Model Context Protocol (MCP) servers. Enables AI integration with Strava's athlete activity tracking, segments, clubs, and performance data. For interactive testing, visit the [chatMCP Playground](https://chat.mcp.com.ai). To use the playground, configure your MCP Endpoint, connect your Strava account, and start making calls to retrieve athlete stats, segment information, and more.",
+      "version": "3.0.0+0.7.1",
+      "endpoints": 13,
+      "server_url": "https://www.strava.com/api/v3",
+      "metadata": {
+        "file_size": 70960,
+        "file_hash": "245ea7cb7337a00b068eda7dbc4566cdfef32e29042b7a778334156f2d99b207",
+        "last_modified": 1771680406,
+        "format": "yaml"
       }
     },
     {
@@ -42,9 +56,9 @@
       "endpoints": 3,
       "server_url": "https://api.linkedin.com",
       "metadata": {
-        "file_size": 7621,
-        "file_hash": "735211b880a7110db6a18e5e2d030f662ee2fb5f8cab495b8e9cc0dc72eb2948",
-        "last_modified": 1771510457,
+        "file_size": 7727,
+        "file_hash": "bbe0f170db8a6bdad8cad318d288e2826d84c4e6c4a2e3659fba948a9b8854db",
+        "last_modified": 1771680405,
         "format": "yaml"
       }
     },
