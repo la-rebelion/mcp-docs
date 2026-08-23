@@ -12,7 +12,7 @@ keywords:
   - MCP
 author: 'La Rebelion Labs'
 publisher: 'MCP Project'
-dateModified: '2025-07-27'
+dateModified: '2026-08-23'
 ---
 
 # HAPI Server: API-first approach for Model Context Protocol
@@ -39,6 +39,13 @@ HAPI treats your [API schema as the contract](https://rebelion.la/you-dont-need-
 - **Security:** Supports OAuth2, API keys, and custom auth via OpenAPI security schemes
   - For [gRPC authentication](https://grpc.io/docs/guides/auth/#extending-grpc-to-support-other-authentication-mechanisms), HAPI Server uses metadata and MCP context, or mutual TLS
 - **Extensible:** Add custom logic, hooks, or middleware as needed
+- **HAPI Workflows:** Expose supported Arazzo workflows as MCP tools that can coordinate documented OpenAPI operations
+
+:::info[HAPI Workflows beta]
+HAPI Workflows is available with the HAPI v1 beta Docker tags `workflows` and
+`arazzo`. See [HAPI Workflows](/components/hapi-server/hapi-workflows) to
+validate and serve an Arazzo document.
+:::
 
 ## How HAPI Fits in the MCP Stack
 HAPI acts as the API gateway and schema enforcer for MCP-powered systems. It ensures that every request and response conforms to the agreed contract, and provides the context hooks needed for advanced orchestration.

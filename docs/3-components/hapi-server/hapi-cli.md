@@ -1,188 +1,117 @@
 ---
 sidebar_position: 2
 title: HAPI CLI
-description: Command-line tool for managing HAPI MCP projects
+description: Serve OpenAPI APIs and Arazzo workflows as MCP servers with the HAPI CLI.
 keywords:
   - HAPI CLI
-  - command-line
-  - API management
+  - OpenAPI
+  - Arazzo
+  - HAPI Workflows
   - MCP
-  - Cloudflare Workers
-  - Fly.io
-  - Docker
-dateModified: '2026-01-06'
+dateModified: '2026-08-23'
 ---
 
 # HAPI CLI
 
-The HAPI CLI is a command-line tool for managing and serving API projects using the HAPI server for Model Context Protocol (MCP). It enables you to bootstrap, configure, and run API-first services with ease.
+The HAPI CLI turns documented APIs and workflows into MCP servers. Use it with an OpenAPI document to expose API operations as tools, or with an Arazzo document to expose higher-level HAPI Workflows.
 
-## Installation
+## HAPI v1 beta
 
-To install HAPI CLI, you can download the latest release from the [HAPI GitHub repository](https://github.com/la-rebelion/hapi-cli/releases).
-
-Another option is to use the `install` script accessible via curl:
-
-**Linux users**
+HAPI Workflows is part of the upcoming HAPI v1 release. Docker users can try it with:
 
 ```bash
-curl -fsSL https://get.mcp.com.ai/hapi.sh | bash
+docker pull hapimcp/hapi-cli:workflows
 ```
 
-**Windows users**
+`hapimcp/hapi-cli:workflows` and `hapimcp/hapi-cli:arazzo` point to the same v1 beta image. Pin a `1.0.0-beta.*` version when repeatability matters.
 
-```shell
-irm https://get.mcp.com.ai/hapi.ps1 | iex
-```
+:::note
+The `latest` Docker tag remains the production-ready HAPI 0.x line until HAPI v1 is stable.
+:::
 
-Or **download the binary directly** from the [releases page](https://github.com/la-rebelion/hapimcp/releases/)
+## Commands
 
-Other installation methods, including Docker, [Fly.io](https://fly.io/dashboard), and [Cloudflare](https://dash.cloudflare.com) Workers, can be found in the [HAPI Server Deployment](/deployment).
+| Command | Use it to |
+| --- | --- |
+| `hapi serve` | Serve an OpenAPI or Arazzo document; HAPI detects the document type. |
+| `hapi openapi serve` | Explicitly serve an OpenAPI document as MCP tools. |
+| `hapi arazzo serve` | Explicitly serve an Arazzo document as HAPI Workflow MCP tools. |
+| `hapi workflows serve` | Alias for `hapi arazzo serve`. |
+| `hapi arazzo validate` | Validate an Arazzo document before serving it. |
+| `hapi plugins list` | Show installed or bundled capabilities. |
+| `hapi doctor` | Check the local HAPI environment. |
 
-## Commands Overview
+Run `hapi help` or append `--help` to any command for its complete option list.
 
-- `serve`: Start a HAPI MCP server from a local project name or a remote OpenAPI URL.
-- `list`: Show available specs discovered under `~/.hapi/specs` (or your configured `HAPI_HOME`).
-- `deploy`: Publish a HAPI MCP server to Cloudflare Workers (uses Wrangler under the hood).
-- `login`: Authenticate the CLI for deploy targets.
-- `--help`: Display the full command and flag reference.
+## Choose a document
 
-## Basic Usage (serve)
-
-To start a HAPI server for your API project, use the `serve` command:
+Use `--specs` for both OpenAPI and Arazzo documents:
 
 ```bash
-# local file
-hapi serve <projectname> [options]
-# remote URL
-hapi serve https://petstore3.swagger.io/api/v3/openapi.json [options]
+# Local document
+hapi serve --specs ./openapi.yaml
+
+# HTTP(S) document
+hapi serve --specs https://example.com/openapi.json
+
+# Document stored under $HAPI_HOME/specs
+hapi serve --specs petstore.yaml
 ```
 
-### Example
+Local paths, `file:` URLs, and `path:` URLs are read from the filesystem. HTTP(S) URLs are fetched remotely. The legacy `--openapi` option remains available for OpenAPI only; use `--specs` in new scripts.
+
+## Serve an OpenAPI API
 
 ```bash
-hapi serve petstore --headless
+hapi openapi serve --specs ./openapi.yaml \
+  --url https://api.example.com \
+  --headless \
+  --port 3000
 ```
 
-This will start the Headless API (HAPI) MCP server for the "petstore" project on port 3000 (default).
+`--url` selects the API backend that HAPI calls. Without it, HAPI uses the server URL in the OpenAPI document.
 
-## Common Options (serve)
-
-| Option            | Description                                                      | Default                |
-|-------------------|------------------------------------------------------------------|------------------------|
-| `-p, --port`      | Port to listen on                                                | `3000`                 |
-| `--dev`           | Enable developer/debug mode                                      |                        |
-| `-m, --mcp`       | Enable MCP mode (Greenfield)                                     | `false`                |
-| `--headless`      | Run in headless mode (no REST API, only MCP - Brownfield)        | `false`                |
-| `-u, --url`       | Base URL for backend API (used in headless mode) - default: Swagger's servers | `http://localhost:3000`|
-| `--cert`          | Path to SSL certificate file (.pem) for HTTPS                    |                        |
-| `--key`           | Path to SSL key file (.pem) for HTTPS                            |                        |
-| `-c, --cors`      | Comma-separated list of allowed origins for CORS                 | `*` (all origins)      |
-<!-- | `--log-level`     | Override log level (e.g., `info`, `debug`, `warn`, `error`)      | environment default    | -->
-
-### Environment variables
-
-| Variable                | Purpose                                                          |
-|-------------------------|------------------------------------------------------------------|
-| `HAPI_HOME`             | Directory for specs, configs, and logs (matches `--home`).       |
-| `HAPI_OPENAPI`          | Override the OpenAPI source URL/path when using deploy flows.    |
-| `HAPI_URL`              | Backend base URL for headless mode.                              |
-| `HAPI_LOG_LEVEL_DEV`    | Log level when `NODE_ENV=development`.                           |
-| `HAPI_LOG_LEVEL_PROD`   | Log level when `NODE_ENV=production`.                            |
-| `HAPI_DISABLE_FILE_LOGS`| Set to `true` to disable file logging.                           |
-
-> Tip: Flags take precedence over environment variables when both are provided.
-
-## Running with TLS (HTTPS)
-
-To enable HTTPS, provide both a certificate and key file:
+## Serve HAPI Workflows
 
 ```bash
-hapi serve linkedin --port 443 --cert ./certs/cert.pem --key ./certs/key.pem
+hapi workflows validate --specs ./workflow.yaml
+
+hapi workflows serve --specs ./workflow.yaml \
+  --port 3000 \
+  --host 0.0.0.0 \
+  --public-host http://localhost:3000
 ```
 
-> **Tip:** You can generate a self-signed certificate for development using OpenSSL:
-> ```bash
-> openssl req -x509 -newkey rsa:2048 -nodes -keyout key.pem -out cert.pem -days 365 -subj "/CN=localhost"
-> ```
+Every supported Arazzo `workflowId` becomes an MCP tool. HAPI uses the server URL for each referenced `sourceDescription`; this lets a workflow call multiple APIs. See [HAPI Workflows](./hapi-workflows) for details.
 
-## Headless Mode
+## Common serve options
 
-Headless mode disables the REST API and only enables MCP server functionality:
+| Option | Description |
+| --- | --- |
+| `--specs <source>` | Local path, file/path URL, HTTP(S) URL, or a document in `$HAPI_HOME/specs`. |
+| `--url <url>` | Override the backend URL. For multi-API workflows, omit it to use each source's declared server. |
+| `--port <port>` | Port for the HAPI MCP server. Default: `3000`. |
+| `--host <address>` | Address to bind. Use `0.0.0.0` in containers. |
+| `--public-host <url>` | Public MCP URL advertised for OAuth and resource metadata. |
+| `--headless` | OpenAPI mode: expose MCP while the API backend remains external. |
+| `--dev` | Enable development diagnostics. |
+| `--cors <origins>` | Comma-separated allowed browser origins. |
+
+## Docker
+
+The v1 beta image uses `/var/lib/hapi` as its HAPI home and writes logs to container output:
 
 ```bash
-hapi serve myproject --headless
+docker run --rm \
+  -v "$HOME/.hapi:/var/lib/hapi" \
+  hapimcp/hapi-cli:workflows plugins list
 ```
 
-## CORS Configuration
+See [Docker deployment](/deployment/docker) for complete OpenAPI and HAPI Workflow examples.
 
-Allow specific origins for CORS:
+## Further reading
 
-```bash
-hapi serve myproject --cors "https://example.com,https://another.com"
-```
-
-## Debugging
-
-Enable debug mode to see detailed logs and registered routes:
-
-```bash
-hapi serve myproject --dev
-```
-
-## Listing available specs
-
-List all OpenAPI specs discovered in your HAPI home:
-
-```bash
-hapi list
-```
-
-## Deploying to Cloudflare Workers
-
-Use `hapi deploy` to publish a worker (Wrangler required):
-
-```bash
-hapi deploy --openapi https://petstore3.swagger.io/api/v3/openapi.json \
-  --url https://petstore3.swagger.io/api/v3 \
-  --name petstore-hapi
-```
-
-Notable flags:
-
-- `--openapi <url>`: (required) OpenAPI spec URL or file.
-- `--url <url>`: Backend base URL for headless mode.
-- `--name <name>`: Worker name (RFC 1123 compliant). Autogenerated if omitted.
-- `--project <project>`: Optional project grouping name.
-- `--var KEY=VALUE`: Repeatable extra vars passed to the worker.
-- `--dry-run`: Show what would be deployed without executing.
-- `--keep-config`: Keep generated temporary config files for inspection.
-
-## Using Docker
-
-You can run the CLI inside a container for local or air-gapped environments:
-
-```bash
-docker run --name hapi-petstore -d --rm \
-  -p 3030:3030 \
-  -v ~/.hapi:/app/.hapi \
-  hapimcp/hapi-cli:latest serve petstore --port 3030 --headless
-```
-
-For more deployment patterns (Fly.io, Cloudflare, air-gapped), see the Docker deployment guide in the deployment section.
-
-## Help
-
-To see all available commands and options:
-
-```bash
-hapi --help
-```
-
-## Further Reading
-
-- [HAPI Server Documentation](../hapi-server)
-- HAPI MCP Server [Deployment Guide](/deployment)
+- [HAPI Workflows](./hapi-workflows)
+- [Docker deployment](/deployment/docker)
 - [OpenAPI Specification](https://swagger.io/specification/)
-- [Model Context Protocol (MCP)](https://github.com/la-rebelion)
-
+- [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)

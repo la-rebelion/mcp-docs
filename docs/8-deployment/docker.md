@@ -1,294 +1,191 @@
 ---
 sidebar_position: 2
 sidebar_label: Docker
-title: 'Docker: Deploying HAPI MCP Servers'
-description: 'How to deploy and run HAPI MCP servers using Docker for local development, cloud deployment, and air-gapped environments.'
+title: Docker deployment
+description: Run OpenAPI APIs and HAPI Workflows as MCP servers with Docker.
 keywords:
   - Docker
   - MCP
   - OpenAPI
-  - API-first
-  - Model Context Protocol
-  - Container
+  - Arazzo
+  - HAPI Workflows
   - HAPI
-author: 'La Rebelion Labs'
-publisher: 'MCP Project'
-dateModified: '2025-01-05'
+dateModified: '2026-08-23'
 ---
 
-# Docker: Deploying HAPI MCP Servers
+# Docker deployment
 
-This guide covers how to deploy and run HAPI MCP servers using Docker for local development, cloud deployments, and air-gapped environments.
+Run HAPI MCP servers locally, in cloud environments, or in disconnected networks with the official Docker image.
+
+## Choose an image tag
+
+| Tag | Intended use |
+| --- | --- |
+| `latest` | Production-ready HAPI 0.x release line. |
+| `workflows` | HAPI v1 beta with OpenAPI and HAPI Workflows (Arazzo). |
+| `arazzo` | Alias for `workflows`. |
+| `1.0.0-beta.0823` | A pinned HAPI v1 beta version. |
+
+:::caution[HAPI v1 is a beta]
+Use `workflows`, `arazzo`, or a pinned `1.0.0-beta.*` tag to evaluate HAPI Workflows. Keep using `latest` for production until HAPI v1 is stable.
+:::
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker/) installed on your machine
-- Access to the HAPI MCP CLI image (`hapimcp/hapi-cli`)
-- An OpenAPI specification for your API
+- [Docker](https://docs.docker.com/get-docker/)
+- An OpenAPI or Arazzo document
+- Network access from the container to the documented API backend, unless all required documents and APIs are available locally
 
-## Quick Start: Run Locally
+The v1 image runs as a non-root user, uses `/var/lib/hapi` for persistent state, and writes operational logs to standard container output.
 
-The fastest way to start an HAPI MCP server locally is using `docker run` with volume mounts for configuration and specs.
+## Serve an OpenAPI document
 
-### Basic Example
-
-```sh
-docker run --name hapi-petstore -d --rm \
-  -p 3030:3030 \
-  -v ~/.hapi:/app/.hapi \
-  hapimcp/hapi-cli:latest serve petstore \
-  --port 3030 \
-  --headless
-```
-
-**What this does:**
-- `--name hapi-petstore`: Names the container for easy reference.
-- `-d`: Runs the container in detached mode (background).
-- `--rm`: Automatically removes the container when it stops.
-- `-p 3030:3030`: Exposes port 3030 from the container to your host.
-- `-v ~/.hapi:/app/.hapi`: Mounts your local HAPI home directory for persistence.
-- `serve petstore`: Runs the petstore example (built-in demo).
-- `--port 3030`: Sets the server port inside the container.
-- `--headless`: Act as a **headless-API (HAPI) server**, the business logic runs in the server defined by the OpenAPI spec.
-
-### With Environment Variables
-
-For more control, pass environment variables:
+Mount a document from the current directory and expose the MCP server on port 3000:
 
 ```sh
-docker run --name hapi-petstore -d --rm \
-  -p 3030:3030 \
-  -v ~/.hapi:/app/.hapi \
-  -e HAPI_HOME=/app/.hapi \
-  hapimcp/hapi-cli:0.6.0 serve petstore \
-  --port 3030 \
+docker run --name hapi-openapi --rm -d \
+  -p 3000:3000 \
+  -v "$PWD:/specs:ro" \
+  hapimcp/hapi-cli:workflows \
+  serve --specs /specs/openapi.yaml \
+  --url https://api.example.com \
   --headless \
-  --dev \
-  --url "https://petstore3.swagger.io/api/v3"
+  --host 0.0.0.0 \
+  --public-host http://localhost:3000
 ```
 
-**Key environment variables:**
-- `HAPI_HOME`: Path to HAPI configuration directory inside the container.
-- `url`: Backend API URL for headless mode. Overrides the default in the OpenAPI spec.
-- `dev`: Enables development mode with verbose logging.
+The MCP endpoint is available at `http://localhost:3000/mcp`.
 
-## Advanced Usage: Custom OpenAPI Specs
+- `--specs` chooses the API document.
+- `--url` overrides the OpenAPI document's server URL.
+- `--headless` exposes MCP while API requests are sent to the external backend.
+- `--host 0.0.0.0` makes the service reachable through Docker port publishing.
+- `--public-host` is the public MCP URL advertised to OAuth clients.
 
-If you have multiple OpenAPI specs in a local directory, mount them into the container:
+## Serve HAPI Workflows (Arazzo)
 
-```sh
-docker run --name hapi-custom -d --rm \
-  -p 3030:3030 \
-  -v ~/.hapi:/app/.hapi \
-  -v ~/my-specs:/app/.hapi/specs \
-  hapimcp/hapi-cli:latest serve my-api-openapi \
-  --port 3030 \
-  --headless
-```
+HAPI Workflows expose supported Arazzo `workflowId` values as MCP tools.
 
-The parameter `my-api-openapi` corresponds to the filename (without extension) of your OpenAPI spec located in `~/my-specs`.
-
-### List Available Specs
-
-View all mounted specs without starting a server:
+First, validate the workflow:
 
 ```sh
 docker run --rm \
-  -v ~/.hapi:/app/.hapi \
-  hapimcp/hapi-cli:latest list
+  -v "$PWD:/specs:ro" \
+  hapimcp/hapi-cli:workflows \
+  workflows validate --specs /specs/workflow.yaml
 ```
 
-This outputs all available OpenAPI specs and configurations.
-
-### Help Command
-
-Get help on commands and options:
+Then serve it:
 
 ```sh
-docker run --rm hapimcp/hapi-cli:latest help
+docker run --name hapi-workflows --rm -d \
+  -p 3000:3000 \
+  -v "$PWD:/specs:ro" \
+  hapimcp/hapi-cli:workflows \
+  workflows serve --specs /specs/workflow.yaml \
+  --port 3000 \
+  --host 0.0.0.0 \
+  --public-host http://localhost:3000
 ```
 
-## Container Management
+`hapi arazzo serve` and `hapi workflows serve` are exact aliases. The general `hapi serve` command also detects Arazzo documents automatically.
 
-### View Logs
+### Backends in workflows
+
+When no `--url` is supplied, HAPI sends each step to the server declared by the OpenAPI document referenced by that Arazzo `sourceDescription`. This preserves workflows that call multiple APIs.
+
+Use `--url` only when you intentionally want all workflow steps to use one replacement backend, such as a staging environment:
 
 ```sh
-docker logs hapi-petstore
+docker run --rm \
+  -v "$PWD:/specs:ro" \
+  hapimcp/hapi-cli:workflows \
+  workflows serve --specs /specs/workflow.yaml \
+  --url https://staging.example.com
 ```
 
-For real-time logs:
+## Persist HAPI state
+
+Mount a host directory at `/var/lib/hapi` to retain local specifications and configuration between runs:
 
 ```sh
-docker logs -f hapi-petstore
+docker run --rm \
+  -v "$HOME/.hapi:/var/lib/hapi" \
+  hapimcp/hapi-cli:workflows plugins list
 ```
 
-### Stop a Container
+You can place documents under `$HAPI_HOME/specs` and refer to them by filename:
 
 ```sh
-docker stop hapi-petstore
+docker run --rm \
+  -v "$HOME/.hapi:/var/lib/hapi" \
+  hapimcp/hapi-cli:workflows \
+  serve --specs petstore.yaml
 ```
 
-### Remove a Container Manually
+If a mounted directory is not writable by the container user, use a read-only mount for documents (`:ro`) or adjust the directory ownership before mounting it as HAPI home.
+
+## View logs and health
 
 ```sh
-docker rm hapi-petstore
+docker logs -f hapi-workflows
+curl http://localhost:3000/health
 ```
 
-## Air-Gapped / Offline Deployments
-
-For environments without internet access, pre-pull the image and load it:
-
-### Save Image Locally
-
-```sh
-docker pull hapimcp/hapi-cli:latest
-docker save hapimcp/hapi-cli:latest -o hapi-cli-latest.tar
-```
-
-### Load on Air-Gapped Machine
-
-```sh
-docker load -i hapi-cli-latest.tar
-```
-
-### Run in Air-Gapped Environment
-
-```sh
-docker run --name hapi-offline -d --rm \
-  -p 3030:3030 \
-  -v ~/.hapi:/app/.hapi \
-  hapimcp/hapi-cli:latest serve petstore \
-  --port 3030 \
-  --headless \
-  --url "https://petstore3.air-gapped.local/api/v3"
-```
-
-:::note
-To access external APIs, ensure your air-gapped environment has the necessary network configurations.
-:::
-
-## Docker Compose Example
-
-For more complex setups, use Docker Compose:
+## Docker Compose
 
 ```yaml
-version: '3.8'
-
 services:
-  hapi-mcp:
-    image: hapimcp/hapi-cli:latest
-    container_name: hapi-mcp-server
+  hapi-workflows:
+    image: hapimcp/hapi-cli:workflows
     ports:
-      - "3030:3030"
-    environment:
-      - NODE_ENV=development
-      - HAPI_HOME=/app/.hapi
+      - "3000:3000"
     volumes:
-      - ~/.hapi:/app/.hapi
-      - ./more-specs:/app/.hapi/specs
-    command: serve petstore --port 3030 --headless --dev
+      - ./specs:/specs:ro
+      - hapi-home:/var/lib/hapi
+    command:
+      - workflows
+      - serve
+      - --specs
+      - /specs/workflow.yaml
+      - --host
+      - 0.0.0.0
+      - --public-host
+      - http://localhost:3000
     restart: unless-stopped
-  # Add more services as needed, i.e., a CRM, database, etc.
-  my-crm-mcp:
-    image: hapimcp/hapi-cli:latest
-    container_name: my-crm-mcp-server
-    ports:
-      - "4040:3030"
-    environment:
-      - NODE_ENV=production
-      - HAPI_HOME=/app/.hapi
-    volumes:
-      - ~/.hapi:/app/.hapi
-      - ./crm-specs:/app/.hapi/specs
-    command: serve crm-api --port 3030 --headless
-    restart: unless-stopped
+
+volumes:
+  hapi-home:
 ```
 
-### Run with Compose
+Start it with:
 
 ```sh
-docker-compose up -d
+docker compose up -d
+docker compose logs -f hapi-workflows
 ```
 
-### View Logs
+## Air-gapped deployments
+
+Pull and save the image on a connected machine:
 
 ```sh
-docker-compose logs -f hapi-mcp
+docker pull hapimcp/hapi-cli:1.0.0-beta.0823
+docker save hapimcp/hapi-cli:1.0.0-beta.0823 -o hapi-cli-v1-beta.tar
 ```
 
-### Stop
+Load it on the disconnected machine:
 
 ```sh
-docker-compose down
+docker load -i hapi-cli-v1-beta.tar
 ```
 
-## Cloud Deployment with Docker
-
-### Build and Push to Docker Registry
-
-If you customize the HAPI MCP CLI container instance, save and push it to your Docker registry:
-
-```sh
-docker save hapimcp/hapi-cli:latest -o hapi-cli-1.0.0.tar
-# in your air-gapped or cloud environment
-docker load -i hapi-cli-1.0.0.tar
-docker push your-registry/hapi-cli:1.0.0
-```
-
-### Deploy to Cloudflare Workers with Docker
-
-For serverless deployment, use the Docker image with Cloudflare Workers:
-
-1. **Ensure the image is accessible** from your build environment.
-2. **Use the `hapi deploy` command** (which internally uses Wrangler) to deploy:
-
-```sh
-hapi deploy --openapi https://my-api.example.com/openapi.json \
-  --url https://my-api.example.com \
-  --name my-hapi-worker
-```
-
-For more details, see the Cloudflare Workers Deployment guide and the HAPI MCP CLI documentation for [Cloudflare deployment](./cloud/cloudflare) options.
-
-## Best Practices
-
-- **Use explicit version tags:** Always specify a version (e.g., `0.6.0`) instead of latest **for production**.
-- **Mount HAPI home:** Keep configuration persistent with `-v ~/.hapi:/app/.hapi`.
-- **Resource limits:** Use `--memory` and `--cpus` to limit container resources.
-- **Health checks:** Add health checks for production deployments. The MCP server exposes a `/health` endpoint, also, you can use the [`ping` MCP utility](https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/ping).
-- **Logging:** Monitor logs regularly and use log aggregation tools for large deployments.
-- **Security:** Run as non-root, use read-only mounts where possible, and scan images for vulnerabilities.
-
-## Troubleshooting
-
-### Container Exits Immediately
-
-Check logs:
-
-```sh
-docker logs hapi-petstore
-```
-
-### Port Already in Use
-
-Change the host port:
-
-```sh
-docker run -p 3031:3030 ... # Maps host 3031 to container 3030
-```
-
-### Permission Denied on Volume Mount
-
-Ensure the mounted directory has correct permissions:
-
-```sh
-chmod 755 ~/.hapi
-```
+Mount the Arazzo and OpenAPI documents that the workflow needs. In a fully offline environment, do not use remote `--specs` values or remote `sourceDescriptions`; use local, mounted documents instead.
 
 ## References
 
-- [Docker Documentation](https://docs.docker.com/)
-- [HAPI MCP CLI Documentation](https://docs.mcp.com.ai)
+- [HAPI CLI](/components/hapi-server/hapi-cli)
+- [HAPI Workflows](/components/hapi-server/hapi-workflows)
+- [Docker documentation](https://docs.docker.com/)
 - [OpenAPI Specification](https://swagger.io/specification/)
-- [Cloudflare Workers](https://developers.cloudflare.com/workers/)
-
+- [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
