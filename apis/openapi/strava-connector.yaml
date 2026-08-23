@@ -21,7 +21,7 @@ paths:
       - Athletes
       summary: Get Athlete Stats
       description: Returns the activity stats of an athlete. Only includes data from
-        activities set to Everyone visibilty.
+        activities set to Everyone visibility.
       operationId: getStats
       parameters:
       - name: id
