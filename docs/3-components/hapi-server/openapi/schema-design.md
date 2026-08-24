@@ -67,6 +67,130 @@ components:
 Avoid using overly generic types (like `object`). This can make validation and documentation less effective.
 :::
 
+## Request bodies and MCP tool arguments
+
+In OpenAPI 3, an operation payload is described by `requestBody`. Unlike a
+parameter, an inline `requestBody` does not have its own name. HAPI must give
+that payload a name when it creates an MCP tool input schema, so that body
+fields never collide with path, query, or header parameters.
+
+This naming applies to the MCP tool's `arguments` object only. The request sent
+to your API still uses the raw JSON payload defined by the OpenAPI document.
+
+### Inline request bodies
+
+For an inline body, HAPI uses `<operationId>Body`. Give every payload-bearing
+operation a stable, unique `operationId` so the tool contract is predictable.
+
+```yaml
+paths:
+  /orders:
+    post:
+      operationId: placeOrder
+      summary: Place an order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [customer, tacos]
+              properties:
+                customer:
+                  type: object
+                tacos:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '201':
+          description: Order created
+```
+
+HAPI exposes this as the `placeOrder` MCP tool. Call it with the body nested
+under `placeOrderBody`:
+
+```json
+{
+  "name": "placeOrder",
+  "arguments": {
+    "placeOrderBody": {
+      "customer": { "name": "Ada" },
+      "tacos": [{ "id": "taco-1", "quantity": 2 }]
+    }
+  }
+}
+```
+
+If an operation has no `operationId`, HAPI generates one from its method and
+path. Its generated `...Body` property is visible in `tools/list`, but defining
+an `operationId` yourself is recommended because it makes the tool and body
+names stable as the API evolves.
+
+### Reusable request bodies
+
+When several operations use the same payload, define it once in
+`components.requestBodies` and reference it. In this case the component key is
+the MCP argument name. This provides an explicit, reusable name instead of an
+operation-specific one.
+
+```yaml
+components:
+  requestBodies:
+    PlaceOrderBody:
+      description: Customer and taco selections for a new order
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [customer, tacos]
+            properties:
+              customer:
+                type: object
+              tacos:
+                type: array
+                items:
+                  type: object
+
+paths:
+  /orders:
+    post:
+      operationId: placeOrder
+      requestBody:
+        $ref: '#/components/requestBodies/PlaceOrderBody'
+      responses:
+        '201':
+          description: Order created
+```
+
+The resulting MCP call uses `PlaceOrderBody`:
+
+```json
+{
+  "name": "placeOrder",
+  "arguments": {
+    "PlaceOrderBody": {
+      "customer": { "name": "Ada" },
+      "tacos": [{ "id": "taco-1", "quantity": 2 }]
+    }
+  }
+}
+```
+
+:::tip
+Use a clear, unique component key such as `CreateInvoiceBody` or
+`PlaceOrderBody`. It becomes part of the MCP tool contract when the reusable
+body is referenced. Use an `operationId`-based inline body when the payload is
+specific to one operation.
+:::
+
+OpenAPI uses `requestBody.content` to map media types to their schemas, and
+supports reusable bodies through `components.requestBodies` and `$ref`. See
+[Swagger's request-body guide](https://swagger.io/docs/specification/v3_0/describing-request-body/describing-request-body/) and the
+[OpenAPI 3.0 Request Body Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.4.md#request-body-object)
+for the standard syntax.
+
 ## `oneOf`, What is it? When and How to use it?
 
 JSON Schema is a powerful tool for validating complex data structures. The [`oneOf`](https://swagger.io/docs/specification/v3_0/data-models/oneof-anyof-allof-not/#oneof) keyword allows you to specify that a value must match exactly one of the given schemas, **valid against exactly one** (XOR) of the subschemas.
