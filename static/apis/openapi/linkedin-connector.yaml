@@ -36,7 +36,6 @@ components:
             openid: Required to indicate the application wants to use OIDC to authenticate the member
             # https://learn.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/share-on-linkedin
             w_member_social: Write access to share on behalf of member
-            offline_access: Required to get refresh token and refresh access token when it expiresspecs/strava-connector.yaml
     # LinkedIn's primary well-known configuration endpoint for OpenID Connect (OIDC) is https://www.linkedin.com/oauth/.well-known/openid-configuration, which provides metadata for developer integrations, such as authentication and API scopes
     openIdConnect:
       type: openIdConnect
