@@ -17,14 +17,13 @@ This guide explains how to deploy the HAPI MCP Server on Fly.io using the offici
 For rapid prototyping or testing, you can use `fly machine run` to launch a HAPI MCP Server instance immediately, bypassing the need for manual app creation or configuration files.
 
 ```sh
-fly machine run hapimcp/hapi-cli:latest --command "hapi serve" \
-  -e openapi="https://petstore3.swagger.io/api/v3/openapi.json" \
-  -e url="https://petstore3.swagger.io/api/v3"
+fly machine run hapimcp/hapi-cli:latest --command \
+  "hapi serve --specs https://petstore3.swagger.io/api/v3/openapi.json --url https://petstore3.swagger.io/api/v3 --headless"
 ```
 
 * Replace `latest` with a specific version tag if needed.
-* The `--command "hapi serve"` flag tells the container to start the HAPI MCP server.
-* Use `-e` to set required environment variables.
+* Pass `hapi serve`'s own flags (`--specs`, `--url`, `--headless`, etc.) directly in `--command` — this is the same invocation you'd run locally, just wrapped for Fly's machine runner.
+* Use `-e` to set additional environment variables the server should see at runtime (e.g. `HAPI_PUBLIC_HOST`, secrets), not the document source itself.
 
 **Possible Combinations**
 
@@ -66,17 +65,14 @@ fly auth signup
 Create a new Fly.io app and generate a configuration file:
 
 ```sh
-fly launch --no-deploy --image hapimcp/hapi-cli:latest \
-    -e openapi="https://petstore3.swagger.io/api/v3/openapi.json" \
-    -e url="https://petstore3.swagger.io/api/v3"
+fly launch --no-deploy --image hapimcp/hapi-cli:latest
 ```
 
 - When prompted, choose a unique app name and region.
-- For the HAPI MCP Server instance, you need to provide at least:
-  - the `openapi` - the URL to your OpenAPI specification (e.g., `https://petstore3.swagger.io/api/v3/openapi.json`)
-  - and `url` - the 'head' URL of the MCP server (e.g., `https://petstore3.swagger.io/api/v3`).
-
-This will create a `fly.toml` file in your directory. If you prefer, you can also manually create the `fly.toml` file with the necessary configuration. Example is provided at the end of this guide.
+- This creates a `fly.toml` file in your directory. Add a `[processes]` entry
+  telling Fly which `hapi serve` command to run — see the `fly.toml` example
+  at the end of this guide, which passes `--specs`/`--url`/`--headless`
+  directly rather than through environment variables.
 
 ### 3. Edit `fly.toml` for the Pre-Built Image
 
@@ -132,20 +128,24 @@ primary_region = 'dfw'
 [build]
   image = 'hapimcp/hapi-cli:latest'
 
+[processes]
+  app = 'hapi serve --specs https://petstore3.swagger.io/api/v3/openapi.json --url https://petstore3.swagger.io/api/v3 --headless'
+
 [http_service]
-  internal_port = 8080
+  internal_port = 3000
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
 
-[env]
-  openapi = 'https://petstore3.swagger.io/api/v3/openapi.json'
-  url = 'https://petstore3.swagger.io/api/v3'
-
 [[vm]]
   memory = '256mb'
   cpus = 1
   memory_mb = 256
 ```
+
+:::note
+`internal_port` matches `hapi serve`'s default port (3000). If you pass
+`--port` explicitly, update `internal_port` to match.
+:::

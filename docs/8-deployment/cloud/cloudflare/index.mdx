@@ -10,7 +10,7 @@ This guide explains how to deploy the HAPI MCP Server to Cloudflare Workers usin
 
 - A [Cloudflare](https://dash.cloudflare.com/) account
 - The [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/install-and-update/) installed (`npm install -g wrangler` or `bun install -g wrangler`)
-- The [HAPI MCP CLI](https://hapi.mcp.com.ai) installed (download and [install the binary](https://github.com/la-rebelion/hapimcp/releases/))
+- The [HAPI MCP CLI](https://hapi.mcp.com.ai) installed (download and [install the binary](https://github.com/mcp-com-ai/hapimcp/releases/))
 - An OpenAPI specification URL for your backend API
 
 ## Steps
@@ -42,13 +42,13 @@ The HAPI MCP CLI provides a `deploy` command that deploys the HAPI MCP Server as
 **Basic example:**
 
 ```sh
-hapi deploy --openapi https://petstore3.swagger.io/api/v3/openapi.json
+hapi deploy --specs https://petstore3.swagger.io/api/v3/openapi.json
 ```
 
 **With backend URL and custom worker name:**
 
 ```sh
-hapi deploy --openapi https://petstore3.swagger.io/api/v3/openapi.json \
+hapi deploy --specs https://petstore3.swagger.io/api/v3/openapi.json \
   --url https://petstore3.swagger.io/api/v3 \
   --name my-hapi-worker
 ```
@@ -56,17 +56,28 @@ hapi deploy --openapi https://petstore3.swagger.io/api/v3/openapi.json \
 **With extra environment variables:**
 
 ```sh
-hapi deploy --openapi <OPENAPI_URL> --var API_KEY=your-key --var DEBUG=true
+hapi deploy --specs <OPENAPI_URL> --var API_KEY=your-key --var DEBUG=true
 ```
 
 #### Key Options
 
-- `--openapi <url>`: **(Required)** URL or path to your OpenAPI spec.
+- `--specs <url>`: **(Required)** URL or path to your OpenAPI spec. `--openapi` still works as a legacy alias, but new scripts should use `--specs`.
 - `--url <url>`: (Optional) Backend base URL for headless mode.
+- `--public-host <host>`: (Optional) The public URL clients will use to reach this Worker (e.g. `https://api.example.com`). Required whenever the deployed server advertises OAuth/MCP resource metadata, since that metadata must point at a URL clients can actually reach.
 - `--name <name>`: (Optional) Custom worker name (must be RFC 1123 compliant).
 - `--project <project>`: (Optional) Project name for grouping deployments.
 - `--var <key=value>`: (Optional, repeatable) Extra environment variables.
 - `--dry-run`: (Optional) Print actions without executing.
+
+:::info OAuth-protected specs require an Enterprise license
+Deploying a document whose security scheme requires HAPI's interactive OAuth
+broker (for example, passing `--tokens-db` for a production D1-backed
+Worker) needs the licensed `@mcp-com-ai/enterprise-plugin-auth` plugin and a
+`core.enterprise`/`auth.oauth-broker` entitlement. Static API-key, Basic, and
+Bearer auth deploy on the free OSS CLI with no license needed. See
+[Authentication & Licensing](/introduction/whats-new-in-v1#oauth-is-now-a-licensed-enterprise-feature)
+for details.
+:::
 
 Example output:
 
@@ -82,19 +93,19 @@ Example output:
 - **Dry Run:** See what would be deployed without making changes:
 
   ```sh
-  hapi deploy --openapi <OPENAPI_URL> --dry-run
+  hapi deploy --specs <OPENAPI_URL> --dry-run
   ```
 
 - **Keep Config:** Retain the generated worker files for inspection:
 
   ```sh
-  hapi deploy --openapi <OPENAPI_URL> --keep-config
+  hapi deploy --specs <OPENAPI_URL> --keep-config
   ```
 
 - **Custom Project Name:** Useful for grouping or CI/CD:
 
   ```sh
-  hapi deploy --openapi <OPENAPI_URL> --project my-hapi-project
+  hapi deploy --specs <OPENAPI_URL> --project my-hapi-project
   ```
 
 ### 4. Monitor and Manage Your Worker
@@ -112,7 +123,7 @@ Example output:
 ## Example: Full Command
 
 ```sh
-hapi deploy --openapi https://petstore3.swagger.io/api/v3/openapi.json \
+hapi deploy --specs https://petstore3.swagger.io/api/v3/openapi.json \
   --url https://petstore3.swagger.io/api/v3 \
   --name petstore-hapi \
   --var API_KEY=your-key

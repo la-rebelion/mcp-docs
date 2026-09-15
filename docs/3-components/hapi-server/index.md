@@ -36,7 +36,7 @@ HAPI treats your [API schema as the contract](https://rebelion.la/you-dont-need-
 - **API-driven:** Import your API (Swagger or IDL) schema to instantly generate endpoints
 - **Validation layers:** Requests and responses are validated against your schema
 - **Dynamic routing:** Easily manage subdomains and route traffic to the right tenant or instance
-- **Security:** Supports OAuth2, API keys, and custom auth via OpenAPI security schemes
+- **Security:** API-key, Basic, and static Bearer authentication via OpenAPI security schemes are supported out of the box in the free, open-source CLI. Interactive OAuth2 (an OAuth-protected document, with HAPI acting as the local OAuth broker for MCP clients) requires the licensed Enterprise Auth plugin — see [What's New in v1: Authentication & Licensing](/introduction/whats-new-in-v1#oauth-is-now-a-licensed-enterprise-feature).
   - For [gRPC authentication](https://grpc.io/docs/guides/auth/#extending-grpc-to-support-other-authentication-mechanisms), HAPI Server uses metadata and MCP context, or mutual TLS
 - **Extensible:** Add custom logic, hooks, or middleware as needed
 - **HAPI Workflows:** Expose supported Arazzo workflows as MCP tools that can coordinate documented OpenAPI operations
@@ -70,7 +70,6 @@ Always keep your OpenAPI spec up to date! Out-of-sync schemas can cause validati
 :::
 
 ## Further Reading
-- [HAPI MCP source code](https://github.com/la-rebelion/hapi-mcp)
-- [apicove-hapi source code](https://github.com/la-rebelion/apicove-hapi)
+- [HAPI MCP source code](https://github.com/mcp-com-ai/hapimcp)
 - [OpenAPI Specification](https://swagger.io/specification/)
-- [Model Context Protocol (MCP)](https://github.com/la-rebelion)
+- [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol)

@@ -58,6 +58,5 @@ Advanced features may require deeper understanding of HAPI internals and OpenAPI
 - Test advanced features in staging before production.
 
 ## Further Reading
-- [HAPI MCP source code](https://github.com/la-rebelion/hapi-mcp)
-- [apicove-hapi source code](https://github.com/la-rebelion/apicove-hapi)
-- [Model Context Protocol (MCP)](https://github.com/la-rebelion)
+- [HAPI MCP source code](https://github.com/mcp-com-ai/hapimcp)
+- [Model Context Protocol (MCP)](https://github.com/modelcontextprotocol)

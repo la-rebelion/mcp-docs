@@ -231,68 +231,21 @@ The root cause is that some HTTP clients and API testing tools:
 
 This ensures backward compatibility while encouraging proper JSON-RPC implementation.
 
-## Three-Legged OAuth (3LO) and `enableOpaqueOAuth` Feature Flag
+## Three-Legged OAuth (3LO) for AI Agents
 
-[Three-legged OAuth (3LO)](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/) is an authorization flow within the OAuth 2.0 framework that involves three distinct parties: a client application (MCP Client or agent), a resource owner (user), and an authorization server/resource server, i.e.: LinkedIn, Facebook, Strava, etc.. This flow allows a third-party application to access a user's protected resources without the user sharing credentials directly.
+[Three-legged OAuth (3LO)](https://developer.atlassian.com/cloud/confluence/oauth-2-3lo-apps/) is an authorization flow within the OAuth 2.0 framework that involves three distinct parties: a client application (MCP Client or agent), a resource owner (user), and an authorization server/resource server, i.e.: LinkedIn, Facebook, Strava, etc. This flow allows a third-party application to access a user's protected resources without the user sharing credentials directly.
 
-### Challenge with AI Agents
+AI Agents and MCP Clients often face challenges interacting with a user's protected resources, especially when the MCP client doesn't support the full OAuth authorization flow natively.
 
-AI Agents and MCP Clients often face challenges interacting with user's protected resources, especially when the MCP client does not support the full OAuth authorization flow. In such cases, the agent cannot complete the 3LO flow natively.
+**In v1, HAPI's answer to this is the licensed OAuth broker** (Enterprise Auth plugin): HAPI itself performs standard MCP OAuth discovery, dynamic client registration, and the authorization-code + PKCE flow with the user, then manages the upstream 3LO exchange on the client's behalf — the MCP client never has to implement 3LO itself, and never sees the upstream provider's raw token. See [What's New in v1: Authentication & Licensing](/introduction/whats-new-in-v1#oauth-is-now-a-licensed-enterprise-feature) to enable it.
 
-### Workaround: `enableOpaqueOAuth` Feature Flag
-
-To address this, the HAPI server provides the `enableOpaqueOAuth` feature flag. When enabled, it exposes the `/oauth2/opaque` endpoint, allowing users to manually share their access token with the MCP server. This enables MCP Clients/Agents to interact with protected resources on the user's behalf.
-
-#### Usage Flow
-
-1. The user authenticates with the authorization server and obtains an access token.
-2. The user POSTs the access token to the `/oauth2/opaque` endpoint on the HAPI server.
-3. The MCP server stores the token and allows MCP Clients/Agents to use it for subsequent requests.
-
-#### Example
-
-```http
-POST /oauth2/opaque
-Content-Type: application/json
-
-{
-  "state": "<state>",
-  "access_token": "<user_access_token>"
-}
-```
-
-#### Sequence Diagram
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant AuthorizationServer
-    participant ResourceServer
-    participant MCPServer
-    participant MCPClient
-
-    User->>AuthorizationServer: Authenticate & grant access
-    AuthorizationServer-->>User: Return access_token
-    User->>MCPServer: POST /oauth2/opaque {access_token, state}
-    MCPServer-->>User: Store token, acknowledge
-    User<<-->>MCPClient: Chat with AI Agent
-    MCPClient->>MCPServer: Request resource with state
-    MCPServer->>ResourceServer: Use access_token to access protected resource
-    ResourceServer-->>MCPServer: Return protected resource
-    MCPServer-->>MCPClient: Return resource data
-```
-
-#### Limitations
-
-- This is a workaround for clients/agents that do not support the full OAuth flow.
-- The access token must be handled securely and only shared with trusted MCP servers.
-- This approach is not recommended for production unless absolutely necessary.
-
-#### Solution
-
-- Enable the `enableOpaqueOAuth` feature flag in development or integration environments where 3LO is required but not natively supported.
-- Prefer full OAuth 2.0 flows for production and compliant clients.
-
-:::note
-This workaround is essential for AI Agent scenarios where direct user interaction with OAuth flows is not feasible.
+:::caution Legacy (v0.x) — removed in v1
+Earlier HAPI releases (v0.x) shipped an `enableOpaqueOAuth` feature flag that
+exposed a `POST /oauth2/opaque` endpoint, letting a user hand a raw access
+token to the server directly as a workaround for MCP clients that couldn't
+complete an OAuth flow at all. That flag, the `/oauth2/opaque` endpoint, and
+the `--relaxed-auth`/`HAPI_RELAXED_AUTH` bypass it relied on have all been
+**removed** in v1 — there is no replacement flag. If you're following v0.x
+instructions that mention `enableOpaqueOAuth`, they no longer apply; use the
+licensed OAuth broker described above instead.
 :::

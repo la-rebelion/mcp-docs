@@ -33,7 +33,7 @@ HAPI Server uses OpenAPI's `x-` extensions (e.g., `x-hapi`) to add custom metada
 ## How HAPI Uses Your OpenAPI Schema
 - **Endpoint generation:** Each path and method in your spec becomes a live endpoint.
 - **Validation:** Parameters, request bodies, and responses are validated using the schema.
-- **Security:** OpenAPI security schemes (OAuth2, API keys, etc.) are enforced automatically.
+- **Security:** OpenAPI security schemes are enforced automatically. API keys, HTTP Basic, and static Bearer credentials work out of the box in the free CLI; OAuth2 schemes require the licensed Enterprise Auth plugin (see below).
 - **Custom extensions:** Add `x-hapi` fields for advanced routing, context, or tool integration.
 
 ### Example: Adding a Tools
@@ -99,7 +99,15 @@ You SHOULD always define `operationId` for each operation. This helps HAPI and M
 
 ### Example: Enabling OAuth2 Security
 
-To secure your endpoints, you can define OAuth2 security in your OpenAPI spec. HAPI will handle the OAuth flow and token validation automatically. Other [OpenAPI security schemes](https://swagger.io/specification/#security-scheme-object) supported include API keys, HTTP basic auth, and more.
+:::info Requires the Enterprise Auth plugin
+Interactive OAuth2 (below) is a licensed feature: it needs the
+`@mcp-com-ai/enterprise-plugin-auth` plugin and a `core.enterprise`/
+`auth.oauth-broker` entitlement. Without it, `hapi serve` rejects
+OAuth2-protected documents. See [What's New in v1](/introduction/whats-new-in-v1#oauth-is-now-a-licensed-enterprise-feature)
+for details. [Other security schemes](https://swagger.io/specification/#security-scheme-object) — API keys, HTTP Basic, static Bearer tokens — work in the free, open-source CLI with no license.
+:::
+
+To secure your endpoints with OAuth2, define it in your OpenAPI spec as shown below. With the Enterprise Auth plugin installed and licensed, HAPI acts as a local OAuth broker for MCP clients — handling discovery, dynamic client registration, and token exchange — while your upstream OAuth flow and token validation stay configured exactly as shown here.
 
 ```yaml
 components:

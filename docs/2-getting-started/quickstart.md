@@ -58,7 +58,7 @@ hapi serve example --mcp --headless
 - Cloud: Use the provided dashboard and API docs.
 - On-premise: you can either use the CLI or any MCP client (must support `HTTP` protocol):
 
-  * Open your browser and navigate to [http://localhost:8080/swagger](http://localhost:8080/swagger) to access the OpenAPI documentation or *test the APIs* in your browser.
+  * `--headless` mode (shown above) disables the REST/Swagger UI and exposes only the MCP endpoint at `http://localhost:3000/mcp`. Drop `--headless` if you also want the Swagger UI at [http://localhost:3000/swagger](http://localhost:3000/swagger).
   * Use any MCP client to connect to the server, such as [chatMCP](https://chat.mcp.com.ai), [MCP Inspector](https://www.npmjs.com/package/@modelcontextprotocol/inspector), [Postman](https://www.postman.com/downloads/) or curl.
 
 More detailed instructions to access and test the MCP tools are available in the [Hello World guide](./hello-world).

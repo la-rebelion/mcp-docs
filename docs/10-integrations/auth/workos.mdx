@@ -12,6 +12,14 @@ import ReactPlayer from 'react-player'
 
 This guide explains how to add WorkOS authentication to MCP servers using an API-first approach. You will deploy authentication directly from an OpenAPI (Swagger) specification without writing backend code.
 
+:::info Requires the Enterprise Auth plugin
+Interactive OAuth2 — the flow this guide walks through — is a licensed
+feature in v1: it needs the `@mcp-com-ai/enterprise-plugin-auth` plugin and a
+`core.enterprise`/`auth.oauth-broker` entitlement installed alongside the
+free, open-source HAPI CLI. See [What's New in v1: Authentication & Licensing](/introduction/whats-new-in-v1#oauth-is-now-a-licensed-enterprise-feature)
+before following the steps below.
+:::
+
 ## Introduction
 
 WorkOS provides enterprise authentication for applications. MCP servers require authentication to secure MCP Tools and user access. This guide shows how to connect [**WorkOS**](https://workos.com/) authentication to MCP servers using OpenAPI specifications and the [**HAPI server**](https://docs.mcp.com.ai/components/hapi-server/).
