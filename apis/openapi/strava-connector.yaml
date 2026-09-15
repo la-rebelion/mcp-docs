@@ -7,7 +7,7 @@ info:
     the [chatMCP Playground](https://chat.mcp.com.ai). To use the playground, configure
     your MCP Endpoint, connect your Strava account, and start making calls to retrieve
     athlete stats, segment information, and more.
-  version: 3.0.0+0.7.1
+  version: 3.0.0+1.0.2-beta.260914
 servers:
 - url: https://www.strava.com/api/v3
 security:

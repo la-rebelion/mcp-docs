@@ -3,7 +3,7 @@ info:
   title: LinkedIn API
   description: |
     LinkedIn API specification for MCPs to get person profile, and share content on LinkedIn. Empower professionals to operate smarter on LinkedIn by enabling them to share content and retrieve profile information seamlessly through AI-powered applications. 
-  version: 1.0.0
+  version: 1.0.0+1.0.2-beta.260914
   contact:
     name: LinkedIn Developer Support
     url: https://www.linkedin.com/developers/
