@@ -1,0 +1,124 @@
+---
+slug: /jev
+sidebar_position: 1
+sidebar_label: Jev & Capability Planning
+title: "Jev for MCP: Capability Planning and AI Tool Discovery"
+description: "Coming in HAPI v1.2: use Capability Graph and the optional Jev-powered TypeSafe classifier to help MCP clients find the right API tool, identify missing information, and propose safer next steps."
+keywords:
+  - Jev
+  - TypeSafe
+  - HAPI v1.2
+  - Capability Planning
+  - Capability Graph
+  - MCP tool discovery
+  - AI agents
+  - OpenAPI
+author: "La Rebelion Labs"
+publisher: "MCP Project"
+dateModified: "2026-09-25"
+---
+
+<div className="release-chips" role="status" aria-label="Release status">
+  <span className="release-chip release-chip--version">v1.2</span>
+  <span className="release-chip release-chip--coming-soon">Coming soon</span>
+</div>
+
+# Give your AI a better sense of what comes next
+
+**Private Beta available by request:** [request a demo](https://mcp.com.ai/request-demo).
+
+An MCP server can expose a lot of useful tools. But a helpful AI assistant
+needs more than a menu. It needs to know what the person is trying to achieve,
+what information is already available, what is missing, and whether a change
+needs a human decision.
+
+HAPI Capability Planning turns an API into a practical decision guide for AI
+clients. It helps an assistant move a conversation forward without guessing its
+way through an important workflow.
+
+> “I can do that. First, I need you to choose a provider and a time.”
+
+> “Everything is ready. This will cancel the appointment. Would you like me to
+> continue?”
+
+That is the promise: less improvisation, clearer conversations, and safer
+automation around the systems your business already runs.
+
+## What is coming in HAPI v1.2?
+
+HAPI v1.2 brings together three complementary capabilities:
+
+| Capability | What it helps an MCP client do |
+| --- | --- |
+| **Capability Graph** | Find the most relevant tools in a large API without presenting every possible operation at once. |
+| **Capability Planning** | Understand whether a goal is already complete, which known detail is missing, or what safe step could happen next. |
+| **Jev-powered classification** | Add optional semantic judgment to shortlist and rank the right tools when human language is nuanced or ambiguous. |
+
+The foundation stays deterministic. HAPI applies authorization and declared
+workflow rules before a classifier is asked for a semantic judgment. Planning
+prepares a proposal; it does not make an API call or change data.
+
+## Why Jev?
+
+The optional classifier is powered by **Jev from TypeSafe**, a System One model
+designed for fast, structured decisions. Rather than asking a generative model
+to improvise an entire workflow, HAPI can give Jev a bounded set of eligible
+tools and ask it to help choose or rank the best fit for what a person means.
+
+That makes Jev a natural complement to an MCP server:
+
+- HAPI keeps the API contract, authorization, and safety rules in charge.
+- Capability Graph narrows the available options deterministically.
+- Jev adds semantic judgment when words can mean more than one thing.
+- The assistant can ask a focused question when confidence or context is not
+  enough to choose safely.
+
+Learn more about [Jev and TypeSafe System One models](https://docs.typesafe.ai/introduction.md).
+
+## See it in action: appointment scheduling
+
+Someone says, “I need to see a pediatrician next week.”
+
+The assistant can guide the person through the real process:
+
+1. Find suitable, verified professionals.
+2. Ask the person to select one.
+3. Check that professional’s live availability.
+4. Ask the person to choose an available time.
+5. Verify the patient details.
+6. Ask for confirmation before booking.
+
+If the person wants to cancel instead, the assistant follows a different path:
+identify the appointment, verify the person, and ask for clear confirmation
+before a change that cannot be undone.
+
+The conversation stays natural. The business process stays clear.
+
+## Start with the outcome you need
+
+- Want an assistant to find the right tool from a large API? Start with
+  [Capability Graph](/jev/capability-graph).
+- Want the assistant to explain what is missing and prepare the next safe step?
+  Read [Capability Planning](/jev/capability-planning).
+- Interested in the v1.2 Private Beta and the optional Jev classifier? See
+  [Private Beta](/jev/private-beta) or [request a demo](https://mcp.com.ai/request-demo).
+
+## Frequently asked questions
+
+### Is this another chatbot builder?
+
+No. HAPI works with the OpenAPI and MCP tools you already own. Capability Graph
+and Planning give AI clients the context to use those tools more thoughtfully.
+
+### Does Jev control my API or make changes by itself?
+
+No. Jev is an optional classifier for understanding and ranking intent among
+eligible choices. HAPI keeps authorization and declared safety requirements in
+the runtime. Planning is read-only, and execution remains a separate, explicit
+decision.
+
+### Does Capability Planning force every conversation into a script?
+
+No. It helps the assistant react to the current situation. It can identify a
+missing choice, propose the next useful action, or recognize that there is
+nothing left to do.

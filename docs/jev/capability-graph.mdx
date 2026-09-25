@@ -1,0 +1,83 @@
+---
+slug: /jev/capability-graph
+sidebar_position: 2
+sidebar_label: Capability Graph
+title: "Capability Graph for MCP Tool Discovery"
+description: "HAPI Capability Graph helps MCP clients find relevant OpenAPI tools deterministically, with an optional Jev-powered TypeSafe classifier for nuanced intent." 
+keywords:
+  - Capability Graph
+  - MCP tool discovery
+  - Jev classifier
+  - TypeSafe
+  - OpenAPI tools
+  - HAPI v1.2
+author: "La Rebelion Labs"
+publisher: "MCP Project"
+dateModified: "2026-09-25"
+---
+
+<div className="release-chips" role="status" aria-label="Release status">
+  <span className="release-chip release-chip--version">v1.2</span>
+  <span className="release-chip release-chip--coming-soon">Coming soon</span>
+</div>
+
+# Capability Graph: from a long tool list to the right next option
+
+**Private Beta available by request:** [request a demo](https://mcp.com.ai/request-demo).
+
+When an API has dozens or hundreds of operations, showing every tool to an AI
+client is not always helpful. Capability Graph gives HAPI a structured view of
+what each operation is for, when it should be used, what it changes, and what
+it needs first.
+
+HAPI can then offer a smaller, relevant set of tools for a request such as
+“move my appointment without cancelling it” or “show overdue invoices for this
+customer.”
+
+## Deterministic first, semantic when it helps
+
+The standard HAPI experience uses deterministic graph-backed discovery. It is
+predictable, reviewable, and respects authorization before a tool is suggested.
+
+The v1.2 Private Beta also introduces an optional Enterprise classifier based
+on **Jev from TypeSafe**. Jev can help rank an already-authorized shortlist
+when the language is nuanced, ambiguous, or expressed in many different ways.
+
+This is a deliberate split of responsibility:
+
+- The API contract says what is possible.
+- HAPI applies authorization and policy.
+- Capability Graph builds the eligible shortlist.
+- Jev helps understand intent and rank that shortlist.
+- The MCP client still decides how to continue the conversation.
+
+Jev is not a replacement for permissions, confirmation, or business rules.
+Those remain explicit and deterministic.
+
+## What API teams provide
+
+Most APIs already have useful signals: tags, summaries, descriptions, inputs,
+responses, security schemes, and HTTP methods. HAPI can use those signals.
+
+Teams can add a small amount of optional business context when it removes
+ambiguity:
+
+- what a tool helps a person accomplish;
+- when an assistant should use it or avoid it;
+- whether it reads, creates, updates, removes, or triggers an action;
+- which human-readable conditions should be true first.
+
+This is not a rewrite of the backend. It is a clearer guide for the assistant
+using it.
+
+## Who benefits?
+
+Capability Graph is especially useful when:
+
+- an API has a large or growing MCP tool catalog;
+- several operations sound similar but have different consequences;
+- an assistant must avoid offering unauthorized tools;
+- a product team wants consistent tool discovery across MCP clients.
+
+For the next layer—knowing whether the current situation is ready for an
+action—continue to [Capability Planning](/jev/capability-planning).

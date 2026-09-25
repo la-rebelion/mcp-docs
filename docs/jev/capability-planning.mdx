@@ -1,0 +1,88 @@
+---
+slug: /jev/capability-planning
+sidebar_position: 3
+sidebar_label: Capability Planning
+title: "Capability Planning for Safer MCP Workflows"
+description: "HAPI Capability Planning helps MCP clients identify what is ready, what information is missing, and which safe API step can move a workflow forward—without making an API call."
+keywords:
+  - Capability Planning
+  - MCP workflows
+  - AI agent planning
+  - Jev
+  - TypeSafe
+  - safe automation
+  - HAPI v1.2
+author: "La Rebelion Labs"
+publisher: "MCP Project"
+dateModified: "2026-09-25"
+---
+
+<div className="release-chips" role="status" aria-label="Release status">
+  <span className="release-chip release-chip--version">v1.2</span>
+  <span className="release-chip release-chip--coming-soon">Coming soon</span>
+</div>
+
+# Capability Planning: help your assistant know what is missing
+
+**Private Beta available by request:** [request a demo](https://mcp.com.ai/request-demo).
+
+Capability Planning gives an MCP client a way to ask a useful question before
+it acts: **“Given what we know, what can happen next?”**
+
+The answer is not a vague recommendation. It is a bounded proposal built from
+the business states and actions that an API team has explicitly described.
+
+## Four clear answers
+
+For a requested goal, the assistant can receive one of four plain-language
+outcomes:
+
+| Outcome | What the assistant can tell the person |
+| --- | --- |
+| **Complete** | “This is already done. There is nothing else to do.” |
+| **Planned** | “Everything is ready. Here is the safe next step.” |
+| **Clarification required** | “I can help, but I need this specific detail or confirmation first.” |
+| **Unplannable** | “There is no declared, safe route to that result from the information available.” |
+
+Planning never calls the underlying API. It does not book, cancel, charge,
+update, or delete anything. It prepares the conversation so a person and an
+MCP client can make the next decision with their eyes open.
+
+## Dynamic, not rigid
+
+This is not a prewritten chatbot flow. The assistant can respond naturally to
+what a person has already said or selected. The plan changes with the real
+situation:
+
+- A provider was found, but the person has not selected one yet.
+- A time was selected, but the patient details still need verification.
+- Everything is ready, but the booking needs confirmation.
+- The desired appointment is already booked.
+
+The assistant does not have to restart a script. It can ask the one question
+that matters now.
+
+## Where Jev fits
+
+Capability Planning itself remains deterministic: it follows the explicit
+business states, authorization, and safety gates defined for the API.
+
+In the v1.2 Private Beta, the optional **Jev-powered TypeSafe classifier** can
+help earlier in the experience: interpreting a person’s intent, handling
+ambiguous wording, and ranking eligible candidate tools. Jev supplies a
+structured semantic judgment; HAPI still decides what is permitted and what
+requires confirmation.
+
+That combination gives teams a useful balance: conversational intelligence
+where language is fuzzy, and predictable safeguards where the business process
+must be exact.
+
+## A safe path to adoption
+
+1. Start with Capability Graph to improve tool discovery.
+2. Describe a small number of high-value, well-understood business transitions.
+3. Test the four planning outcomes with realistic scenarios.
+4. Let the assistant prepare plans before considering any controlled execution.
+
+Want help identifying the first workflow that is a good fit? [Request a Private
+Beta demo](https://mcp.com.ai/request-demo).

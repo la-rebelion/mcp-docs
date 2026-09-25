@@ -68,6 +68,43 @@
   --destructive-foreground: 210 40% 98%;
 }
 
+/* Release status chips used by pre-release documentation. */
+.release-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.release-chip {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  padding: 0.42rem 0.65rem;
+  text-transform: uppercase;
+}
+
+.release-chip--version {
+  background: hsl(var(--primary) / 0.14);
+  border-color: hsl(var(--primary) / 0.45);
+  color: hsl(var(--primary));
+}
+
+.release-chip--coming-soon {
+  background: hsl(25 85% 58% / 0.14);
+  border-color: hsl(25 85% 58% / 0.5);
+  color: hsl(25 85% 42%);
+}
+
+[data-theme='dark'] .release-chip--coming-soon {
+  color: hsl(25 90% 72%);
+}
+
 /* runMCP-Inspired Dark Mode - Professional Deep Dark Theme */
 [data-theme='dark'] {
   /* HSL Dark Mode Variables - Matching runMCP */

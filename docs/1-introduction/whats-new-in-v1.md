@@ -24,6 +24,13 @@ HAPI a while ago, or you're following an older tutorial or blog post, this
 page walks through what changed and what you need to do about it. If you're
 starting fresh, you can safely skip straight to [Getting Started](/getting-started) — everything there already reflects v1.
 
+:::info Looking ahead: HAPI v1.2
+
+[Jev, Capability Graph, and Capability Planning](/jev) are coming soon in HAPI
+v1.2. The Private Beta is available by request at
+[mcp.com.ai/request-demo](https://mcp.com.ai/request-demo).
+:::
+
 The short version: HAPI went from one flat package to a small family of
 packages (a core engine, a CLI, and installable plugins), picked up a real
 workflow orchestration feature (HAPI Workflows), and moved interactive OAuth
