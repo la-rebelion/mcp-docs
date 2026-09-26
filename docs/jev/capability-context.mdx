@@ -1,0 +1,113 @@
+---
+slug: /jev/capability-context
+sidebar_position: 4
+sidebar_label: Capability Context
+title: "Capability Context: Start an MCP Plan Without Guessing"
+description: "HAPI Capability Context helps an MCP client turn a request into declared goals, business-state requirements, and safe next tools before it plans or calls an API."
+keywords:
+  - Capability Context
+  - Capability Planning
+  - MCP progressive discovery
+  - MCP elicitation
+  - Jev
+  - TypeSafe
+  - appointment planning
+  - HAPI v1.2
+author: "La Rebelion Labs"
+publisher: "MCP Project"
+dateModified: "2026-09-26"
+---
+
+<div className="release-chips" role="status" aria-label="Release status">
+  <span className="release-chip release-chip--version">v1.2</span>
+  <span className="release-chip release-chip--coming-soon">Coming soon</span>
+</div>
+
+# Capability Context: start a plan without guessing
+
+**Private Beta available by request:** [request a demo](https://mcp.com.ai/request-demo).
+
+An assistant should not need to guess which hidden API detail represents a
+person's goal. Capability Context gives it a safe first step: describe the
+request in ordinary language and receive the API's declared goals, business
+conditions, and relevant next tools.
+
+It is a guide, not an action. It does not call an API, make a booking, claim
+that a fact is true, or ask a person for sensitive information.
+
+![Two lanes compare generic progressive discovery with HAPI's appointment planning loop. The HAPI lane moves from a request through Capability Context and planning, then alternates verified human choices, safe reads, and re-planning before a confirmed booking.](/img/diagrams/hapi-capability-context-appointment-flow.svg)
+
+## The practical loop
+
+For a request such as **“I want to book an appointment,”** an MCP client can
+use this sequence:
+
+1. Call `capability_context` with the request.
+2. Select the declared goal, for example `cita.agendada`.
+3. Call `capability_plan` with that goal and only facts already verified to be
+   true.
+4. If the answer is **clarification required**, ask for or safely retrieve the
+   one missing detail, then plan again.
+5. Call a permitted tool only when the plan says it is ready. Re-plan after a
+   meaningful result or user choice.
+
+This is more useful than a fixed script. A person might already have chosen a
+doctor, might need to browse availability first, or might have already made the
+appointment. The plan adapts to the verified situation.
+
+## Facts are not tool names
+
+The appointment example makes a crucial distinction:
+
+- `buscarProfesionales` can produce `profesionales.consultados`.
+- It cannot honestly produce `profesional.seleccionado`.
+
+Seeing professionals is not the same as a person choosing one. The client
+must wait for that selection, verify it, and then include it as a fact in the
+next planning request. The same idea applies to selecting an available time,
+verifying identity, and confirming the booking details.
+
+That restraint is what lets HAPI say *what is still needed* instead of
+pretending the workflow is complete.
+
+## Progressive discovery and HAPI planning
+
+Progressive discovery remains valuable: an MCP client can load tools on demand
+instead of filling its context with an entire catalog. HAPI builds on it with a
+business-state layer:
+
+| Need | HAPI capability |
+| --- | --- |
+| Find the likely tools for a request | `tool_search` |
+| Learn declared goals, requirements, and transitions | `capability_context` |
+| Determine what is ready, missing, or blocked | `capability_plan` |
+| Run a fully specified, confirmed plan in guarded mode only | `capability_execute` |
+
+`capability_context` and `capability_plan` are read-only. Under normal
+decision authority, the MCP client remains responsible for asking the person,
+calling a permitted tool, and re-planning. Under guarded authority,
+`capability_execute` is still separate: it accepts only an exact current plan,
+its arguments, and the required trusted confirmation.
+
+## Where Jev fits
+
+The optional Enterprise classifier is powered by **Jev from TypeSafe**. It can
+help understand nuanced language and rank an already-authorized shortlist.
+Jev does not invent business facts, change a declared transition, bypass a
+policy, or approve an appointment. HAPI keeps those decisions explicit and
+deterministic.
+
+## Is this MCP elicitation?
+
+Not by itself. Capability Context and Capability Planning return structured
+guidance that works with every MCP client. A compatible client can present a
+natural conversational question when a fact is missing.
+
+MCP elicitation is a separate client-supported mechanism for a server to pause
+a request and collect structured user input. It can become a useful future
+presentation option, but the planning loop does not depend on it. That keeps
+the experience portable across clients while respecting the host application's
+control of the user experience.
+
+Learn more about [Capability Planning](/jev/capability-planning) or [request a
+Private Beta demo](https://mcp.com.ai/request-demo).

@@ -2,7 +2,7 @@
   "summary": {
     "total_apis": 13,
     "total_endpoints": 216,
-    "generated_at": "2026-02-21T13:28:07Z",
+    "generated_at": "2026-09-25T12:02:54Z",
     "script_version": "1.0.0"
   },
   "apis": [
@@ -24,13 +24,13 @@
       "filename": "strava-connector.yaml",
       "title": "MCP Strava Connector",
       "description": "The Strava API v3 OpenAPI specification for use with HAPI Model Context Protocol (MCP) servers. Enables AI integration with Strava's athlete activity tracking, segments, clubs, and performance data. For interactive testing, visit the [chatMCP Playground](https://chat.mcp.com.ai). To use the playground, configure your MCP Endpoint, connect your Strava account, and start making calls to retrieve athlete stats, segment information, and more.",
-      "version": "3.0.0+0.7.1",
+      "version": "3.0.0+1.0.2-beta.260914",
       "endpoints": 13,
       "server_url": "https://www.strava.com/api/v3",
       "metadata": {
-        "file_size": 70960,
-        "file_hash": "245ea7cb7337a00b068eda7dbc4566cdfef32e29042b7a778334156f2d99b207",
-        "last_modified": 1771680406,
+        "file_size": 70973,
+        "file_hash": "e0e4a472de351375ddd4e1c3607b46b28a42d5ad926432bf75b53e6f08c195df",
+        "last_modified": 1789429697,
         "format": "yaml"
       }
     },
@@ -52,13 +52,13 @@
       "filename": "linkedin-connector.yaml",
       "title": "LinkedIn API",
       "description": "LinkedIn API specification for MCPs to get person profile, and share content on LinkedIn. Empower professionals to operate smarter on LinkedIn by enabling them to share content and retrieve profile information seamlessly through AI-powered applications. ",
-      "version": "1.0.0",
+      "version": "1.0.0+1.0.2-beta.260914",
       "endpoints": 3,
       "server_url": "https://api.linkedin.com",
       "metadata": {
-        "file_size": 7727,
-        "file_hash": "bbe0f170db8a6bdad8cad318d288e2826d84c4e6c4a2e3659fba948a9b8854db",
-        "last_modified": 1771680405,
+        "file_size": 7619,
+        "file_hash": "6169faacd60e1a64c73b2c158a56e49ec7f720322bc9d0a5eb341f8b5f8d56eb",
+        "last_modified": 1789429730,
         "format": "yaml"
       }
     },
