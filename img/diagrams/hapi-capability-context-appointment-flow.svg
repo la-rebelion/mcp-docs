@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
+  <title id="title">From progressive discovery to HAPI appointment planning</title>
+  <desc id="desc">A two-lane diagram. The first lane shows a generic MCP client searching, inspecting, and calling a tool. The second shows a patient request becoming Capability Context, a declared booking goal, a plan, missing verified facts, safe searches, user selections, replanning, confirmation, and a booking.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.title{fill:#0f172a;font:700 42px Arial,sans-serif}.sub{fill:#475569;font:400 20px Arial,sans-serif}.lane{fill:#fff;stroke:#cbd5e1;stroke-width:3}.laneHead{fill:#0f172a}.laneTitle{fill:#fff;font:700 24px Arial,sans-serif}.card{fill:#fff;stroke:#94a3b8;stroke-width:2}.cardHapi{fill:#effcf8;stroke:#22a06b;stroke-width:3}.cardGoal{fill:#e9f2ff;stroke:#2563eb;stroke-width:3}.cardWarn{fill:#fff8e7;stroke:#f59e0b;stroke-width:3}.cardAction{fill:#edfdf4;stroke:#16a34a;stroke-width:3}.label{fill:#0f172a;font:700 18px Arial,sans-serif}.body{fill:#334155;font:400 16px Arial,sans-serif}.tiny{fill:#475569;font:400 14px Arial,sans-serif}.fact{fill:#075985;font:700 15px Arial,sans-serif}.arrow{fill:none;stroke:#64748b;stroke-width:3;marker-end:url(#arrow)}.arrowGreen{fill:none;stroke:#16a34a;stroke-width:4;marker-end:url(#arrowGreen)}.arrowBlue{fill:none;stroke:#2563eb;stroke-width:4;marker-end:url(#arrowBlue)}.arrowAmber{fill:none;stroke:#d97706;stroke-width:4;stroke-dasharray:10 7;marker-end:url(#arrowAmber)}.note{fill:#fffbeb;stroke:#fbbf24;stroke-width:2}.noteText{fill:#92400e;font:700 15px Arial,sans-serif}</style>
+    <marker id="arrow" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0 0L11 5.5L0 11z" fill="#64748b"/></marker>
+    <marker id="arrowGreen" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0 0L11 5.5L0 11z" fill="#16a34a"/></marker>
+    <marker id="arrowBlue" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0 0L11 5.5L0 11z" fill="#2563eb"/></marker>
+    <marker id="arrowAmber" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0 0L11 5.5L0 11z" fill="#d97706"/></marker>
+  </defs>
+  <rect class="bg" width="1600" height="1120"/>
+  <text class="title" x="800" y="68" text-anchor="middle">From tool discovery to a safer appointment journey</text>
+  <text class="sub" x="800" y="102" text-anchor="middle">The MCP client stays in control; HAPI makes the next decision explicit.</text>
+
+  <rect class="lane" x="50" y="150" width="1500" height="260" rx="22"/>
+  <rect class="laneHead" x="50" y="150" width="1500" height="54" rx="22"/>
+  <text class="laneTitle" x="85" y="186">Generic progressive discovery</text>
+  <rect class="card" x="105" y="245" width="260" height="105" rx="14"/>
+  <text class="label" x="235" y="282" text-anchor="middle">1. Search tools</text><text class="body" x="235" y="312" text-anchor="middle">“Book an appointment”</text>
+  <path class="arrow" d="M365 297H450"/>
+  <rect class="card" x="450" y="245" width="300" height="105" rx="14"/>
+  <text class="label" x="600" y="282" text-anchor="middle">2. Inspect a tool</text><text class="body" x="600" y="312" text-anchor="middle">inputs, schema, response</text>
+  <path class="arrow" d="M750 297H835"/>
+  <rect class="card" x="835" y="245" width="260" height="105" rx="14"/>
+  <text class="label" x="965" y="282" text-anchor="middle">3. Call it</text><text class="body" x="965" y="312" text-anchor="middle">with current context</text>
+  <path class="arrow" d="M1095 297H1180"/>
+  <rect class="note" x="1180" y="238" width="300" height="120" rx="14"/>
+  <text class="noteText" x="1330" y="278" text-anchor="middle">The client still has to infer</text><text class="noteText" x="1330" y="305" text-anchor="middle">the workflow and what is missing.</text><text class="tiny" x="1330" y="333" text-anchor="middle">Great for on-demand tool loading.</text>
+
+  <rect class="lane" x="50" y="455" width="1500" height="605" rx="22"/>
+  <rect x="50" y="455" width="1500" height="54" rx="22" fill="#064e3b"/>
+  <text class="laneTitle" x="85" y="491">HAPI Capability Graph: context, plan, clarify, re-plan</text>
+
+  <rect class="cardHapi" x="95" y="550" width="250" height="110" rx="14"/>
+  <text class="label" x="220" y="588" text-anchor="middle">Patient request</text><text class="body" x="220" y="617" text-anchor="middle">“I want to book an</text><text class="body" x="220" y="640" text-anchor="middle">appointment”</text>
+  <path class="arrowGreen" d="M345 605H410"/>
+  <rect class="cardHapi" x="410" y="540" width="290" height="130" rx="14"/>
+  <text class="label" x="555" y="578" text-anchor="middle">capability_context</text><text class="body" x="555" y="607" text-anchor="middle">declared goal + conditions</text><text class="fact" x="555" y="638" text-anchor="middle">cita.agendada</text>
+  <path class="arrowBlue" d="M700 605H765"/>
+  <rect class="cardGoal" x="765" y="540" width="290" height="130" rx="14"/>
+  <text class="label" x="910" y="578" text-anchor="middle">capability_plan</text><text class="body" x="910" y="607" text-anchor="middle">only verified facts enter</text><text class="body" x="910" y="635" text-anchor="middle">the deterministic plan</text>
+  <path class="arrowAmber" d="M1055 605H1120"/>
+  <rect class="cardWarn" x="1120" y="530" width="360" height="150" rx="14"/>
+  <text class="label" x="1300" y="568" text-anchor="middle">Clarification required</text><text class="body" x="1300" y="596" text-anchor="middle">identity, professional, time,</text><text class="body" x="1300" y="621" text-anchor="middle">or confirmation is not verified</text><text class="tiny" x="1300" y="650" text-anchor="middle">The server does not invent a fact.</text>
+
+  <path class="arrowGreen" d="M1300 680V748H1110"/>
+  <rect class="cardAction" x="830" y="705" width="280" height="125" rx="14"/>
+  <text class="label" x="970" y="743" text-anchor="middle">Safe read + human choice</text><text class="body" x="970" y="772" text-anchor="middle">buscarProfesionales</text><text class="fact" x="970" y="803" text-anchor="middle">profesionales.consultados</text>
+  <path class="arrowGreen" d="M830 768H755"/>
+  <rect class="cardWarn" x="430" y="705" width="325" height="125" rx="14"/>
+  <text class="label" x="592" y="743" text-anchor="middle">Verified user selection</text><text class="body" x="592" y="772" text-anchor="middle">The person chooses one result</text><text class="fact" x="592" y="803" text-anchor="middle">profesional.seleccionado</text>
+  <path class="arrowBlue" d="M430 768H345V905H465"/>
+  <rect class="cardGoal" x="465" y="860" width="270" height="125" rx="14"/>
+  <text class="label" x="600" y="898" text-anchor="middle">Plan again</text><text class="body" x="600" y="928" text-anchor="middle">consult availability, select</text><text class="body" x="600" y="952" text-anchor="middle">a time, verify details</text>
+  <path class="arrowGreen" d="M735 922H810"/>
+  <rect class="cardAction" x="810" y="860" width="310" height="125" rx="14"/>
+  <text class="label" x="965" y="898" text-anchor="middle">Ready with confirmation</text><text class="fact" x="965" y="928" text-anchor="middle">horario.seleccionado</text><text class="body" x="965" y="952" text-anchor="middle">identity + details confirmed</text>
+  <path class="arrowGreen" d="M1120 922H1195"/>
+  <rect class="cardAction" x="1195" y="860" width="285" height="125" rx="14"/>
+  <text class="label" x="1337" y="898" text-anchor="middle">Book appointment</text><text class="body" x="1337" y="928" text-anchor="middle">agendarCita</text><text class="fact" x="1337" y="952" text-anchor="middle">cita.agendada</text>
+
+  <text class="tiny" x="800" y="1095" text-anchor="middle">Jev can optionally rank an already-authorized shortlist. It never creates facts, bypasses confirmation, or executes the flow.</text>
+</svg>
