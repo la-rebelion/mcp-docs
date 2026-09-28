@@ -97,6 +97,19 @@ Jev does not invent business facts, change a declared transition, bypass a
 policy, or approve an appointment. HAPI keeps those decisions explicit and
 deterministic.
 
+## Show the decision trail locally
+
+For an API-author demo, start a graph-enabled server with
+`--dev --capability-trace`. HAPI writes compact `[HCG_TRACE]` records for
+context, planning, graph discovery, and graph-backed calls. They show the
+difference between a **declared** transition, an **observed** API call, and
+validated guarded progression—without logging the request text, patient data,
+fact values, credentials, API arguments, or responses.
+
+Tracing is local, opt-in development diagnostics. It neither stores a person's
+state nor lets a successful ordinary API call claim that a business fact is
+true.
+
 ## Is this MCP elicitation?
 
 Not by itself. Capability Context and Capability Planning return structured

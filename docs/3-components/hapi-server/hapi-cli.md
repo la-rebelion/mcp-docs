@@ -15,6 +15,10 @@ dateModified: '2026-08-23'
 
 The HAPI CLI turns documented APIs and workflows into MCP servers. Use it with an OpenAPI document to expose API operations as tools, or with an Arazzo document to expose higher-level HAPI Workflows.
 
+:::tip Prefer your editor?
+[OrcA for VS Code](../../10-integrations/vscode/index.md) runs `hapi serve` and `hapi serve --dry-run` for you, picks a free port, and tracks the servers it starts. It can also install the CLI.
+:::
+
 ## HAPI v1 beta
 
 HAPI Workflows is part of the upcoming HAPI v1 release. Docker users can try it with:
