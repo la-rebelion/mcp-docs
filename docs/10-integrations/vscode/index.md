@@ -35,9 +35,9 @@ This page is the practical guide. For what OrcA is, why it exists and where it f
 
 ## Install
 
-1. In VS Code, open **Extensions** and search for **OrcA**. You can also install from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=la-rebelion-labs.orca) or run:
+1. In VS Code, open **Extensions** and search for **OrcA**. You can also install from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=la-rebelion-labs.orca-mcp) or run:
    ```bash
-   code --install-extension la-rebelion-labs.orca
+   code --install-extension la-rebelion-labs.orca-mcp
    ```
 2. Requirements:
    - VS Code **1.138** or newer (Windows, macOS, Linux, WSL, SSH, Dev Containers).
