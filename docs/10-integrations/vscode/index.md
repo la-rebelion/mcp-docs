@@ -67,7 +67,9 @@ This page is the practical guide. For what OrcA is, why it exists and where it f
 | **Outline** | Navigate the active contract. Arazzo: add or remove sources, workflows, steps |
 | **MCP Servers** | Deploy, start, stop, restart, view logs, open in browser, add to VS Code, delete |
 | **HAPI Home** | Browse `~/.hapi` (specs, config, plugins, logs, certs); run the specs stored there |
-| **Activity** (Secondary Sidebar) | Timeline of server events |
+| **MCP Servers › Connect** | Browse a connected server's tools, resources and prompts; set request headers |
+| **OrcA** (Secondary Sidebar) | **Chat** with your connected servers, and **Activity** (server events and failed calls) |
+| **OrcA Traffic** (bottom Panel) | Every MCP message and LLM round as a graph; diff, replay, Copy as cURL, save sessions |
 
 The status bar shows your HAPI session and mode, for example `HAPI: anonymous · local`.
 
@@ -85,6 +87,12 @@ Use **Run with HAPI (Options)…**: choose `--mcp`, `--headless` (MCP only) or `
 ### Orchestrate several API calls deterministically
 Create an Arazzo workflow (**New Contract… → Arazzo Workflow**), point its `sourceDescriptions` at your OpenAPI files, validate it, then **Run with HAPI**. Each workflow is exposed as one MCP tool. See [HAPI Workflows](../../3-components/hapi-server/hapi-workflows.md).
 
+### See what your agent sends to an MCP server
+Right-click the running server → **Expose via Proxy**, then **Add to VS Code → Through OrcA (captured)**. Use Copilot as usual; each call appears in **OrcA Traffic** with its client name, latency and payload.
+
+### Chat with an API before wiring an agent
+**Connect** the server, open **OrcA → Chat**, pick a model with **Select Chat Model…** (VS Code language models need no key), and ask. Tools that can change data ask before running.
+
 ### Deploy an MCP server
 Right-click an OpenAPI contract → **Deploy MCP Server** and name it. In **remote** mode (`orca.hapi.apiMode`), sign in first. Your HAPI profile decides the region and plan.
 
@@ -98,7 +106,11 @@ Right-click an OpenAPI contract → **Deploy MCP Server** and name it. In **remo
 | `orca.hapi.serve.defaultArgs` | `["--mcp"]` | Arguments for Run with HAPI |
 | `orca.hapi.apiMode` | `local` | `local` (no network calls) or `remote` |
 | `orca.hapi.apiBaseUrl` / `wsBaseUrl` | `https://api.mcp.com.ai` / `wss://api.mcp.com.ai/ws` | HAPI API for remote mode |
-| `orca.activity.enabled` / `retention` | `true` / `50` | Activity view |
+| `orca.activity.enabled` / `retention` | `true` / `50` | Activity tab |
+| `orca.llm.provider` / `model` / `baseUrl` | `vscode-lm` / *(empty)* / *(empty)* | Chat model (keys go in secret storage via **Set API Key…**) |
+| `orca.chat.confirmTools` / `maxToolRounds` | `mutating` / `8` | Chat tool confirmation and round limit |
+| `orca.traffic.maxFrames` | `5000` | Frames kept in memory |
+| `orca.proxy.port` | `7331` | Capture proxy port (127.0.0.1) |
 
 ## Troubleshooting
 
@@ -108,4 +120,7 @@ Right-click an OpenAPI contract → **Deploy MCP Server** and name it. In **remo
 | Server stays *provisioning*, then *error* | Open its terminal (**View Logs**) to see HAPI's error, for example a bad `$ref` or an unsupported Arazzo version |
 | "Only Arazzo 1.1.x is supported" | Set `arazzo: 1.1.0` in the workflow; the Outline shows this hint for 1.0 documents |
 | Server started on 3001 instead of 3000 | Port 3000 was in use; OrcA picked the next free port (see Activity) |
+| "Connected, but skipped … catalog list(s)" | The server answered a list (for example `resources/templates/list`) with an invalid result; OrcA skipped it. The rest works |
+| "This server requires OAuth" | OAuth MCP servers are not supported yet; use a static header (**Set Headers…**) if the server accepts one |
+| Chat says "No API key" | Run **OrcA: Set API Key…**, set the provider's environment variable, or choose VS Code language models |
 | A contract is not listed | Check that it declares `openapi: 3.x` or `arazzo: 1.x` at the root, and that it is not excluded by `orca.contracts.exclude` |

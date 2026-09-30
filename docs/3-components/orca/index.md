@@ -77,6 +77,8 @@ flowchart LR
 - **Run with HAPI:** starts a local MCP server on a free port, and tracks it until it stops.
 - **Deploy and manage:** creates MCP servers from OpenAPI contracts, then starts, stops, restarts and deletes them, and shows their logs. **Add to VS Code** registers a server in `.vscode/mcp.json`.
 - **Author Arazzo:** Arazzo 1.1 templates, schema validation in the Problems panel, and export.
+- **Connect and chat (v0.3):** OrcA's own MCP client connects to your servers (several at once) and shows their tools, resources and prompts. The **Chat** tab lets an LLM of your choice use them: VS Code language models, OpenAI, Anthropic, Groq, OpenRouter, Ollama, LM Studio or any OpenAI-compatible endpoint (with no vendor SDKs).
+- **Traffic analysis (v0.3):** every MCP message and LLM round, drawn as a graph, with filters, native diffs, Copy as cURL, guarded replay, a jump to the contract operation, and session files. A local **capture proxy** records what other clients (Copilot, Claude, ...) send.
 
 Details on each concept: **[How OrcA works](./how-it-works.md)**.
 

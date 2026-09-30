@@ -96,6 +96,28 @@ OrcA creates the folder if it is missing (the folder only). In WSL, SSH and cont
 
 Sessions are stored in VS Code's secret storage, one per mode. Servers started with **Run with HAPI** appear in both modes.
 
+## Connections, chat and traffic
+
+OrcA 0.3 adds its own MCP client (the official TypeScript SDK) and a small LLM layer, so it sees both halves of an agent turn:
+
+```mermaid
+flowchart LR
+  chat[OrcA Chat] -- LLM round --> llm[(LLM provider)]
+  chat -- tools/call --> client[OrcA MCP client]
+  client -- Streamable HTTP --> server[MCP server]
+  agent[Copilot / Claude / …] -- via proxy --> proxy[OrcA capture proxy<br/>127.0.0.1:7331]
+  proxy --> server
+  client -. frames .-> traffic[OrcA Traffic]
+  proxy -. frames .-> traffic
+  chat -. frames .-> traffic
+```
+
+- **Connections** are explicit (**Connect**, **Connect All Running**). Static headers per server (for example a bearer token) are kept in VS Code's secret storage. A dropped connection is retried 5 times (1–16 s). A list with an invalid result is skipped with a warning. OAuth servers are not supported yet.
+- **Frames.** Each request is paired with its response. A chat turn has a turn id; each LLM request is a round, and each tool call references the round that caused it, which draws the fork and merge lines of the graph. Secrets are redacted, display payloads are capped at 64 KiB, and the last 5,000 frames stay in memory.
+- **Read-only tools.** OrcA honors MCP tool annotations. Without them, a tool that maps to an OpenAPI `GET` is read-only; anything else asks before the chat or a replay runs it.
+- **Proxy.** **Expose via Proxy** serves `http://127.0.0.1:<port>/mcp/<server>` (loopback only), forwards the MCP headers, streams SSE event by event, and records each message with the client's name. It never adds OrcA's stored headers.
+- **Sessions.** **Save Session…** writes `.orca-traffic.json` (format `orca-traffic`, version 1), only when you ask.
+
 ## HAPI CLI
 
 Run and Dry Run need the [HAPI CLI](../hapi-server/hapi-cli.md) v1. When it is missing, OrcA offers to install it with the official installer for your OS, or points you to [hapi.mcp.com.ai](https://hapi.mcp.com.ai).
